@@ -1,0 +1,22 @@
+xcassets:
+  inputs:
+    - FormSample/Resource/Assets/Assets.xcassets
+  outputs:
+    - templateName: swift5
+      params:
+        forceProvidesNamespaces: true
+      output: FormSample/Resource/SwiftGen/Assets.swift
+
+fonts:
+  inputs:
+    - FormSample/Resource/Font
+  outputs:
+    - templateName: swift5
+      output: FormSample/Resource/SwiftGen/Fonts.swift
+
+strings:
+  inputs:
+    - FormSample/Resource/Localizable/en.lproj
+  outputs:
+    - templateName: structured-swift5
+      output: FormSample/Resource/SwiftGen/Strings.swift
