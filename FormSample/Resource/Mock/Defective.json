@@ -1,0 +1,23 @@
+[
+    {
+        "defectiveItem": "선택 없음"
+    },
+    {
+        "defectiveItem": "거실 도배(벽) 들뜸/탈락"
+    },
+    {
+        "defectiveItem": "거실 도배(벽) 찍힘/긁힘"
+    },
+    {
+        "defectiveItem": "거실 아트월 하단 스위치/콘센트 고정 (부착) 불량"
+    },
+    {
+        "defectiveItem": "발코니1"
+    },
+    {
+        "defectiveItem": "발코니2"
+    },
+    {
+        "defectiveItem": "거실 스위치/콘센트 수직/수평불량"
+    }
+]
