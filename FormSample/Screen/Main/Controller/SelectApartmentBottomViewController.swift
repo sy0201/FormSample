@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SelectApartmentViewController: UIViewController {
+class SelectApartmentBottomViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

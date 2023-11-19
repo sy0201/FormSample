@@ -31,12 +31,12 @@ final class MainViewController: BaseViewController {
 
 extension MainViewController {
     func setupTargetButton() {
-        mainView.apartmentButton.addTarget(self, action: #selector(presentModal), for: .touchUpInside)
-        mainView.applicationButton.addTarget(self, action: #selector(createForm), for: .touchUpInside)
+        mainView.selectApartmentButton.addTarget(self, action: #selector(presentModal), for: .touchUpInside)
+        mainView.selectApartmentButton.addTarget(self, action: #selector(createForm), for: .touchUpInside)
     }
 
     @objc func presentModal() {
-//        let selectApartmentVC = SelectApartmentViewController()
+//        let selectApartmentVC = SelectApartmentBottomViewController()
 //        selectApartmentVC.viewModel = self.viewModel
 //
 //        let bottomSheetVC = BottomSheetViewController(contentViewController: selectApartmentVC)

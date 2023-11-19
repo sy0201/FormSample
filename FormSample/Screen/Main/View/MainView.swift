@@ -22,9 +22,8 @@ class MainView: BaseView {
     private let titleLabel: UILabel = {
         let titleLabel = UILabel()
         titleLabel.font = FontFamily.NotoSansKR.bold.font(size: 15)
-        titleLabel.textColor = .white
-        titleLabel.text = "사전확인"
-        //titleLabel.text = Strings.preConfirmation
+        titleLabel.textColor = Asset.Color.white.color
+        titleLabel.text = L10n.preConfirmation
         return titleLabel
     }()
 
@@ -32,16 +31,16 @@ class MainView: BaseView {
         let descriptionLabel = UILabel()
         descriptionLabel.numberOfLines = 0
         descriptionLabel.font = FontFamily.NotoSansKR.light.font(size: 26)
-        descriptionLabel.textColor = .white
-        descriptionLabel.text = "환영합니다!입주에 한 발 다가가기 위한 사전확인 신청을 시작해봅시다!"
+        descriptionLabel.textColor = Asset.Color.white.color
+        descriptionLabel.text = L10n.mainMessage1
         return descriptionLabel
     }()
 
-    private let selectedView: UIView = {
-        let selectedView = UIView()
-        selectedView.layer.cornerRadius = 8
-        selectedView.backgroundColor = .white
-        return selectedView
+    private let selectApartmentView: UIView = {
+        let selectApartmentView = UIView()
+        selectApartmentView.layer.cornerRadius = 8
+        selectApartmentView.backgroundColor = Asset.Color.white.color
+        return selectApartmentView
     }()
 
     private let stackView: UIStackView = {
@@ -55,36 +54,35 @@ class MainView: BaseView {
 
     private let pinImage: UIImageView = {
         let pinImage = UIImageView()
-        pinImage.image = ImageAsset.Image(named: "icMain")
+        pinImage.image = ImageAsset.Image(named: "icMapPin")
         pinImage.contentMode = .scaleAspectFit
+        pinImage.bounds.size.width = 16
         return pinImage
     }()
 
     let apartmentComplexLabel: UILabel = {
         let apartmentComplexLabel = UILabel()
         apartmentComplexLabel.font = FontFamily.NotoSansKR.medium.font(size: 15)
-        //apartmentComplexLabel.textColor = BaseConst.COLOR_GRAY_2D3338
-        apartmentComplexLabel.textColor = .gray
-        apartmentComplexLabel.text = "단지선택"
+        apartmentComplexLabel.textColor = Asset.Color.gray2D3338.color
+        apartmentComplexLabel.text = L10n.selectApartmentComplex
         return apartmentComplexLabel
     }()
 
     private let arrowImage: UIImageView = {
         let arrowImage = UIImageView()
-        arrowImage.image = UIImage(named: "icArrowDown")
+        arrowImage.image =  ImageAsset.Image(named: "icArrowBottom")
         return arrowImage
     }()
 
-    lazy var apartmentButton = UIButton()
+    lazy var selectApartmentButton = UIButton()
 
-    lazy var applicationButton: UIButton = {
+    lazy var requestPreConfirmationButton: UIButton = {
         let applicationButton = UIButton()
         applicationButton.layer.cornerRadius = 26
-        //applicationButton.backgroundColor = BaseConst.COLOR_GREEN_799069
-        applicationButton.backgroundColor = .gray
+        applicationButton.backgroundColor = Asset.Color.green799069.color
         applicationButton.titleLabel?.font = FontFamily.NotoSansKR.bold.font(size: 15)
-        applicationButton.setTitleColor(.white, for: .normal)
-        applicationButton.setTitle("사전확인신청", for: .normal)
+        applicationButton.setTitleColor(Asset.Color.white.color, for: .normal)
+        applicationButton.setTitle(L10n.requestPreConfirmation, for: .normal)
         applicationButton.isHidden = true
         return applicationButton
     }()
@@ -95,11 +93,11 @@ class MainView: BaseView {
                      titleView,
                      titleLabel,
                      descriptionLabel,
-                     selectedView,
-                     applicationButton
+                     selectApartmentView,
+                     requestPreConfirmationButton
                     ])
 
-        selectedView.addSubviews([stackView, arrowImage, apartmentButton])
+        selectApartmentView.addSubviews([stackView, arrowImage, selectApartmentButton])
     }
 
     override func setupConstraint() {
@@ -133,32 +131,33 @@ class MainView: BaseView {
             make.bottom.equalTo(titleView.snp.bottom).offset(0)
         }
 
-        selectedView.snp.makeConstraints { make in
+        selectApartmentView.snp.makeConstraints { make in
             make.leading.equalTo(snp.leading).offset(24.5)
             make.trailing.equalTo(snp.trailing).offset(-23.5)
             make.top.equalTo(descriptionLabel.snp.bottom).offset(40)
             make.height.equalTo(54)
         }
 
-        apartmentButton.snp.makeConstraints {
+        selectApartmentButton.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
 
         stackView.snp.makeConstraints { make in
-            make.leading.equalTo(selectedView.snp.leading).offset(16)
-            make.top.equalTo(selectedView.snp.top).offset(15)
-            make.bottom.equalTo(selectedView.snp.bottom).offset(-15)
+            make.leading.equalTo(selectApartmentView.snp.leading).offset(16)
+            make.trailing.lessThanOrEqualTo(arrowImage.snp.leading).offset(-16)
+            make.top.equalTo(selectApartmentView.snp.top).offset(15)
+            make.bottom.equalTo(selectApartmentView.snp.bottom).offset(-15)
         }
 
         arrowImage.snp.makeConstraints { make in
-            make.right.equalTo(selectedView.snp.right).offset(-16)
-            make.centerY.equalTo(selectedView.snp.centerY)
+            make.right.equalTo(selectApartmentView.snp.right).offset(-16)
+            make.centerY.equalTo(selectApartmentView.snp.centerY)
             make.width.equalTo(20)
             make.height.equalTo(20)
 
         }
-
-        applicationButton.snp.makeConstraints { make in
+        
+        requestPreConfirmationButton.snp.makeConstraints { make in
             make.leading.equalTo(snp.leading).offset(42)
             make.trailing.equalTo(snp.trailing).offset(-43)
             make.bottom.equalTo(snp.bottom).offset(-100)
