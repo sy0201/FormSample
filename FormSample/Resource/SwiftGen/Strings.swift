@@ -14,7 +14,9 @@ internal enum L10n {
   ///   FormSample
   /// 
   ///   Created by siyeon park on 2023/11/17.
-  internal static let beforeCheck = L10n.tr("Localizable", "before_check", fallback: "사전확인")
+  internal static let preConfirmation = L10n.tr("Localizable", "Pre_confirmation", fallback: "사전확인")
+  /// 사전확인신청
+  internal static let requestPreConfirmation = L10n.tr("Localizable", "Request_Pre_confirmation", fallback: "사전확인신청")
 }
 // swiftlint:enable explicit_type_interface function_parameter_count identifier_name line_length
 // swiftlint:enable nesting type_body_length type_name vertical_whitespace_opening_braces

@@ -11,7 +11,7 @@ import SnapKit
 class MainView: BaseView {
     private let backgroundImageView: UIImageView = {
         let imgView = UIImageView()
-        imgView.image = UIImage(named: "icMain")
+        imgView.image = ImageAsset.Image(named: "icMain")
         imgView.contentMode = .scaleAspectFit
         return imgView
     }()
@@ -24,13 +24,14 @@ class MainView: BaseView {
         titleLabel.font = FontFamily.NotoSansKR.bold.font(size: 15)
         titleLabel.textColor = .white
         titleLabel.text = "사전확인"
+        //titleLabel.text = Strings.preConfirmation
         return titleLabel
     }()
 
     private let descriptionLabel: UILabel = {
         let descriptionLabel = UILabel()
         descriptionLabel.numberOfLines = 0
-        //descriptionLabel.font = BaseConst.FONT_LIGHT_26
+        descriptionLabel.font = FontFamily.NotoSansKR.light.font(size: 26)
         descriptionLabel.textColor = .white
         descriptionLabel.text = "환영합니다!입주에 한 발 다가가기 위한 사전확인 신청을 시작해봅시다!"
         return descriptionLabel
@@ -54,17 +55,18 @@ class MainView: BaseView {
 
     private let pinImage: UIImageView = {
         let pinImage = UIImageView()
-        pinImage.image = UIImage(named: "icMapPin")
+        pinImage.image = ImageAsset.Image(named: "icMain")
         pinImage.contentMode = .scaleAspectFit
         return pinImage
     }()
 
-    let apartmentLabel: UILabel = {
-        let apartmentLabel = UILabel()
-        //apartmentLabel.font = BaseConst.FONT_MEDIUM_15
-        //apartmentLabel.textColor = BaseConst.COLOR_GRAY_2D3338
-        apartmentLabel.text = "단지선택"
-        return apartmentLabel
+    let apartmentComplexLabel: UILabel = {
+        let apartmentComplexLabel = UILabel()
+        apartmentComplexLabel.font = FontFamily.NotoSansKR.medium.font(size: 15)
+        //apartmentComplexLabel.textColor = BaseConst.COLOR_GRAY_2D3338
+        apartmentComplexLabel.textColor = .gray
+        apartmentComplexLabel.text = "단지선택"
+        return apartmentComplexLabel
     }()
 
     private let arrowImage: UIImageView = {
@@ -79,7 +81,8 @@ class MainView: BaseView {
         let applicationButton = UIButton()
         applicationButton.layer.cornerRadius = 26
         //applicationButton.backgroundColor = BaseConst.COLOR_GREEN_799069
-        //applicationButton.titleLabel?.font = BaseConst.FONT_BOLD_15
+        applicationButton.backgroundColor = .gray
+        applicationButton.titleLabel?.font = FontFamily.NotoSansKR.bold.font(size: 15)
         applicationButton.setTitleColor(.white, for: .normal)
         applicationButton.setTitle("사전확인신청", for: .normal)
         applicationButton.isHidden = true
@@ -87,7 +90,6 @@ class MainView: BaseView {
     }()
 
     override func setupUI() {
-
         addSubviews([backgroundImageView,
                      gradationView,
                      titleView,
@@ -97,16 +99,11 @@ class MainView: BaseView {
                      applicationButton
                     ])
 
-        selectedView.addSubviews([stackView,
-                                  arrowImage,
-                                  apartmentButton
-                                 ])
+        selectedView.addSubviews([stackView, arrowImage, apartmentButton])
     }
 
     override func setupConstraint() {
-        stackView.addArrangedSubviews([pinImage,
-                                       apartmentLabel
-                                      ])
+        stackView.addArrangedSubviews([pinImage, apartmentComplexLabel])
 
         backgroundImageView.snp.makeConstraints { make in
             make.edges.equalToSuperview()

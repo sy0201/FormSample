@@ -15,6 +15,8 @@
 // Deprecated typealiases
 @available(*, deprecated, renamed: "ColorAsset.Color", message: "This typealias will be removed in SwiftGen 7.0")
 internal typealias AssetColorTypeAlias = ColorAsset.Color
+@available(*, deprecated, renamed: "ImageAsset.Image", message: "This typealias will be removed in SwiftGen 7.0")
+internal typealias AssetImageTypeAlias = ImageAsset.Image
 
 // swiftlint:disable superfluous_disable_command file_length implicit_return
 
@@ -23,6 +25,26 @@ internal typealias AssetColorTypeAlias = ColorAsset.Color
 // swiftlint:disable identifier_name line_length nesting type_body_length type_name
 internal enum Asset {
   internal static let accentColor = ColorAsset(name: "AccentColor")
+  internal static let icAdd = ImageAsset(name: "icAdd")
+  internal static let icArrow = ImageAsset(name: "icArrow")
+  internal static let icArrowBottom = ImageAsset(name: "icArrowBottom")
+  internal static let icArrowRight = ImageAsset(name: "icArrowRight")
+  internal static let icArrowTop = ImageAsset(name: "icArrowTop")
+  internal static let icCamera = ImageAsset(name: "icCamera")
+  internal static let icCheckOff = ImageAsset(name: "icCheckOff")
+  internal static let icCheckOn = ImageAsset(name: "icCheckOn")
+  internal static let icDelete = ImageAsset(name: "icDelete")
+  internal static let icDeletePhoto = ImageAsset(name: "icDeletePhoto")
+  internal static let icDismiss = ImageAsset(name: "icDismiss")
+  internal static let icExample = ImageAsset(name: "icExample")
+  internal static let icFloatingButton = ImageAsset(name: "icFloatingButton")
+  internal static let icFloorPlan = ImageAsset(name: "icFloorPlan")
+  internal static let icLocationCheckOff = ImageAsset(name: "icLocationCheckOff")
+  internal static let icLocationCheckOn = ImageAsset(name: "icLocationCheckOn")
+  internal static let icMain = ImageAsset(name: "icMain")
+  internal static let icMapPin = ImageAsset(name: "icMapPin")
+  internal static let icRadioOff = ImageAsset(name: "icRadioOff")
+  internal static let icRadioOn = ImageAsset(name: "icRadioOn")
 }
 // swiftlint:enable identifier_name line_length nesting type_body_length type_name
 
@@ -88,6 +110,87 @@ internal extension SwiftUI.Color {
   init(asset: ColorAsset) {
     let bundle = BundleToken.bundle
     self.init(asset.name, bundle: bundle)
+  }
+}
+#endif
+
+internal struct ImageAsset {
+  internal fileprivate(set) var name: String
+
+  #if os(macOS)
+  internal typealias Image = NSImage
+  #elseif os(iOS) || os(tvOS) || os(watchOS)
+  internal typealias Image = UIImage
+  #endif
+
+  @available(iOS 8.0, tvOS 9.0, watchOS 2.0, macOS 10.7, *)
+  internal var image: Image {
+    let bundle = BundleToken.bundle
+    #if os(iOS) || os(tvOS)
+    let image = Image(named: name, in: bundle, compatibleWith: nil)
+    #elseif os(macOS)
+    let name = NSImage.Name(self.name)
+    let image = (bundle == .main) ? NSImage(named: name) : bundle.image(forResource: name)
+    #elseif os(watchOS)
+    let image = Image(named: name)
+    #endif
+    guard let result = image else {
+      fatalError("Unable to load image asset named \(name).")
+    }
+    return result
+  }
+
+  #if os(iOS) || os(tvOS)
+  @available(iOS 8.0, tvOS 9.0, *)
+  internal func image(compatibleWith traitCollection: UITraitCollection) -> Image {
+    let bundle = BundleToken.bundle
+    guard let result = Image(named: name, in: bundle, compatibleWith: traitCollection) else {
+      fatalError("Unable to load image asset named \(name).")
+    }
+    return result
+  }
+  #endif
+
+  #if canImport(SwiftUI)
+  @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+  internal var swiftUIImage: SwiftUI.Image {
+    SwiftUI.Image(asset: self)
+  }
+  #endif
+}
+
+internal extension ImageAsset.Image {
+  @available(iOS 8.0, tvOS 9.0, watchOS 2.0, *)
+  @available(macOS, deprecated,
+    message: "This initializer is unsafe on macOS, please use the ImageAsset.image property")
+  convenience init?(asset: ImageAsset) {
+    #if os(iOS) || os(tvOS)
+    let bundle = BundleToken.bundle
+    self.init(named: asset.name, in: bundle, compatibleWith: nil)
+    #elseif os(macOS)
+    self.init(named: NSImage.Name(asset.name))
+    #elseif os(watchOS)
+    self.init(named: asset.name)
+    #endif
+  }
+}
+
+#if canImport(SwiftUI)
+@available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+internal extension SwiftUI.Image {
+  init(asset: ImageAsset) {
+    let bundle = BundleToken.bundle
+    self.init(asset.name, bundle: bundle)
+  }
+
+  init(asset: ImageAsset, label: Text) {
+    let bundle = BundleToken.bundle
+    self.init(asset.name, bundle: bundle, label: label)
+  }
+
+  init(decorative asset: ImageAsset) {
+    let bundle = BundleToken.bundle
+    self.init(decorative: asset.name, bundle: bundle)
   }
 }
 #endif

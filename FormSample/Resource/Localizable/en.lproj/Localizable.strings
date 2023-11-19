@@ -6,4 +6,5 @@
   
 */
 
-"before_check" = "사전확인";
+"Pre_confirmation" = "사전확인";
+"Request_Pre_confirmation" = "사전확인신청";

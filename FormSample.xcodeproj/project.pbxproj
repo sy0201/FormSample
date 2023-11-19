@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1837D7D72B075F03000D953F /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1837D7D42B075F03000D953F /* Strings.swift */; };
+		1827355B2B0A145600D1EE83 /* Color.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1827355A2B0A145600D1EE83 /* Color.xcassets */; };
+		182735642B0A1C5100D1EE83 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182735632B0A1C5100D1EE83 /* Strings.swift */; };
+		182735662B0A24E000D1EE83 /* SelectApartmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182735652B0A24E000D1EE83 /* SelectApartmentViewController.swift */; };
 		1837D7D82B075F03000D953F /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1837D7D52B075F03000D953F /* Assets.swift */; };
 		1837D7D92B075F03000D953F /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1837D7D62B075F03000D953F /* Fonts.swift */; };
 		1837D7E22B076301000D953F /* NetworkingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1837D7E12B0762FD000D953F /* NetworkingManager.swift */; };
@@ -38,7 +40,9 @@
 
 /* Begin PBXFileReference section */
 		11E5C1427B4EDA81A492B7DE /* Pods-FormSample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FormSample.release.xcconfig"; path = "Target Support Files/Pods-FormSample/Pods-FormSample.release.xcconfig"; sourceTree = "<group>"; };
-		1837D7D42B075F03000D953F /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
+		1827355A2B0A145600D1EE83 /* Color.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Color.xcassets; sourceTree = "<group>"; };
+		182735632B0A1C5100D1EE83 /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
+		182735652B0A24E000D1EE83 /* SelectApartmentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectApartmentViewController.swift; sourceTree = "<group>"; };
 		1837D7D52B075F03000D953F /* Assets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
 		1837D7D62B075F03000D953F /* Fonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		1837D7DB2B0761D0000D953F /* Defective.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Defective.json; sourceTree = "<group>"; };
@@ -87,6 +91,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1827355C2B0A147A00D1EE83 /* Color */ = {
+			isa = PBXGroup;
+			children = (
+				1827355A2B0A145600D1EE83 /* Color.xcassets */,
+			);
+			path = Color;
+			sourceTree = "<group>";
+		};
 		1837D7DA2B0761D0000D953F /* Mock */ = {
 			isa = PBXGroup;
 			children = (
@@ -215,6 +227,7 @@
 			isa = PBXGroup;
 			children = (
 				1837D7EE2B0763CE000D953F /* MainViewController.swift */,
+				182735652B0A24E000D1EE83 /* SelectApartmentViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -266,6 +279,7 @@
 		1889B2DC2B075B7800F5ABE6 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				1827355C2B0A147A00D1EE83 /* Color */,
 				1837D7DA2B0761D0000D953F /* Mock */,
 				1889B2ED2B075D1D00F5ABE6 /* SwiftGen */,
 				1889B2DF2B075C8C00F5ABE6 /* Localizable */,
@@ -305,9 +319,9 @@
 		1889B2ED2B075D1D00F5ABE6 /* SwiftGen */ = {
 			isa = PBXGroup;
 			children = (
+				182735632B0A1C5100D1EE83 /* Strings.swift */,
 				1837D7D52B075F03000D953F /* Assets.swift */,
 				1837D7D62B075F03000D953F /* Fonts.swift */,
-				1837D7D42B075F03000D953F /* Strings.swift */,
 			);
 			path = SwiftGen;
 			sourceTree = "<group>";
@@ -398,6 +412,7 @@
 				1889B2D92B0758FE00F5ABE6 /* swiftgen.yml in Resources */,
 				1889B2E52B075CB800F5ABE6 /* NotoSansKR-Bold.otf in Resources */,
 				1889B2E42B075CB800F5ABE6 /* NotoSansKR-Regular.otf in Resources */,
+				1827355B2B0A145600D1EE83 /* Color.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -477,8 +492,9 @@
 				1837D8032B0764FF000D953F /* ApartmentModel.swift in Sources */,
 				1837D7E52B07632E000D953F /* Console.swift in Sources */,
 				1837D7E92B076369000D953F /* BaseViewController.swift in Sources */,
-				1837D7D72B075F03000D953F /* Strings.swift in Sources */,
 				1837D7EC2B0763B8000D953F /* MainView.swift in Sources */,
+				182735642B0A1C5100D1EE83 /* Strings.swift in Sources */,
+				182735662B0A24E000D1EE83 /* SelectApartmentViewController.swift in Sources */,
 				1837D8062B076518000D953F /* ApartmentViewModel.swift in Sources */,
 				1837D80D2B07673E000D953F /* CustomBottomSheetViewController.swift in Sources */,
 				1837D7E22B076301000D953F /* NetworkingManager.swift in Sources */,

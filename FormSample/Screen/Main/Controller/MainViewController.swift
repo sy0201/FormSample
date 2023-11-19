@@ -18,14 +18,12 @@ final class MainViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         setupTargetButton()
     }
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-
-//        mainView.gradationView.gradationView([BaseConst.COLOR_BLACK_60, BaseConst.COLOR_BLACK_00])
+        mainView.gradationView.gradationView([.black.withAlphaComponent(0.6), .black.withAlphaComponent(0.0)])
     }
 }
 
@@ -38,13 +36,12 @@ extension MainViewController {
     }
 
     @objc func presentModal() {
-
-//        let mainBottomSheetVC = MainBottomSheetViewController()
-//        mainBottomSheetVC.viewModel = self.viewModel
+//        let selectApartmentVC = SelectApartmentViewController()
+//        selectApartmentVC.viewModel = self.viewModel
 //
-//        let bottomSheetVC = BottomSheetViewController(contentViewController: mainBottomSheetVC)
+//        let bottomSheetVC = BottomSheetViewController(contentViewController: selectApartmentVC)
 //
-//        mainBottomSheetVC.completionHandler = { [self] text in
+//        selectApartmentVC.completionHandler = { [self] text in
 //            mainView.apartmentLabel.text = text
 //
 //            if mainView.apartmentLabel.text?.isEmpty != true {

@@ -20,3 +20,12 @@ strings:
   outputs:
     - templateName: structured-swift5
       output: FormSample/Resource/SwiftGen/Strings.swift
+
+#colors:
+#  inputs:
+#    - FormSample/Resource/Color
+#  outputs:
+#    - templateName: swift5
+#      params:
+#        forceProvidesNamespaces: true
+#      output: FormSample/Resource/SwiftGen/Colors.swift
