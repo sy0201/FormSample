@@ -10,6 +10,8 @@ import Foundation
 // swiftlint:disable explicit_type_interface function_parameter_count identifier_name line_length
 // swiftlint:disable nesting type_body_length type_name vertical_whitespace_opening_braces
 internal enum L10n {
+  /// 닫기
+  internal static let close = L10n.tr("Localizable", "Close", fallback: "닫기")
   /// 환영합니다!입주에 한 발 다가가기 위한 사전확인 신청을 시작해봅시다!
   internal static let mainMessage1 = L10n.tr("Localizable", "Main_message1", fallback: "환영합니다!입주에 한 발 다가가기 위한 사전확인 신청을 시작해봅시다!")
   /// Localizable.strings

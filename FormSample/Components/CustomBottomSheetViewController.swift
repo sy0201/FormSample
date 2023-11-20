@@ -39,7 +39,7 @@ final class CustomBottomSheetViewController: UIViewController {
     private var bottomSheetViewTopConstraint: NSLayoutConstraint!
 
     var completionHandler: (String) -> () = { _ in }
-    var defaultHeight: CGFloat = 300
+    var defaultHeight: CGFloat = 364
     var bottomSheetPanMinTopConstant: CGFloat = 30.0
     private lazy var bottomSheetPanStartingTopConstant: CGFloat = bottomSheetPanMinTopConstant
 

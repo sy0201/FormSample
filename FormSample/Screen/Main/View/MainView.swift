@@ -8,10 +8,11 @@
 import UIKit
 import SnapKit
 
-class MainView: BaseView {
+final class MainView: BaseView {
+    
     private let backgroundImageView: UIImageView = {
         let imgView = UIImageView()
-        imgView.image = ImageAsset.Image(named: "icMain")
+        imgView.image = Asset.Icon.icMain.image
         imgView.contentMode = .scaleAspectFit
         return imgView
     }()
@@ -54,7 +55,7 @@ class MainView: BaseView {
 
     private let pinImage: UIImageView = {
         let pinImage = UIImageView()
-        pinImage.image = ImageAsset.Image(named: "icMapPin")
+        pinImage.image = Asset.Icon.icMapPin.image
         pinImage.contentMode = .scaleAspectFit
         pinImage.bounds.size.width = 16
         return pinImage
@@ -70,7 +71,7 @@ class MainView: BaseView {
 
     private let arrowImage: UIImageView = {
         let arrowImage = UIImageView()
-        arrowImage.image =  ImageAsset.Image(named: "icArrowBottom")
+        arrowImage.image = Asset.Icon.icArrowBottom.image
         return arrowImage
     }()
 
@@ -98,11 +99,11 @@ class MainView: BaseView {
                     ])
 
         selectApartmentView.addSubviews([stackView, arrowImage, selectApartmentButton])
+
+        stackView.addArrangedSubviews([pinImage, apartmentComplexLabel])
     }
 
     override func setupConstraint() {
-        stackView.addArrangedSubviews([pinImage, apartmentComplexLabel])
-
         backgroundImageView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
@@ -154,7 +155,6 @@ class MainView: BaseView {
             make.centerY.equalTo(selectApartmentView.snp.centerY)
             make.width.equalTo(20)
             make.height.equalTo(20)
-
         }
         
         requestPreConfirmationButton.snp.makeConstraints { make in

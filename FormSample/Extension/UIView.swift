@@ -34,4 +34,15 @@ extension UIView {
 
         layer.addSublayer(gradientLayer)
     }
+
+    func addTopShadow(shadowColor: UIColor, shadowOpacity: Float, shadowRadius: Float, offset: CGSize){
+
+        self.layer.shadowColor = shadowColor.cgColor
+        self.layer.shadowOffset = offset
+        self.layer.shadowOpacity = shadowOpacity
+        self.layer.shadowRadius = CGFloat(shadowRadius)
+        self.clipsToBounds = false
+
+        self.layer.shadowPath = UIBezierPath(rect: self.bounds).cgPath
+    }
 }

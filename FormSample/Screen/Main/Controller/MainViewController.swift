@@ -18,7 +18,8 @@ final class MainViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupTargetButton()
+        getApartmentData()
+        selectApartmentTapped()
     }
 
     override func viewDidLayoutSubviews() {
@@ -27,36 +28,33 @@ final class MainViewController: BaseViewController {
     }
 }
 
-// MARK: - Internal Method
+extension MainViewController {
+    func selectApartmentTapped() {
+        mainView.selectApartmentButton.addTarget(self, action: #selector(selectApartment), for: .touchUpInside)
+    }
+
+    @objc func selectApartment() {
+        let selectApartmentBottomVC = SelectApartmentBottomViewController()
+
+        let apartmentNameList = viewModel.apartmentNameData.map({ $0.apartmentName })
+        selectApartmentBottomVC.selectApartmentBottomView.setRadioDataList(data: apartmentNameList)
+
+        let bottomSheetVC = CustomBottomSheetViewController(contentViewController: selectApartmentBottomVC)
+
+        selectApartmentBottomVC.apartmentNameHandler = { [self] text in
+            mainView.apartmentComplexLabel.text = text
+
+            if mainView.apartmentComplexLabel.text?.isEmpty != true {
+                mainView.requestPreConfirmationButton.isHidden = false
+            }
+        }
+        bottomSheetVC.modalPresentationStyle = .overFullScreen
+        present(bottomSheetVC, animated: true)
+    }
+}
 
 extension MainViewController {
-    func setupTargetButton() {
-        mainView.selectApartmentButton.addTarget(self, action: #selector(presentModal), for: .touchUpInside)
-        mainView.selectApartmentButton.addTarget(self, action: #selector(createForm), for: .touchUpInside)
-    }
-
-    @objc func presentModal() {
-//        let selectApartmentVC = SelectApartmentBottomViewController()
-//        selectApartmentVC.viewModel = self.viewModel
-//
-//        let bottomSheetVC = BottomSheetViewController(contentViewController: selectApartmentVC)
-//
-//        selectApartmentVC.completionHandler = { [self] text in
-//            mainView.apartmentLabel.text = text
-//
-//            if mainView.apartmentLabel.text?.isEmpty != true {
-//                mainView.applicationButton.isHidden = false
-//                }
-//            }
-//
-//            bottomSheetVC.modalPresentationStyle = .overFullScreen
-//            self.present(bottomSheetVC, animated: true)
-    }
-
-    @objc func createForm() {
-//        guard let vc = UIStoryboard(name: "Form", bundle: nil).instantiateViewController(withIdentifier: "FormViewController") as? FormViewController else { return }
-//
-//        vc.selectedApartmentName = mainView.apartmentLabel.text
-//        self.navigationController?.pushViewController(vc, animated: true)
+    func getApartmentData() {
+        viewModel.fetchApartmentData {}
     }
 }
