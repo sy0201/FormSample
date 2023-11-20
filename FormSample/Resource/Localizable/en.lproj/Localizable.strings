@@ -11,5 +11,4 @@
 "Select_Apartment_Complex" = "단지선택";
 "Close" = "닫기";
 "Main_message1" = "환영합니다!입주에 한 발 다가가기 위한 사전확인 신청을 시작해봅시다!";
-
-
+"Main_message2" = "다운로드 된 단지 정보가 없습니다.";

@@ -43,6 +43,7 @@ final class SelectApartmentBottomView: BaseView {
 
         tableView.register(SelectApartmentHeaderView.self, forHeaderFooterViewReuseIdentifier: SelectApartmentHeaderView.reuseIdentifier)
         tableView.register(SelectApartmentTableViewCell.self, forCellReuseIdentifier: SelectApartmentTableViewCell.reuseIdentifier)
+        tableView.register(BottomEmptyTableViewCell.self, forCellReuseIdentifier: BottomEmptyTableViewCell.reuseIdentifier)
     }
 
     override func setupConstraint() {
@@ -93,6 +94,14 @@ extension SelectApartmentBottomView: UITableViewDelegate, UITableViewDataSource 
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+
+        if radioDataList.isEmpty {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: BottomEmptyTableViewCell.reuseIdentifier, for: indexPath) as? BottomEmptyTableViewCell else {
+                return UITableViewCell() }
+
+            return cell
+        }
+
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "SelectApartmentTableViewCell", for: indexPath) as? SelectApartmentTableViewCell else { return UITableViewCell() }
         let data = radioDataList[indexPath.row]
         cell.configure(with: data)

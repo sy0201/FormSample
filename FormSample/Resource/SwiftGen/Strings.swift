@@ -14,6 +14,8 @@ internal enum L10n {
   internal static let close = L10n.tr("Localizable", "Close", fallback: "닫기")
   /// 환영합니다!입주에 한 발 다가가기 위한 사전확인 신청을 시작해봅시다!
   internal static let mainMessage1 = L10n.tr("Localizable", "Main_message1", fallback: "환영합니다!입주에 한 발 다가가기 위한 사전확인 신청을 시작해봅시다!")
+  /// 다운로드 된 단지 정보가 없습니다.
+  internal static let mainMessage2 = L10n.tr("Localizable", "Main_message2", fallback: "다운로드 된 단지 정보가 없습니다.")
   /// Localizable.strings
   ///   FormSample
   /// 
