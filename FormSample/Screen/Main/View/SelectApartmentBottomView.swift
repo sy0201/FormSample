@@ -94,7 +94,6 @@ extension SelectApartmentBottomView: UITableViewDelegate, UITableViewDataSource 
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
         if radioDataList.isEmpty {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: BottomEmptyTableViewCell.reuseIdentifier, for: indexPath) as? BottomEmptyTableViewCell else {
                 return UITableViewCell() }

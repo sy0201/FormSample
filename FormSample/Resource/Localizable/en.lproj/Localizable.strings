@@ -12,3 +12,15 @@
 "Close" = "닫기";
 "Main_message1" = "환영합니다!입주에 한 발 다가가기 위한 사전확인 신청을 시작해봅시다!";
 "Main_message2" = "다운로드 된 단지 정보가 없습니다.";
+
+"WriteForm" = "작성하기";
+"Form_message1" = "신청서 작성 / 접수";
+"Form_message2" = "신청서 작성";
+"Form_message3" = "미접수내역";
+"Form_message4" = "사전점검 신청서 작성";
+"Form_message5" = "사전점검 시 발견한 하자 부분의 위치, 사진,  하자 부분의 내용을 작성하여 신청해주세요.";
+"Form_message6" = "미접수";
+"Form_message7" = "건";
+"Form_message8" = "작성된 신청서를 접수하셔야만 사전 확인 접수가 완료됩니다.";
+"Form_message9" = "";
+"Form_message10" = "";

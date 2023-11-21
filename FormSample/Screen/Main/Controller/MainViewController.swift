@@ -20,6 +20,13 @@ final class MainViewController: BaseViewController {
         super.viewDidLoad()
         getApartmentData()
         selectApartmentTapped()
+        setupNavigationBar()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        self.navigationController?.navigationBar.isHidden = true
     }
 
     override func viewDidLayoutSubviews() {
@@ -31,6 +38,8 @@ final class MainViewController: BaseViewController {
 extension MainViewController {
     func selectApartmentTapped() {
         mainView.selectApartmentButton.addTarget(self, action: #selector(selectApartment), for: .touchUpInside)
+
+        mainView.requestPreConfirmationButton.addTarget(self, action: #selector(pushApplicationForm), for: .touchUpInside)
     }
 
     @objc func selectApartment() {
@@ -50,6 +59,26 @@ extension MainViewController {
         }
         bottomSheetVC.modalPresentationStyle = .overFullScreen
         present(bottomSheetVC, animated: true)
+    }
+
+    @objc func pushApplicationForm() {
+        self.navigationController?.navigationBar.isHidden = false
+
+        let applicationFormVC = ApplicationFormViewController()
+        self.navigationController?.pushViewController(applicationFormVC, animated: true)
+    }
+
+    func setupNavigationBar() {
+        let backBarButtonItem = UIBarButtonItem(image: Asset.Icon.iArrowBack.image,
+                                                style: .plain,
+                                                target: self,
+                                                action: nil)
+        self.navigationItem.backBarButtonItem = backBarButtonItem
+        self.navigationItem.backBarButtonItem?.tintColor = Asset.Color.black.color
+    }
+
+    @objc func backButtonTapped() {
+        navigationController?.popViewController(animated: true)
     }
 }
 

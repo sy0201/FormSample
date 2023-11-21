@@ -42,6 +42,9 @@
 		189AECB32B0B21A10038E377 /* SelectApartmentHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189AECB22B0B21A10038E377 /* SelectApartmentHeaderView.swift */; };
 		189AECB42B0B44A80038E377 /* ApartmentList.json in Resources */ = {isa = PBXBuildFile; fileRef = 1837D7DD2B0761D0000D953F /* ApartmentList.json */; };
 		189AECB72B0B6E9D0038E377 /* BottomEmptyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189AECB62B0B6E9D0038E377 /* BottomEmptyTableViewCell.swift */; };
+		189AECBA2B0C51630038E377 /* ApplicationFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189AECB92B0C51630038E377 /* ApplicationFormViewController.swift */; };
+		189AECBC2B0C54B90038E377 /* ApplicationFormTopTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189AECBB2B0C54B90038E377 /* ApplicationFormTopTableViewCell.swift */; };
+		189AECBF2B0C59930038E377 /* ApplicationFormBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189AECBE2B0C59930038E377 /* ApplicationFormBaseView.swift */; };
 		AC24BACD3FCA0BEB0197B133 /* Pods_FormSample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBFCFB0FD50577C748716483 /* Pods_FormSample.framework */; };
 /* End PBXBuildFile section */
 
@@ -90,6 +93,9 @@
 		189AECB02B0B18490038E377 /* UINavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UINavigationController.swift; sourceTree = "<group>"; };
 		189AECB22B0B21A10038E377 /* SelectApartmentHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectApartmentHeaderView.swift; sourceTree = "<group>"; };
 		189AECB62B0B6E9D0038E377 /* BottomEmptyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomEmptyTableViewCell.swift; sourceTree = "<group>"; };
+		189AECB92B0C51630038E377 /* ApplicationFormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationFormViewController.swift; sourceTree = "<group>"; };
+		189AECBB2B0C54B90038E377 /* ApplicationFormTopTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationFormTopTableViewCell.swift; sourceTree = "<group>"; };
+		189AECBE2B0C59930038E377 /* ApplicationFormBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationFormBaseView.swift; sourceTree = "<group>"; };
 		745EFA50D9C00CBC5CFC1949 /* Pods-FormSample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FormSample.debug.xcconfig"; path = "Target Support Files/Pods-FormSample/Pods-FormSample.debug.xcconfig"; sourceTree = "<group>"; };
 		EBFCFB0FD50577C748716483 /* Pods_FormSample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FormSample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -187,6 +193,8 @@
 			children = (
 				1837D7F62B076435000D953F /* Model */,
 				1837D7F32B076435000D953F /* ViewModel */,
+				189AECBD2B0C595F0038E377 /* View */,
+				189AECB82B0C50600038E377 /* Cell */,
 				189AECB52B0B6E660038E377 /* Controller */,
 			);
 			name = Form;
@@ -351,8 +359,25 @@
 		189AECB52B0B6E660038E377 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				189AECB92B0C51630038E377 /* ApplicationFormViewController.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		189AECB82B0C50600038E377 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				189AECBB2B0C54B90038E377 /* ApplicationFormTopTableViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		189AECBD2B0C595F0038E377 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				189AECBE2B0C59930038E377 /* ApplicationFormBaseView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		1B987902376BC7A435DBAF8B /* Frameworks */ = {
@@ -517,6 +542,7 @@
 				1837D80B2B076694000D953F /* UIStackView.swift in Sources */,
 				1889B2CB2B07557B00F5ABE6 /* FormSample.xcdatamodeld in Sources */,
 				1837D7EF2B0763CE000D953F /* MainViewController.swift in Sources */,
+				189AECBF2B0C59930038E377 /* ApplicationFormBaseView.swift in Sources */,
 				189AECB72B0B6E9D0038E377 /* BottomEmptyTableViewCell.swift in Sources */,
 				1837D7D82B075F03000D953F /* Assets.swift in Sources */,
 				189AECAD2B0AF8C00038E377 /* ReuseIdentifying.swift in Sources */,
@@ -531,7 +557,9 @@
 				182735642B0A1C5100D1EE83 /* Strings.swift in Sources */,
 				182735662B0A24E000D1EE83 /* SelectApartmentBottomViewController.swift in Sources */,
 				1837D8062B076518000D953F /* ApartmentViewModel.swift in Sources */,
+				189AECBC2B0C54B90038E377 /* ApplicationFormTopTableViewCell.swift in Sources */,
 				1837D80D2B07673E000D953F /* CustomBottomSheetViewController.swift in Sources */,
+				189AECBA2B0C51630038E377 /* ApplicationFormViewController.swift in Sources */,
 				189AECA82B0AF6420038E377 /* SelectApartmentBottomView.swift in Sources */,
 				1837D7E22B076301000D953F /* NetworkingManager.swift in Sources */,
 				1837D8092B076642000D953F /* UIView.swift in Sources */,

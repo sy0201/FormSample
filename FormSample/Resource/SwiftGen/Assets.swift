@@ -48,8 +48,8 @@ internal enum Asset {
     internal static let white20 = ColorAsset(name: "White_20")
   }
   internal enum Icon {
+    internal static let iArrowBack = ImageAsset(name: "iArrowBack")
     internal static let icAdd = ImageAsset(name: "icAdd")
-    internal static let icArrow = ImageAsset(name: "icArrow")
     internal static let icArrowBottom = ImageAsset(name: "icArrowBottom")
     internal static let icArrowDefault = ImageAsset(name: "icArrowDefault")
     internal static let icArrowUp = ImageAsset(name: "icArrowUp")

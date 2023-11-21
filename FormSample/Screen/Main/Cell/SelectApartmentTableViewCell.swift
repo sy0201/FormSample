@@ -74,12 +74,6 @@ extension SelectApartmentTableViewCell {
     }
 
     func changeState() {
-        if isRadio {
-            print("isRadio1 \(isRadio)")
-            selectImg.image = Asset.Icon.icRadioOn.image
-        } else {
-            print("isRadio2 \(isRadio)")
-            selectImg.image = Asset.Icon.icRadioOff.image
-        }
+        selectImg.image = isRadio ? Asset.Icon.icRadioOn.image : Asset.Icon.icRadioOff.image
     }
 }
