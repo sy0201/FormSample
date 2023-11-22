@@ -17,5 +17,15 @@ final class ApplicationFormViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupButtonTapped()
+    }
+
+    func setupButtonTapped() {
+        applicationFormView.backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
+    }
+
+    @objc func backButtonTapped() {
+        print("뒤로")
+        back(animated: true)
     }
 }
