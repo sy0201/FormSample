@@ -19,7 +19,7 @@ final class MainViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         getApartmentData()
-        selectApartmentTapped()
+        setupButtonTapped()
     }
 
     override func viewDidLayoutSubviews() {
@@ -29,7 +29,7 @@ final class MainViewController: BaseViewController {
 }
 
 extension MainViewController {
-    func selectApartmentTapped() {
+    func setupButtonTapped() {
         mainView.selectApartmentButton.addTarget(self, action: #selector(selectApartment), for: .touchUpInside)
 
         mainView.requestPreConfirmationButton.addTarget(self, action: #selector(pushApplicationForm), for: .touchUpInside)
@@ -56,6 +56,7 @@ extension MainViewController {
 
     @objc func pushApplicationForm() {
         let applicationFormVC = ApplicationFormViewController()
+        applicationFormVC.selectApartmentName = mainView.apartmentComplexLabel.text ?? ""
         self.navigationController?.pushViewController(applicationFormVC, animated: true)
     }
 }

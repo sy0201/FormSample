@@ -10,7 +10,10 @@ import SnapKit
 
 final class ApplicationFormBaseView: BaseView {
 
-    private let contentsView = UIView()
+    var createFormButtonAction: (() -> Void)?
+    var currentTab: Enum.TabMenu = .left
+
+    private let mainBackgroundView = UIView()
 
     private let topStackView: UIStackView = {
         let tabMenuStackView = UIStackView()
@@ -47,7 +50,7 @@ final class ApplicationFormBaseView: BaseView {
         return pinImage
     }()
 
-    private let apartmentLabel: UILabel = {
+    let apartmentLabel: UILabel = {
         let apartmentLabel = UILabel()
         apartmentLabel.font = FontFamily.NotoSansKR.medium.font(size: 15)
         apartmentLabel.textColor = Asset.Color.gray505C65.color
@@ -55,31 +58,50 @@ final class ApplicationFormBaseView: BaseView {
         return apartmentLabel
     }()
 
-    private let leftTabView = UIView()
+    var isTabMenuTapped: Bool = false {
+        didSet {
+            self.changeState()
+        }
+    }
 
-    private let leftTabLabel: UILabel = {
+    private let leftTabView = UIView()
+    let leftSelectLineTabView: UIView = {
+        let leftSelectLineTabView = UIView()
+        leftSelectLineTabView.backgroundColor = Asset.Color.green0F4F51.color
+        leftSelectLineTabView.isHidden = false
+        return leftSelectLineTabView
+    }()
+    let leftTabLabel: UILabel = {
         let leftTabLabel = UILabel()
         leftTabLabel.font = FontFamily.NotoSansKR.bold.font(size: 15)
         leftTabLabel.textColor = Asset.Color.green0F4F51.color
         leftTabLabel.text = L10n.formMessage2
         return leftTabLabel
     }()
-
     let leftButton: UIButton = UIButton()
 
     let rightTabView = UIView()
-
-    private let rightTabLabel: UILabel = {
+    let rightSelectLineTabView: UIView = {
+        let rightSelectLineTabView = UIView()
+        rightSelectLineTabView.backgroundColor = Asset.Color.green0F4F51.color
+        rightSelectLineTabView.isHidden = true
+        return rightSelectLineTabView
+    }()
+    let rightTabLabel: UILabel = {
         let rightTabLabel = UILabel()
         rightTabLabel.font = FontFamily.NotoSansKR.bold.font(size: 15)
-        rightTabLabel.textColor = Asset.Color.green0F4F51.color
+        rightTabLabel.textColor = Asset.Color.gray9DA4AA.color
         rightTabLabel.text = L10n.formMessage3
         return rightTabLabel
     }()
-
     let rightButton = UIButton()
 
     private let tabMenuView = UIView()
+    private let tabLineView: UIView = {
+        let tabLineView = UIView()
+        tabLineView.backgroundColor = Asset.Color.grayEEF1F3.color
+        return tabLineView
+    }()
 
     private let tabMenuStackView: UIStackView = {
         let tabMenuStackView = UIStackView()
@@ -104,25 +126,25 @@ final class ApplicationFormBaseView: BaseView {
     }
 
     override func setupUI() {
-        contentsView.backgroundColor = .white
-        addSubviews([contentsView, topStackView, navigationView, apartmentView, tabMenuView, tabMenuStackView, leftTabLabel, rightTabLabel, leftButton, rightButton, tableView])
+        mainBackgroundView.backgroundColor = .white
+        addSubviews([mainBackgroundView, topStackView, navigationView, apartmentView, tabMenuView, tabMenuStackView, leftTabLabel, rightTabLabel, leftButton, rightButton, tableView])
 
         topStackView.addArrangedSubviews([navigationView, apartmentView, tabMenuView])
 
         navigationView.addSubviews([backButtonImage, navigationLabel, backButton])
         apartmentView.addSubviews([pinImage, apartmentLabel])
-        tabMenuView.addSubviews([tabMenuStackView])
-        tabMenuStackView.addSubviews([leftTabView, rightTabView])
+        tabMenuView.addSubviews([tabMenuStackView, tabLineView])
+        tabMenuStackView.addSubviews([leftTabView, rightTabView, leftSelectLineTabView, rightSelectLineTabView])
     }
 
     override func setupConstraint() {
-        contentsView.snp.makeConstraints { make in
+        mainBackgroundView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
 
         topStackView.snp.makeConstraints { make in
-            make.leading.equalTo(contentsView.snp.leading)
-            make.trailing.equalTo(contentsView.snp.trailing)
+            make.leading.equalTo(mainBackgroundView.snp.leading)
+            make.trailing.equalTo(mainBackgroundView.snp.trailing)
             make.top.equalTo(safeAreaLayoutGuide.snp.top)
         }
 
@@ -175,9 +197,15 @@ final class ApplicationFormBaseView: BaseView {
             make.height.equalTo(44)
         }
 
+        tabLineView.snp.makeConstraints { make in
+            make.leading.trailing.bottom.equalTo(tabMenuView)
+            make.height.equalTo(1)
+        }
+
         tabMenuStackView.snp.makeConstraints { make in
             make.leading.trailing.equalTo(tabMenuView)
             make.top.equalTo(apartmentView.snp.bottom)
+            make.bottom.equalTo(tabMenuView.snp.bottom)
         }
 
         leftTabView.snp.makeConstraints { make in
@@ -185,10 +213,20 @@ final class ApplicationFormBaseView: BaseView {
             make.width.equalTo(tabMenuStackView.snp.width).multipliedBy(0.5)
         }
 
+        leftSelectLineTabView.snp.makeConstraints { make in
+            make.leading.trailing.bottom.equalTo(leftTabView)
+            make.height.equalTo(3)
+        }
+
         rightTabView.snp.makeConstraints { make in
             make.leading.equalTo(leftTabView.snp.trailing)
             make.trailing.top.bottom.equalTo(tabMenuStackView)
             make.width.equalTo(tabMenuStackView.snp.width).multipliedBy(0.5)
+        }
+
+        rightSelectLineTabView.snp.makeConstraints { make in
+            make.leading.trailing.bottom.equalTo(rightTabView)
+            make.height.equalTo(3)
         }
 
         leftTabLabel.snp.makeConstraints { make in
@@ -210,6 +248,7 @@ final class ApplicationFormBaseView: BaseView {
         tableView.snp.makeConstraints { make in
             make.left.right.bottom.equalToSuperview()
             make.top.equalTo(topStackView.snp.bottom).offset(0)
+            //make.bottom.equalTo(safeAreaLayoutGuide.snp.bottom).offset(34)
         }
     }
 
@@ -218,10 +257,49 @@ final class ApplicationFormBaseView: BaseView {
         tableView.dataSource = self
         tableView.separatorStyle = .none
 
+        tableView.backgroundColor = Asset.Color.backgroundF7F2EF.color
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = UITableView.automaticDimension
 
         tableView.register(ApplicationFormTopTableViewCell.self, forCellReuseIdentifier: ApplicationFormTopTableViewCell.reuseIdentifier)
+        tableView.register(CreateFormTableViewCell.self, forCellReuseIdentifier: CreateFormTableViewCell.reuseIdentifier)
+    }
+
+    func tabSelected(tab: Enum.TabMenu) {
+        setupButton(view: leftSelectLineTabView, label: leftTabLabel, isTabMenuTapped: tab == .left)
+        setupButton(view: rightSelectLineTabView, label: rightTabLabel, isTabMenuTapped: tab == .right)
+    }
+
+    private func setupButton(view: UIView, label: UILabel, isTabMenuTapped: Bool) {
+        if isTabMenuTapped {
+            view.isHidden = false
+            label.textColor = Asset.Color.green0F4F51.color
+
+        } else {
+
+            view.isHidden = true
+            label.textColor = Asset.Color.gray9DA4AA.color
+        }
+    }
+
+    func setCurrentTab(_ type: Enum.TabMenu) {
+        currentTab = type
+    }
+
+    /**
+    func setCurrentTab(_ tabType: Enum.TabMenu) {
+        currentTab = tabType
+    }
+
+    func setupTabMenu(isTabMenuTapped: Bool) {
+        self.isTabMenuTapped = isTabMenuTapped
+    }
+    */
+    func changeState() {
+        leftSelectLineTabView.isHidden = isTabMenuTapped ? true : false
+        rightSelectLineTabView.isHidden = isTabMenuTapped ? true : false
+        leftTabLabel.textColor = isTabMenuTapped ? Asset.Color.green0F4F51.color : Asset.Color.gray9DA4AA.color
+        rightTabLabel.textColor = isTabMenuTapped ? Asset.Color.green0F4F51.color : Asset.Color.gray9DA4AA.color
     }
 }
 
@@ -231,7 +309,23 @@ extension ApplicationFormBaseView: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "ApplicationFormTopTableViewCell", for: indexPath) as? ApplicationFormTopTableViewCell else { return UITableViewCell() }
-        return cell
+        switch indexPath.row {
+        case 0:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "ApplicationFormTopTableViewCell", for: indexPath) as? ApplicationFormTopTableViewCell else { return UITableViewCell() }
+            return cell
+        case 1:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "CreateFormTableViewCell", for: indexPath) as? CreateFormTableViewCell else { return UITableViewCell() }
+            cell.createFormButtonAction = { [weak self] in
+                self?.handleCreateFormButton()
+            }
+            return cell
+        default:
+            break
+        }
+        return UITableViewCell()
+    }
+
+    func handleCreateFormButton() {
+        print("작성하기 탭! 클로저로 전달전달~")
     }
 }
