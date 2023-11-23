@@ -9,8 +9,13 @@ import UIKit
 
 class CreateFormBottomViewController: UIViewController {
 
+    let createFormBaseView = CreateFormBaseView()
+
+    override func loadView() {
+        view = createFormBaseView
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .blue
     }
 }

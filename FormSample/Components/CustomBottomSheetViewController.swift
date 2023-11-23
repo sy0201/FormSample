@@ -61,13 +61,16 @@ final class CustomBottomSheetViewController: UIViewController {
 
     init(contentViewController: UIViewController) {
         self.contentViewController = contentViewController
-        //self.defaultHeight =  contentViewController.view.frame.height
         super.init(nibName: nil, bundle: nil)
     }
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+//    func setDefaultHeight(dynamicallyFor viewController: UIViewController) {
+//        self.defaultHeight = viewController.view.frame.height
+//    }
 }
 
 private extension CustomBottomSheetViewController {

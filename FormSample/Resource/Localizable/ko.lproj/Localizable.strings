@@ -10,6 +10,7 @@
 "Request_Pre_confirmation" = "사전확인신청";
 "Select_Apartment_Complex" = "단지선택";
 "Close" = "닫기";
+"Save" = "저장하기";
 "Main_message1" = "환영합니다!입주에 한 발 다가가기 위한 사전확인 신청을 시작해봅시다!";
 "Main_message2" = "다운로드 된 단지 정보가 없습니다.";
 
@@ -22,5 +23,24 @@
 "Form_message6" = "미접수";
 "Form_message7" = "건";
 "Form_message8" = "작성된 신청서를 접수하셔야만 사전 확인 접수가 완료됩니다.";
-"Form_message9" = "";
-"Form_message10" = "";
+"Form_message9" = "위치 선택(필수)";
+"Form_message10" = "빠른 하자 항목 선택";
+"Form_message11" = "사진첨부";
+"Form_message12" = "선택 안함";
+"Form_message13" = "첨부하기";
+"Form_message14" = "*근접 사진과 원경 사진을 첨부하시면 하자를 정확히 확인하는데 큰 도움이 됩니다.";
+"Form_message15" = "하자 내용(필수)";
+"Form_message16" = "정확한 하자 접수를 위해 최대한 자세히 입력 바랍니다. 예) 도배 : 벽위치(입구 맞은 벽) + 발생부위(중간위치) + 하자상태(찢김)";
+"Form_message17" = "";
+"Form_message18" = "";
+"Form_message19" = "";
+"Form_message20" = "";
+"Form_message21" = "";
+"Form_message22" = "";
+"Form_message23" = "";
+"Form_message24" = "";
+"Form_message25" = "";
+"Form_message26" = "";
+"Form_message27" = "";
+"Form_message28" = "";
+"Form_message29" = "";

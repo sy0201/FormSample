@@ -51,6 +51,7 @@ extension MainViewController {
             }
         }
         bottomSheetVC.modalPresentationStyle = .overFullScreen
+        //bottomSheetVC.setDefaultHeight(dynamicallyFor: selectApartmentBottomVC)
         present(bottomSheetVC, animated: true)
     }
 

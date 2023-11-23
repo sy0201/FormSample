@@ -24,6 +24,7 @@
 		1837D80B2B076694000D953F /* UIStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1837D80A2B076694000D953F /* UIStackView.swift */; };
 		1837D80D2B07673E000D953F /* CustomBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1837D80C2B07673E000D953F /* CustomBottomSheetViewController.swift */; };
 		1878D0022B0EDF8A0074DAAC /* CreateFormBottomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1878D0012B0EDF8A0074DAAC /* CreateFormBottomViewController.swift */; };
+		1878D0042B0EF1550074DAAC /* CreateFormBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1878D0032B0EF1550074DAAC /* CreateFormBaseView.swift */; };
 		1889B2C12B07557B00F5ABE6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1889B2C02B07557B00F5ABE6 /* AppDelegate.swift */; };
 		1889B2C32B07557B00F5ABE6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1889B2C22B07557B00F5ABE6 /* SceneDelegate.swift */; };
 		1889B2CB2B07557B00F5ABE6 /* FormSample.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1889B2C92B07557B00F5ABE6 /* FormSample.xcdatamodeld */; };
@@ -77,6 +78,7 @@
 		1837D80A2B076694000D953F /* UIStackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIStackView.swift; sourceTree = "<group>"; };
 		1837D80C2B07673E000D953F /* CustomBottomSheetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomBottomSheetViewController.swift; sourceTree = "<group>"; };
 		1878D0012B0EDF8A0074DAAC /* CreateFormBottomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateFormBottomViewController.swift; sourceTree = "<group>"; };
+		1878D0032B0EF1550074DAAC /* CreateFormBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateFormBaseView.swift; sourceTree = "<group>"; };
 		1889B2BD2B07557B00F5ABE6 /* FormSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FormSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1889B2C02B07557B00F5ABE6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1889B2C22B07557B00F5ABE6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -385,6 +387,7 @@
 			isa = PBXGroup;
 			children = (
 				189AECBE2B0C59930038E377 /* ApplicationFormBaseView.swift */,
+				1878D0032B0EF1550074DAAC /* CreateFormBaseView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -569,6 +572,7 @@
 				1837D7EF2B0763CE000D953F /* MainViewController.swift in Sources */,
 				189AECBF2B0C59930038E377 /* ApplicationFormBaseView.swift in Sources */,
 				189AECB72B0B6E9D0038E377 /* BottomEmptyTableViewCell.swift in Sources */,
+				1878D0042B0EF1550074DAAC /* CreateFormBaseView.swift in Sources */,
 				1837D7D82B075F03000D953F /* Assets.swift in Sources */,
 				189AECAD2B0AF8C00038E377 /* ReuseIdentifying.swift in Sources */,
 				189AECAF2B0B182A0038E377 /* UIViewController.swift in Sources */,

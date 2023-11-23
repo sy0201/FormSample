@@ -91,10 +91,7 @@ extension ApplicationFormTopTableViewCell {
 
     func setupConstraint() {
         titleStackView.snp.makeConstraints { make in
-            make.leading.equalToSuperview().offset(24)
-            make.trailing.equalToSuperview().offset(-24)
-            make.top.equalToSuperview().offset(24)
-            make.bottom.equalToSuperview().offset(-24)
+            make.leading.trailing.top.bottom.equalToSuperview().inset(24)
         }
 
         notAcceptStackView.snp.makeConstraints { make in
