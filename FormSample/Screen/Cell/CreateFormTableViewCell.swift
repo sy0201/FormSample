@@ -26,7 +26,7 @@ final class CreateFormTableViewCell: UITableViewCell, ReuseIdentifying {
         return createFormButton
     }()
 
-    var createFormButtonAction: (() -> Void)?
+    var createFormCellButtonAction: (() -> Void)?
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -79,6 +79,6 @@ extension CreateFormTableViewCell {
     }
 
     @objc private func createFormButtonTapped() {
-        createFormButtonAction?()
+        createFormCellButtonAction?()
     }
 }

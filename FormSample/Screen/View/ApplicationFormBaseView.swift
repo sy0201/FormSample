@@ -248,7 +248,6 @@ final class ApplicationFormBaseView: BaseView {
         tableView.snp.makeConstraints { make in
             make.left.right.bottom.equalToSuperview()
             make.top.equalTo(topStackView.snp.bottom).offset(0)
-            //make.bottom.equalTo(safeAreaLayoutGuide.snp.bottom).offset(34)
         }
     }
 
@@ -286,15 +285,6 @@ final class ApplicationFormBaseView: BaseView {
         currentTab = type
     }
 
-    /**
-    func setCurrentTab(_ tabType: Enum.TabMenu) {
-        currentTab = tabType
-    }
-
-    func setupTabMenu(isTabMenuTapped: Bool) {
-        self.isTabMenuTapped = isTabMenuTapped
-    }
-    */
     func changeState() {
         leftSelectLineTabView.isHidden = isTabMenuTapped ? true : false
         rightSelectLineTabView.isHidden = isTabMenuTapped ? true : false
@@ -315,7 +305,7 @@ extension ApplicationFormBaseView: UITableViewDelegate, UITableViewDataSource {
             return cell
         case 1:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "CreateFormTableViewCell", for: indexPath) as? CreateFormTableViewCell else { return UITableViewCell() }
-            cell.createFormButtonAction = { [weak self] in
+            cell.createFormCellButtonAction = { [weak self] in
                 self?.handleCreateFormButton()
             }
             return cell
@@ -327,5 +317,6 @@ extension ApplicationFormBaseView: UITableViewDelegate, UITableViewDataSource {
 
     func handleCreateFormButton() {
         print("작성하기 탭! 클로저로 전달전달~")
+        createFormButtonAction?()
     }
 }

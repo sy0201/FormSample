@@ -57,14 +57,14 @@ final class SelectApartmentBottomView: BaseView {
         }
 
         bottomView.snp.makeConstraints { make in
-            make.leading.trailing.bottom.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
+            make.bottom.equalTo(safeAreaLayoutGuide.snp.bottom)
         }
 
         closeBottomButton.snp.makeConstraints { make in
-            make.leading.equalTo(bottomView.snp.leading).offset(24)
-            make.trailing.equalTo(bottomView.snp.trailing).offset(-24)
+            make.leading.trailing.equalToSuperview().inset(24)
             make.top.equalTo(bottomView.snp.top).offset(24)
-            make.bottom.equalTo(safeAreaLayoutGuide.snp.bottom).offset(-24)
+            make.bottom.equalTo(bottomView.snp.bottom).offset(-24)
             make.height.equalTo(50)
         }
     }

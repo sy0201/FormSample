@@ -44,18 +44,20 @@ final class ApplicationFormViewController: BaseViewController {
     }
 
     @objc func leftTapped() {
-        print("leftTapped 탭")
         applicationFormView.setCurrentTab(.left)
         applicationFormView.tabSelected(tab: .left)
     }
 
     @objc func rightTapped() {
-        print("rightTapped 탭")
         applicationFormView.setCurrentTab(.right)
         applicationFormView.tabSelected(tab: .right)
     }
 
     func createFormButtonTapped() {
-        print("바텀시트 오픈")
+        let createFormBottomVC = CreateFormBottomViewController()
+
+        let bottomSheetVC = CustomBottomSheetViewController(contentViewController: createFormBottomVC)
+        bottomSheetVC.modalPresentationStyle = .overFullScreen
+        present(bottomSheetVC, animated: true)
     }
 }

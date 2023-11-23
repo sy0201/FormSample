@@ -61,6 +61,7 @@ final class CustomBottomSheetViewController: UIViewController {
 
     init(contentViewController: UIViewController) {
         self.contentViewController = contentViewController
+        //self.defaultHeight =  contentViewController.view.frame.height
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -128,7 +129,7 @@ private extension CustomBottomSheetViewController {
         ])
     }
 
-    private func showBottomSheet(atState: BottomSheetViewState = .normal) {
+    func showBottomSheet(atState: BottomSheetViewState = .normal) {
 
         if atState == .normal {
 
@@ -181,7 +182,7 @@ private extension CustomBottomSheetViewController {
         view.addGestureRecognizer(viewPan)
     }
 
-    @objc private func viewPanned(_ panGestureRecognizer: UIPanGestureRecognizer) {
+    @objc func viewPanned(_ panGestureRecognizer: UIPanGestureRecognizer) {
         let translation = panGestureRecognizer.translation(in: view)
         let velocity = panGestureRecognizer.velocity(in: view)
 
@@ -233,7 +234,7 @@ private extension CustomBottomSheetViewController {
         return nearestVal
     }
 
-    private func dimAlphaWithBottomSheetTopConstraint(value: CGFloat) -> CGFloat {
+    func dimAlphaWithBottomSheetTopConstraint(value: CGFloat) -> CGFloat {
         let fullDimAlpha: CGFloat = 0.7
 
         let safeAreaHeight = view.safeAreaLayoutGuide.layoutFrame.height

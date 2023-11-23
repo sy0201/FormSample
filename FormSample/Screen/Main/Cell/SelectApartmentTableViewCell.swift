@@ -59,9 +59,16 @@ extension SelectApartmentTableViewCell {
 
     func setupConstraint() {
         stackView.snp.makeConstraints { make in
-            make.leading.equalTo(snp.leading).offset(24)
-            make.top.equalTo(snp.top).offset(12)
-            make.bottom.equalTo(snp.bottom).offset(-12)
+            make.leading.trailing.equalToSuperview().inset(24)
+            make.top.bottom.equalToSuperview().inset(12)
+        }
+
+        selectImg.snp.makeConstraints { make in
+            make.width.height.equalTo(24)
+        }
+
+        selectApartmentLabel.snp.makeConstraints { make in
+            make.centerY.equalTo(selectImg.snp.centerY)
         }
     }
 

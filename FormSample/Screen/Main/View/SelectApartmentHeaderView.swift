@@ -39,8 +39,7 @@ final class SelectApartmentHeaderView: UITableViewHeaderFooterView, ReuseIdentif
         }
 
         titleLabel.snp.makeConstraints { make in
-            make.top.equalTo(titleView.snp.top).offset(20)
-            make.bottom.equalTo(titleView.snp.bottom).offset(-20)
+            make.top.bottom.equalToSuperview().inset(20)
             make.centerX.equalTo(titleView.snp.centerX)
         }
     }
