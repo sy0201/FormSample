@@ -10,8 +10,13 @@ import SnapKit
 
 final class ApplicationFormBaseView: BaseView {
 
-    var createFormButtonAction: (() -> Void)?
     var currentTab: Enum.TabMenu = .left
+    var createFormButtonAction: (() -> Void)?
+    var isTabMenuTapped: Bool = false {
+        didSet {
+            self.changeState()
+        }
+    }
 
     private let mainBackgroundView = UIView()
 
@@ -57,12 +62,6 @@ final class ApplicationFormBaseView: BaseView {
         apartmentLabel.text = L10n.formMessage1
         return apartmentLabel
     }()
-
-    var isTabMenuTapped: Bool = false {
-        didSet {
-            self.changeState()
-        }
-    }
 
     private let leftTabView = UIView()
     let leftSelectLineTabView: UIView = {

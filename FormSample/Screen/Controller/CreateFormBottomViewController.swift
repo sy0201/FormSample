@@ -17,20 +17,10 @@ final class CreateFormBottomViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupTargetButton()
+
     }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.createFormBaseView.defectiveTextView.resignFirstResponder()
-    }
-}
-
-extension CreateFormBottomViewController {
-    func setupTargetButton() {
-        createFormBaseView.unSelectedButton.addTarget(self, action: #selector(hiddenPhotoView), for: .touchUpInside)
-    }
-
-    @objc func hiddenPhotoView() {
-        print("선택안함")
     }
 }

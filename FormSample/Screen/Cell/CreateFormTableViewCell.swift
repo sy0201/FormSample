@@ -46,7 +46,7 @@ final class CreateFormTableViewCell: UITableViewCell, ReuseIdentifying {
     }
 }
 
-extension CreateFormTableViewCell {
+private extension CreateFormTableViewCell {
     func setupUI() {
         selectionStyle = .none
         mainView.backgroundColor = Asset.Color.backgroundF7F2EF.color
@@ -78,7 +78,7 @@ extension CreateFormTableViewCell {
         createFormButton.addTarget(self, action: #selector(createFormButtonTapped), for: .touchUpInside)
     }
 
-    @objc private func createFormButtonTapped() {
+    @objc func createFormButtonTapped() {
         createFormCellButtonAction?()
     }
 }

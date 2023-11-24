@@ -10,6 +10,14 @@ import SnapKit
 
 final class CreateFormBaseView: BaseView {
 
+    // TODO: 선택안함유무 데이터 전달시 필요
+    //var attachmentButtonAction: (() -> Void)?
+    var isAttachment: Bool = false {
+        didSet {
+            self.changeState()
+        }
+    }
+
     let scrollView = UIScrollView()
     private let mainView = UIView()
     private let titleView = UIView()
@@ -123,12 +131,6 @@ final class CreateFormBaseView: BaseView {
         return photoTitleLabel
     }()
 
-    var isAttachment: Bool = false {
-        didSet {
-            self.changeState()
-        }
-    }
-
     let unSelectedButton: UIButton = {
         let unSelectedButton = UIButton()
         unSelectedButton.setImage(UIImage(named: Asset.Icon.icCheckboxOff.name), for: .normal)
@@ -237,6 +239,8 @@ final class CreateFormBaseView: BaseView {
         super.init(frame: frame)
         setupUI()
         setupConstraint()
+        setupTextView()
+        setupActions()
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -449,7 +453,7 @@ extension CreateFormBaseView {
     func setupTextView() {
         defectiveTextView.delegate = self
     }
-    
+
     func changeState() {
         if isAttachment {
             unSelectedButton.setImage(UIImage(named: Asset.Icon.icCheckboxOn.name), for: .normal)
@@ -458,6 +462,17 @@ extension CreateFormBaseView {
             unSelectedButton.setImage(UIImage(named: Asset.Icon.icCheckboxOff.name), for: .normal)
             attachPhotoStackView.isHidden = false
         }
+    }
+
+    func setupActions() {
+        unSelectedButton.addTarget(self, action: #selector(hiddenPhotoView), for: .touchUpInside)
+    }
+
+    @objc func hiddenPhotoView() {
+        print("선택안함")
+        isAttachment.toggle()
+        changeState()
+//        attachmentButtonAction?()
     }
 }
 
