@@ -316,7 +316,6 @@ extension ApplicationFormBaseView: UITableViewDelegate, UITableViewDataSource {
     }
 
     func handleCreateFormButton() {
-        print("작성하기 탭! 클로저로 전달전달~")
         createFormButtonAction?()
     }
 }
