@@ -123,6 +123,12 @@ final class CreateFormBaseView: BaseView {
         return photoTitleLabel
     }()
 
+    var isAttachment: Bool = false {
+        didSet {
+            self.changeState()
+        }
+    }
+
     let unSelectedButton: UIButton = {
         let unSelectedButton = UIButton()
         unSelectedButton.setImage(UIImage(named: Asset.Icon.icCheckboxOff.name), for: .normal)
@@ -188,6 +194,15 @@ final class CreateFormBaseView: BaseView {
         return lineView
     }()
 
+    let hiddenStackView: UIStackView = {
+        let hiddenStackView = UIStackView()
+        hiddenStackView.axis = .vertical
+        hiddenStackView.alignment = .fill
+        hiddenStackView.distribution = .fillProportionally
+        hiddenStackView.spacing = 8
+        return hiddenStackView
+    }()
+
     let defectiveInputView: UIView = UIView()
     let defectiveInputStackView: UIStackView = {
         let defectiveInputStackView = UIStackView()
@@ -208,6 +223,7 @@ final class CreateFormBaseView: BaseView {
 
     let defectiveTextView: UITextView = {
         let textView = UITextView()
+        textView.layer.cornerRadius = 8
         textView.layer.borderColor = Asset.Color.grayEEF1F3.color.cgColor
         textView.layer.borderWidth = 1
         textView.textContainerInset = UIEdgeInsets(top: 8.0, left: 16.0, bottom: 8.0, right: 16.0)
@@ -234,7 +250,7 @@ final class CreateFormBaseView: BaseView {
     }
 
     override func setupUI() {
-        addSubviews([scrollView, mainView, titleView, localView, defectiveView, localStackView, defectiveStackView, photoView, photoStackView, attachPhotoStackView, defectiveInputView])
+        addSubviews([scrollView, mainView, titleView, localView, defectiveView, localStackView, defectiveStackView, photoView, photoStackView, attachPhotoStackView, hiddenStackView, defectiveInputView])
         scrollView.addSubview(mainView)
         titleView.addSubviews([titleLabel, titleLineView])
 
@@ -245,9 +261,11 @@ final class CreateFormBaseView: BaseView {
         defectiveStackView.addArrangedSubviews([defectiveTitleLabel, defectiveLabel])
 
         photoView.addSubview(photoStackView)
-        photoStackView.addArrangedSubviews([photoTopView, attachPhotoView, photoBottomView])
+        photoStackView.addArrangedSubviews([photoTopView, hiddenStackView, attachPhotoView, photoBottomView])
 
         photoTopView.addSubviews([photoTitleLabel, unSelectedButton])
+        hiddenStackView.addSubviews([attachPhotoStackView, photoBottomView])
+
         attachPhotoView.addSubview(attachPhotoStackView)
         attachPhotoStackView.addArrangedSubviews([zoomInView, zoomOutView])
         zoomInView.addSubviews([zoomInImageView, zoomInButton])
@@ -265,8 +283,6 @@ final class CreateFormBaseView: BaseView {
         }
 
         mainView.snp.makeConstraints { make in
-            //make.top.equalToSuperview().offset(22)
-            //make.leading.trailing.bottom.equalToSuperview()
             make.top.bottom.equalTo(scrollView)
             make.left.right.equalTo(safeAreaLayoutGuide)
         }
@@ -336,12 +352,17 @@ final class CreateFormBaseView: BaseView {
         }
 
         photoTopView.snp.makeConstraints { make in
-            make.top.equalTo(defectiveView.snp.bottom)
             make.leading.trailing.equalTo(defectiveView)
+            make.top.equalTo(defectiveView.snp.bottom)
         }
 
         photoTitleLabel.snp.makeConstraints { make in
             make.leading.top.bottom.equalTo(photoTopView).inset(24)
+        }
+
+       hiddenStackView.snp.makeConstraints { make in
+           make.leading.trailing.equalTo(photoTopView).inset(24)
+           make.top.equalTo(photoTopView.snp.bottom)
         }
 
         unSelectedButton.snp.makeConstraints { make in
@@ -351,7 +372,7 @@ final class CreateFormBaseView: BaseView {
 
         attachPhotoView.snp.makeConstraints { make in
             make.leading.trailing.equalTo(mainView)
-            make.top.equalTo(photoTopView.snp.bottom)
+            make.top.equalTo(hiddenStackView.snp.bottom)
         }
 
         attachPhotoStackView.snp.makeConstraints { make in
@@ -421,5 +442,45 @@ final class CreateFormBaseView: BaseView {
             make.leading.trailing.bottom.equalTo(defectiveInputStackView)
             make.height.equalTo(120)
         }
+    }
+}
+
+extension CreateFormBaseView {
+    func setupTextView() {
+        defectiveTextView.delegate = self
+    }
+    
+    func changeState() {
+        if isAttachment {
+            unSelectedButton.setImage(UIImage(named: Asset.Icon.icCheckboxOn.name), for: .normal)
+            attachPhotoStackView.isHidden = true
+        } else {
+            unSelectedButton.setImage(UIImage(named: Asset.Icon.icCheckboxOff.name), for: .normal)
+            attachPhotoStackView.isHidden = false
+        }
+    }
+}
+
+extension CreateFormBaseView: UITextViewDelegate {
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if defectiveTextView == Asset.Color.gray9DA4AA.color {
+            defectiveTextView.text = nil
+            defectiveTextView.textColor = Asset.Color.black.color
+        }
+    }
+
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if defectiveTextView.text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+            defectiveTextView.text =  L10n.formMessage16
+            defectiveTextView.textColor = Asset.Color.gray9DA4AA.color
+        }
+    }
+
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        let inputString = text.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard let oldString = textView.text, let newRange = Range(range, in: oldString) else { return true }
+        let newString = oldString.replacingCharacters(in: newRange, with: inputString).trimmingCharacters(in: .whitespacesAndNewlines)
+
+        return true
     }
 }
