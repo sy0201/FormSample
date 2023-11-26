@@ -38,7 +38,7 @@
 		1889B2E72B075CB800F5ABE6 /* NotoSansKR-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 1889B2E32B075CB800F5ABE6 /* NotoSansKR-Light.otf */; };
 		1889B2EA2B075CF500F5ABE6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1889B2EC2B075CF500F5ABE6 /* Localizable.strings */; };
 		189AECA82B0AF6420038E377 /* SelectApartmentBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189AECA72B0AF6420038E377 /* SelectApartmentBottomView.swift */; };
-		189AECAB2B0AF89A0038E377 /* SelectApartmentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189AECAA2B0AF89A0038E377 /* SelectApartmentTableViewCell.swift */; };
+		189AECAB2B0AF89A0038E377 /* SelectRadioTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189AECAA2B0AF89A0038E377 /* SelectRadioTableViewCell.swift */; };
 		189AECAD2B0AF8C00038E377 /* ReuseIdentifying.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189AECAC2B0AF8C00038E377 /* ReuseIdentifying.swift */; };
 		189AECAF2B0B182A0038E377 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189AECAE2B0B182A0038E377 /* UIViewController.swift */; };
 		189AECB12B0B18490038E377 /* UINavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189AECB02B0B18490038E377 /* UINavigationController.swift */; };
@@ -49,12 +49,14 @@
 		189AECBC2B0C54B90038E377 /* ApplicationFormTopTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189AECBB2B0C54B90038E377 /* ApplicationFormTopTableViewCell.swift */; };
 		189AECBF2B0C59930038E377 /* ApplicationFormBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189AECBE2B0C59930038E377 /* ApplicationFormBaseView.swift */; };
 		18CFA6372B1320CA0062C40C /* RequiredSelectionBottomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CFA6362B1320CA0062C40C /* RequiredSelectionBottomViewController.swift */; };
-		18CFA6392B13214F0062C40C /* DefectiveTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CFA6382B13214F0062C40C /* DefectiveTableViewCell.swift */; };
 		18CFA63A2B13254B0062C40C /* WriteFormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1837D7F42B076435000D953F /* WriteFormViewModel.swift */; };
 		18CFA63B2B13254D0062C40C /* FormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1837D7F52B076435000D953F /* FormViewModel.swift */; };
 		18CFA63C2B1327B10062C40C /* Defective.json in Resources */ = {isa = PBXBuildFile; fileRef = 1837D7DB2B0761D0000D953F /* Defective.json */; };
 		18CFA63D2B1327B30062C40C /* Location.json in Resources */ = {isa = PBXBuildFile; fileRef = 1837D7DC2B0761D0000D953F /* Location.json */; };
 		18CFA63F2B1329D70062C40C /* LocationCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CFA63E2B1329D70062C40C /* LocationCollectionViewCell.swift */; };
+		18CFA6412B1359930062C40C /* DefectiveSelectionBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CFA6402B1359930062C40C /* DefectiveSelectionBaseView.swift */; };
+		18CFA6432B135C050062C40C /* DefectiveBottomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CFA6422B135C050062C40C /* DefectiveBottomViewController.swift */; };
+		18CFA6462B135EA90062C40C /* SelectRadioCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CFA6452B135EA90062C40C /* SelectRadioCellDelegate.swift */; };
 		18D67D3D2B0DE0D10012FA13 /* CreateFormTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D67D3C2B0DE0D10012FA13 /* CreateFormTableViewCell.swift */; };
 		18D67D412B0E27090012FA13 /* Enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D67D402B0E27090012FA13 /* Enum.swift */; };
 		AC24BACD3FCA0BEB0197B133 /* Pods_FormSample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBFCFB0FD50577C748716483 /* Pods_FormSample.framework */; };
@@ -102,7 +104,7 @@
 		1889B2E32B075CB800F5ABE6 /* NotoSansKR-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Light.otf"; sourceTree = "<group>"; };
 		1889B2EB2B075CF500F5ABE6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		189AECA72B0AF6420038E377 /* SelectApartmentBottomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectApartmentBottomView.swift; sourceTree = "<group>"; };
-		189AECAA2B0AF89A0038E377 /* SelectApartmentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectApartmentTableViewCell.swift; sourceTree = "<group>"; };
+		189AECAA2B0AF89A0038E377 /* SelectRadioTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectRadioTableViewCell.swift; sourceTree = "<group>"; };
 		189AECAC2B0AF8C00038E377 /* ReuseIdentifying.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReuseIdentifying.swift; sourceTree = "<group>"; };
 		189AECAE2B0B182A0038E377 /* UIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		189AECB02B0B18490038E377 /* UINavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UINavigationController.swift; sourceTree = "<group>"; };
@@ -112,8 +114,10 @@
 		189AECBB2B0C54B90038E377 /* ApplicationFormTopTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationFormTopTableViewCell.swift; sourceTree = "<group>"; };
 		189AECBE2B0C59930038E377 /* ApplicationFormBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationFormBaseView.swift; sourceTree = "<group>"; };
 		18CFA6362B1320CA0062C40C /* RequiredSelectionBottomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequiredSelectionBottomViewController.swift; sourceTree = "<group>"; };
-		18CFA6382B13214F0062C40C /* DefectiveTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefectiveTableViewCell.swift; sourceTree = "<group>"; };
 		18CFA63E2B1329D70062C40C /* LocationCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCollectionViewCell.swift; sourceTree = "<group>"; };
+		18CFA6402B1359930062C40C /* DefectiveSelectionBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefectiveSelectionBaseView.swift; sourceTree = "<group>"; };
+		18CFA6422B135C050062C40C /* DefectiveBottomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefectiveBottomViewController.swift; sourceTree = "<group>"; };
+		18CFA6452B135EA90062C40C /* SelectRadioCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectRadioCellDelegate.swift; sourceTree = "<group>"; };
 		18D67D3C2B0DE0D10012FA13 /* CreateFormTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateFormTableViewCell.swift; sourceTree = "<group>"; };
 		18D67D402B0E27090012FA13 /* Enum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enum.swift; sourceTree = "<group>"; };
 		745EFA50D9C00CBC5CFC1949 /* Pods-FormSample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FormSample.debug.xcconfig"; path = "Target Support Files/Pods-FormSample/Pods-FormSample.debug.xcconfig"; sourceTree = "<group>"; };
@@ -371,7 +375,7 @@
 		189AECA92B0AF87E0038E377 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				189AECAA2B0AF89A0038E377 /* SelectApartmentTableViewCell.swift */,
+				189AECAA2B0AF89A0038E377 /* SelectRadioTableViewCell.swift */,
 				189AECB62B0B6E9D0038E377 /* BottomEmptyTableViewCell.swift */,
 			);
 			path = Cell;
@@ -383,6 +387,7 @@
 				189AECB92B0C51630038E377 /* ApplicationFormViewController.swift */,
 				1878D0012B0EDF8A0074DAAC /* CreateFormBottomViewController.swift */,
 				18CFA6362B1320CA0062C40C /* RequiredSelectionBottomViewController.swift */,
+				18CFA6422B135C050062C40C /* DefectiveBottomViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -393,7 +398,6 @@
 				189AECBB2B0C54B90038E377 /* ApplicationFormTopTableViewCell.swift */,
 				18D67D3C2B0DE0D10012FA13 /* CreateFormTableViewCell.swift */,
 				18CFA63E2B1329D70062C40C /* LocationCollectionViewCell.swift */,
-				18CFA6382B13214F0062C40C /* DefectiveTableViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -404,13 +408,23 @@
 				189AECBE2B0C59930038E377 /* ApplicationFormBaseView.swift */,
 				1878D0032B0EF1550074DAAC /* CreateFormBaseView.swift */,
 				1878D0052B109AF00074DAAC /* RequiredSelectionBaseView.swift */,
+				18CFA6402B1359930062C40C /* DefectiveSelectionBaseView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		18CFA6442B135E900062C40C /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				18CFA6452B135EA90062C40C /* SelectRadioCellDelegate.swift */,
+			);
+			path = Protocol;
 			sourceTree = "<group>";
 		};
 		18D67D3E2B0E26F50012FA13 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				18CFA6442B135E900062C40C /* Protocol */,
 				18D67D3F2B0E26FC0012FA13 /* Enum */,
 			);
 			path = Data;
@@ -604,21 +618,23 @@
 				1837D7E52B07632E000D953F /* Console.swift in Sources */,
 				189AECB32B0B21A10038E377 /* SelectApartmentHeaderView.swift in Sources */,
 				1837D7E92B076369000D953F /* BaseViewController.swift in Sources */,
+				18CFA6462B135EA90062C40C /* SelectRadioCellDelegate.swift in Sources */,
 				1837D7EC2B0763B8000D953F /* MainView.swift in Sources */,
 				1878D0062B109AF00074DAAC /* RequiredSelectionBaseView.swift in Sources */,
 				182735642B0A1C5100D1EE83 /* Strings.swift in Sources */,
+				18CFA6412B1359930062C40C /* DefectiveSelectionBaseView.swift in Sources */,
 				182735662B0A24E000D1EE83 /* SelectApartmentBottomViewController.swift in Sources */,
 				1837D8062B076518000D953F /* ApartmentViewModel.swift in Sources */,
 				189AECBC2B0C54B90038E377 /* ApplicationFormTopTableViewCell.swift in Sources */,
 				1837D80D2B07673E000D953F /* CustomBottomSheetViewController.swift in Sources */,
 				189AECBA2B0C51630038E377 /* ApplicationFormViewController.swift in Sources */,
+				18CFA6432B135C050062C40C /* DefectiveBottomViewController.swift in Sources */,
 				18CFA63A2B13254B0062C40C /* WriteFormViewModel.swift in Sources */,
 				189AECA82B0AF6420038E377 /* SelectApartmentBottomView.swift in Sources */,
 				1837D7E22B076301000D953F /* NetworkingManager.swift in Sources */,
 				18D67D412B0E27090012FA13 /* Enum.swift in Sources */,
-				18CFA6392B13214F0062C40C /* DefectiveTableViewCell.swift in Sources */,
 				1837D8092B076642000D953F /* UIView.swift in Sources */,
-				189AECAB2B0AF89A0038E377 /* SelectApartmentTableViewCell.swift in Sources */,
+				189AECAB2B0AF89A0038E377 /* SelectRadioTableViewCell.swift in Sources */,
 				18CFA63F2B1329D70062C40C /* LocationCollectionViewCell.swift in Sources */,
 				1837D7F92B076455000D953F /* BaseView.swift in Sources */,
 				1889B2C12B07557B00F5ABE6 /* AppDelegate.swift in Sources */,

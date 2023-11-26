@@ -1,5 +1,5 @@
 //
-//  SelectApartmentTableViewCell.swift
+//  SelectRadioTableViewCell.swift
 //  FormSample
 //
 //  Created by siyeon park on 2023/11/20.
@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-final class SelectApartmentTableViewCell: UITableViewCell, ReuseIdentifying {
+final class SelectRadioTableViewCell: UITableViewCell, ReuseIdentifying {
 
     var isRadio: Bool = false {
         didSet {
@@ -50,7 +50,7 @@ final class SelectApartmentTableViewCell: UITableViewCell, ReuseIdentifying {
     }
 }
 
-extension SelectApartmentTableViewCell {
+extension SelectRadioTableViewCell {
     func setupUI() {
         selectionStyle = .none
         addSubviews([stackView])

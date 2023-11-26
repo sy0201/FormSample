@@ -29,6 +29,7 @@ extension CreateFormBottomViewController {
     func setupActions() {
         createFormBaseView.localButton.addTarget(self, action: #selector(selectLocal), for: .touchUpInside)
         
+        createFormBaseView.defectiveButton.addTarget(self, action: #selector(selectDefective), for: .touchUpInside)
         //createFormBaseView.unSelectedButton.addTarget(self, action: #selector(hiddenPhotoView), for: .touchUpInside)
     }
     
@@ -36,6 +37,15 @@ extension CreateFormBottomViewController {
         let requiredSelectionBottomVC = RequiredSelectionBottomViewController()
         
         let bottomSheetVC = CustomBottomSheetViewController(contentViewController: requiredSelectionBottomVC)
+        
+        bottomSheetVC.modalPresentationStyle = .overFullScreen
+        self.present(bottomSheetVC, animated: true, completion: nil)
+    }
+    
+    @objc func selectDefective() {
+        let defectiveSelectionBottomVC = DefectiveBottomViewController()
+        
+        let bottomSheetVC = CustomBottomSheetViewController(contentViewController: defectiveSelectionBottomVC)
         
         bottomSheetVC.modalPresentationStyle = .overFullScreen
         self.present(bottomSheetVC, animated: true, completion: nil)

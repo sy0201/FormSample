@@ -8,10 +8,6 @@
 import UIKit
 import SnapKit
 
-protocol SelectRadioCellDelegate: AnyObject {
-    func didSelectItem(_ item: String)
-}
-
 final class SelectApartmentBottomView: BaseView {
     
     let tableView = UITableView()
@@ -42,7 +38,7 @@ final class SelectApartmentBottomView: BaseView {
         bottomView.addSubviews([closeBottomButton])
 
         tableView.register(SelectApartmentHeaderView.self, forHeaderFooterViewReuseIdentifier: SelectApartmentHeaderView.reuseIdentifier)
-        tableView.register(SelectApartmentTableViewCell.self, forCellReuseIdentifier: SelectApartmentTableViewCell.reuseIdentifier)
+        tableView.register(SelectRadioTableViewCell.self, forCellReuseIdentifier: SelectRadioTableViewCell.reuseIdentifier)
         tableView.register(BottomEmptyTableViewCell.self, forCellReuseIdentifier: BottomEmptyTableViewCell.reuseIdentifier)
     }
 
@@ -101,7 +97,7 @@ extension SelectApartmentBottomView: UITableViewDelegate, UITableViewDataSource 
             return cell
         }
 
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "SelectApartmentTableViewCell", for: indexPath) as? SelectApartmentTableViewCell else { return UITableViewCell() }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "SelectRadioTableViewCell", for: indexPath) as? SelectRadioTableViewCell else { return UITableViewCell() }
         let data = radioDataList[indexPath.row]
         cell.configure(with: data)
         return cell
@@ -119,7 +115,7 @@ extension SelectApartmentBottomView: UITableViewDelegate, UITableViewDataSource 
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let selectedCell = tableView.cellForRow(at: indexPath) as? SelectApartmentTableViewCell {
+        if let selectedCell = tableView.cellForRow(at: indexPath) as? SelectRadioTableViewCell {
             selectedCell.setOn(isRadio: !selectedCell.isRadio)
         }
         let cellData = radioDataList[indexPath.row]
