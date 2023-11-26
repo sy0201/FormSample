@@ -13,7 +13,6 @@ final class ApartmentViewModel {
 
     func fetchApartmentData(completion: @escaping () -> ()) {
         NetworkingManager.shared.getApartmentMock { [weak self] data in
-
             self?.apartmentNameData = data
             completion()
         }

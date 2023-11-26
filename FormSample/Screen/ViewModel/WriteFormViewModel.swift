@@ -17,18 +17,16 @@ final class WriteFormViewModel {
 
 extension WriteFormViewModel {
     func fetchLocationData(completion: @escaping () -> ()) {
-        NetworkingManager.shared.getLocationMock(completionHandler: { [weak self] data in
-            guard let data else { return }
+        NetworkingManager.shared.getLocationMock { [weak self] data in
             self?.locationModel = data
             completion()
-        })
+        }
     }
 
     func fetchDefectiveData(completion: @escaping () -> ()) {
-        NetworkingManager.shared.getDefectiveMock(completionHandler: { [weak self] data in
-            guard let data else { return }
+        NetworkingManager.shared.getDefectiveMock { [weak self] data in
             self?.defectiveItemModel = data
             completion()
-        })
+        }
     }
 }

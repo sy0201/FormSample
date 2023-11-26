@@ -10,6 +10,12 @@ import SnapKit
 
 final class SelectApartmentTableViewCell: UITableViewCell, ReuseIdentifying {
 
+    var isRadio: Bool = false {
+        didSet {
+            self.changeState()
+        }
+    }
+    
     let selectImg: UIImageView = {
         let selectImg = UIImageView()
         selectImg.image = Asset.Icon.icRadioOff.image
@@ -32,12 +38,6 @@ final class SelectApartmentTableViewCell: UITableViewCell, ReuseIdentifying {
         stackView.spacing = 16
         return stackView
     }()
-
-    var isRadio: Bool = false {
-        didSet {
-            self.changeState()
-        }
-    }
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)

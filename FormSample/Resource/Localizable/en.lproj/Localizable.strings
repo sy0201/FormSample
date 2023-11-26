@@ -31,7 +31,7 @@
 "Form_message14" = "*근접 사진과 원경 사진을 첨부하시면 하자를 정확히 확인하는데 큰 도움이 됩니다.";
 "Form_message15" = "하자 내용(필수)";
 "Form_message16" = "정확한 하자 접수를 위해 최대한 자세히 입력 바랍니다. 예) 도배 : 벽위치(입구 맞은 벽) + 발생부위(중간위치) + 하자상태(찢김)";
-"Form_message17" = "";
+"Form_message17" = "위치 선택";
 "Form_message18" = "";
 "Form_message19" = "";
 "Form_message20" = "";

@@ -10,6 +10,8 @@ import SnapKit
 
 final class CreateFormTableViewCell: UITableViewCell, ReuseIdentifying {
 
+    var createFormCellButtonAction: (() -> Void)?
+
     private let mainView = UIView()
     private let imgView: UIImageView = {
         let image = UIImageView()
@@ -25,8 +27,6 @@ final class CreateFormTableViewCell: UITableViewCell, ReuseIdentifying {
         createFormButton.setTitle("작성하기", for: .normal)
         return createFormButton
     }()
-
-    var createFormCellButtonAction: (() -> Void)?
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
