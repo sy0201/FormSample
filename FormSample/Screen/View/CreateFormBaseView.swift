@@ -10,8 +10,7 @@ import SnapKit
 
 final class CreateFormBaseView: BaseView {
 
-    // TODO: 선택안함유무 데이터 전달시 필요
-    //var attachmentButtonAction: (() -> Void)?
+    var didChangeContentHandler: (String) -> Void = { _ in }
     var isAttachment: Bool = false {
         didSet {
             self.changeState()
@@ -582,6 +581,17 @@ extension CreateFormBaseView {
 }
 
 extension CreateFormBaseView: UITextViewDelegate {
+//    func textViewDidChange(_ textView: UITextView) {
+//        didChangeContentHandler(textView.text)
+//
+//        if textView.text.isEmpty {
+//            print("텍스트뷰 \(textView.text.isEmpty)")
+//            defectiveTextView.text = textView.text
+//        } else {
+//            defectiveTextView.text = ""
+//        }
+//    }
+
     func textViewDidBeginEditing(_ textView: UITextView) {
         if defectiveTextView == Asset.Color.gray9DA4AA.color {
             defectiveTextView.text = nil

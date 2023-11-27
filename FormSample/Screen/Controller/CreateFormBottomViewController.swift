@@ -48,6 +48,11 @@ extension CreateFormBottomViewController {
         createFormBaseView.zoomInButton.addTarget(self, action: #selector(selectPhoto), for: .touchUpInside)
 
         createFormBaseView.zoomOutButton.addTarget(self, action: #selector(selectAlbum), for: .touchUpInside)
+
+        createFormBaseView.didChangeContentHandler = { [self] text in
+            createFormBaseView.defectiveTextView.text = text
+            viewModel.writeFormModel.contentData = text
+        }
     }
     
     @objc func selectLocation() {
@@ -57,10 +62,11 @@ extension CreateFormBottomViewController {
 
         requiredSelectionBottomVC.locationHandler = { [self] text in
             createFormBaseView.locationLabel.text = text
+            viewModel.writeFormModel.locationData = text
         }
 
         bottomSheetVC.modalPresentationStyle = .overFullScreen
-        self.present(bottomSheetVC, animated: true, completion: nil)
+        present(bottomSheetVC, animated: true, completion: nil)
     }
     
     @objc func selectDefective() {
@@ -73,18 +79,20 @@ extension CreateFormBottomViewController {
 
         defectiveBottomVC.defectiveHandler = { [self] text in
             createFormBaseView.defectiveLabel.text = text
+            viewModel.writeFormModel.defectiveData = text
         }
 
         bottomSheetVC.modalPresentationStyle = .overFullScreen
-        self.present(bottomSheetVC, animated: true, completion: nil)
+        present(bottomSheetVC, animated: true, completion: nil)
     }
 
     @objc func dismissBottomView() {
-        self.back(animated: true)
+        print("dismiss")
+        back(animated: true)
     }
 
     @objc func saveFormData() {
-
+        print("save")
     }
 
     @objc func selectPhoto() {
@@ -98,12 +106,12 @@ extension CreateFormBottomViewController {
             createFormBaseView.zoomInImageView.isHidden = false
         }
 
-        selectPhotoBottomVC.imageHandler = { img in
-            self.viewModel.writeFormModel.photoDataListDataType.zoomInImage = img
-            self.createFormBaseView.zoomInImageView.image = img
+        selectPhotoBottomVC.imageHandler = { [self] img in
+            viewModel.writeFormModel.photoDataListDataType.zoomInImage = img
+            createFormBaseView.zoomInImageView.image = img
         }
         bottomSheetVC.modalPresentationStyle = .overFullScreen
-        self.present(bottomSheetVC, animated: true, completion: nil)
+        present(bottomSheetVC, animated: true, completion: nil)
     }
 
     @objc func selectAlbum() {
@@ -117,12 +125,12 @@ extension CreateFormBottomViewController {
             createFormBaseView.zoomOutImageView.isHidden = false
         }
 
-        selectPhotoBottomVC.imageHandler = { img in
-            self.viewModel.writeFormModel.photoDataListDataType.zoomOutImage = img
-            self.createFormBaseView.zoomOutImageView.image = img
+        selectPhotoBottomVC.imageHandler = { [self] img in
+            viewModel.writeFormModel.photoDataListDataType.zoomOutImage = img
+            createFormBaseView.zoomOutImageView.image = img
         }
         bottomSheetVC.modalPresentationStyle = .overFullScreen
-        self.present(bottomSheetVC, animated: true, completion: nil)
+        present(bottomSheetVC, animated: true, completion: nil)
     }
 }
 
