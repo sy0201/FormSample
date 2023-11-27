@@ -59,6 +59,8 @@
 		18CFA6462B135EA90062C40C /* SelectRadioCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CFA6452B135EA90062C40C /* SelectRadioCellDelegate.swift */; };
 		18D67D3D2B0DE0D10012FA13 /* CreateFormTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D67D3C2B0DE0D10012FA13 /* CreateFormTableViewCell.swift */; };
 		18D67D412B0E27090012FA13 /* Enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D67D402B0E27090012FA13 /* Enum.swift */; };
+		18DEEAE12B14473700F17B1E /* PresentFloorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DEEAE02B14473700F17B1E /* PresentFloorViewController.swift */; };
+		18DEEAE32B1447F000F17B1E /* FloorBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DEEAE22B1447F000F17B1E /* FloorBaseView.swift */; };
 		AC24BACD3FCA0BEB0197B133 /* Pods_FormSample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBFCFB0FD50577C748716483 /* Pods_FormSample.framework */; };
 /* End PBXBuildFile section */
 
@@ -120,6 +122,8 @@
 		18CFA6452B135EA90062C40C /* SelectRadioCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectRadioCellDelegate.swift; sourceTree = "<group>"; };
 		18D67D3C2B0DE0D10012FA13 /* CreateFormTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateFormTableViewCell.swift; sourceTree = "<group>"; };
 		18D67D402B0E27090012FA13 /* Enum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enum.swift; sourceTree = "<group>"; };
+		18DEEAE02B14473700F17B1E /* PresentFloorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentFloorViewController.swift; sourceTree = "<group>"; };
+		18DEEAE22B1447F000F17B1E /* FloorBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloorBaseView.swift; sourceTree = "<group>"; };
 		745EFA50D9C00CBC5CFC1949 /* Pods-FormSample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FormSample.debug.xcconfig"; path = "Target Support Files/Pods-FormSample/Pods-FormSample.debug.xcconfig"; sourceTree = "<group>"; };
 		EBFCFB0FD50577C748716483 /* Pods_FormSample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FormSample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -388,6 +392,7 @@
 				1878D0012B0EDF8A0074DAAC /* CreateFormBottomViewController.swift */,
 				18CFA6362B1320CA0062C40C /* RequiredSelectionBottomViewController.swift */,
 				18CFA6422B135C050062C40C /* DefectiveBottomViewController.swift */,
+				18DEEAE02B14473700F17B1E /* PresentFloorViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -409,6 +414,7 @@
 				1878D0032B0EF1550074DAAC /* CreateFormBaseView.swift */,
 				1878D0052B109AF00074DAAC /* SelectLocationBaseView.swift */,
 				18CFA6402B1359930062C40C /* SelectDefectiveBaseView.swift */,
+				18DEEAE22B1447F000F17B1E /* FloorBaseView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -604,6 +610,7 @@
 				1889B2CB2B07557B00F5ABE6 /* FormSample.xcdatamodeld in Sources */,
 				1837D7EF2B0763CE000D953F /* MainViewController.swift in Sources */,
 				189AECBF2B0C59930038E377 /* ApplicationFormBaseView.swift in Sources */,
+				18DEEAE12B14473700F17B1E /* PresentFloorViewController.swift in Sources */,
 				18CFA63B2B13254D0062C40C /* FormViewModel.swift in Sources */,
 				189AECB72B0B6E9D0038E377 /* BottomEmptyTableViewCell.swift in Sources */,
 				1878D0042B0EF1550074DAAC /* CreateFormBaseView.swift in Sources */,
@@ -630,6 +637,7 @@
 				189AECBA2B0C51630038E377 /* ApplicationFormViewController.swift in Sources */,
 				18CFA6432B135C050062C40C /* DefectiveBottomViewController.swift in Sources */,
 				18CFA63A2B13254B0062C40C /* WriteFormViewModel.swift in Sources */,
+				18DEEAE32B1447F000F17B1E /* FloorBaseView.swift in Sources */,
 				189AECA82B0AF6420038E377 /* SelectApartmentBottomView.swift in Sources */,
 				1837D7E22B076301000D953F /* NetworkingManager.swift in Sources */,
 				18D67D412B0E27090012FA13 /* Enum.swift in Sources */,
