@@ -25,6 +25,9 @@ final class CreateFormBottomViewController: BaseViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         createFormBaseView.shadowView.addTopShadow(shadowColor: UIColor.gray, shadowOpacity: 0.1, shadowRadius: 4, offset: CGSize(width: 0.0, height: -5.0))
+
+        createFormBaseView.zoomInView.addDashedBorder(to: createFormBaseView.zoomInView, withRadius: 12, borderWidth: 1)
+        createFormBaseView.zoomOutView.addDashedBorder(to: createFormBaseView.zoomOutView, withRadius: 12, borderWidth: 1)
     }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -41,6 +44,10 @@ extension CreateFormBottomViewController {
         createFormBaseView.closeBottomButton.addTarget(self, action: #selector(dismissBottomView), for: .touchUpInside)
 
         createFormBaseView.saveBottomButton.addTarget(self, action: #selector(saveFormData), for: .touchUpInside)
+
+        createFormBaseView.zoomInButton.addTarget(self, action: #selector(selectPhoto), for: .touchUpInside)
+
+        createFormBaseView.zoomOutButton.addTarget(self, action: #selector(selectAlbum), for: .touchUpInside)
     }
     
     @objc func selectLocation() {
@@ -78,7 +85,44 @@ extension CreateFormBottomViewController {
 
     @objc func saveFormData() {
 
-        self.back(animated: true)
+    }
+
+    @objc func selectPhoto() {
+        let selectPhotoBottomVC = SelectPhotoViewController()
+
+        let bottomSheetVC = CustomBottomSheetViewController(contentViewController: selectPhotoBottomVC)
+
+        if viewModel.writeFormModel.photoDataListDataType.isOptional {
+            createFormBaseView.zoomInImageView.isHidden = true
+        } else {
+            createFormBaseView.zoomInImageView.isHidden = false
+        }
+
+        selectPhotoBottomVC.imageHandler = { img in
+            self.viewModel.writeFormModel.photoDataListDataType.zoomInImage = img
+            self.createFormBaseView.zoomInImageView.image = img
+        }
+        bottomSheetVC.modalPresentationStyle = .overFullScreen
+        self.present(bottomSheetVC, animated: true, completion: nil)
+    }
+
+    @objc func selectAlbum() {
+        let selectPhotoBottomVC = SelectPhotoViewController()
+
+        let bottomSheetVC = CustomBottomSheetViewController(contentViewController: selectPhotoBottomVC)
+
+        if viewModel.writeFormModel.photoDataListDataType.isOptional {
+            createFormBaseView.zoomOutImageView.isHidden = true
+        } else {
+            createFormBaseView.zoomOutImageView.isHidden = false
+        }
+
+        selectPhotoBottomVC.imageHandler = { img in
+            self.viewModel.writeFormModel.photoDataListDataType.zoomOutImage = img
+            self.createFormBaseView.zoomOutImageView.image = img
+        }
+        bottomSheetVC.modalPresentationStyle = .overFullScreen
+        self.present(bottomSheetVC, animated: true, completion: nil)
     }
 }
 

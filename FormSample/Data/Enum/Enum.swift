@@ -12,4 +12,9 @@ struct Enum {
         case left = "LEFT"
         case right = "RIGHT"
     }
+
+    enum PhotoType: String {
+        case camera = "CAMERA"
+        case album = "ALBUM"
+    }
 }

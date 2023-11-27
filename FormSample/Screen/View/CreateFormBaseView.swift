@@ -293,8 +293,8 @@ final class CreateFormBaseView: BaseView {
 
     override func layoutSubviews() {
         super.layoutSubviews()
-        zoomInView.addDashedBorder(to: zoomInView, withRadius: 12, borderWidth: 1)
-        zoomOutView.addDashedBorder(to: zoomOutView, withRadius: 12, borderWidth: 1)
+        zoomInImageView.layer.cornerRadius = 4
+        zoomOutImageView.layer.cornerRadius = 4
     }
 
     override func setupUI() {
