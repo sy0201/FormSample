@@ -48,7 +48,7 @@
 		189AECBA2B0C51630038E377 /* ApplicationFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189AECB92B0C51630038E377 /* ApplicationFormViewController.swift */; };
 		189AECBC2B0C54B90038E377 /* ApplicationFormTopTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189AECBB2B0C54B90038E377 /* ApplicationFormTopTableViewCell.swift */; };
 		189AECBF2B0C59930038E377 /* ApplicationFormBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189AECBE2B0C59930038E377 /* ApplicationFormBaseView.swift */; };
-		18CFA6372B1320CA0062C40C /* RequiredSelectionBottomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CFA6362B1320CA0062C40C /* RequiredSelectionBottomViewController.swift */; };
+		18CFA6372B1320CA0062C40C /* LocationBottomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CFA6362B1320CA0062C40C /* LocationBottomViewController.swift */; };
 		18CFA63A2B13254B0062C40C /* WriteFormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1837D7F42B076435000D953F /* WriteFormViewModel.swift */; };
 		18CFA63B2B13254D0062C40C /* FormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1837D7F52B076435000D953F /* FormViewModel.swift */; };
 		18CFA63C2B1327B10062C40C /* Defective.json in Resources */ = {isa = PBXBuildFile; fileRef = 1837D7DB2B0761D0000D953F /* Defective.json */; };
@@ -115,7 +115,7 @@
 		189AECB92B0C51630038E377 /* ApplicationFormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationFormViewController.swift; sourceTree = "<group>"; };
 		189AECBB2B0C54B90038E377 /* ApplicationFormTopTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationFormTopTableViewCell.swift; sourceTree = "<group>"; };
 		189AECBE2B0C59930038E377 /* ApplicationFormBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationFormBaseView.swift; sourceTree = "<group>"; };
-		18CFA6362B1320CA0062C40C /* RequiredSelectionBottomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequiredSelectionBottomViewController.swift; sourceTree = "<group>"; };
+		18CFA6362B1320CA0062C40C /* LocationBottomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationBottomViewController.swift; sourceTree = "<group>"; };
 		18CFA63E2B1329D70062C40C /* LocationCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCollectionViewCell.swift; sourceTree = "<group>"; };
 		18CFA6402B1359930062C40C /* SelectDefectiveBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectDefectiveBaseView.swift; sourceTree = "<group>"; };
 		18CFA6422B135C050062C40C /* DefectiveBottomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefectiveBottomViewController.swift; sourceTree = "<group>"; };
@@ -390,7 +390,7 @@
 			children = (
 				189AECB92B0C51630038E377 /* ApplicationFormViewController.swift */,
 				1878D0012B0EDF8A0074DAAC /* CreateFormBottomViewController.swift */,
-				18CFA6362B1320CA0062C40C /* RequiredSelectionBottomViewController.swift */,
+				18CFA6362B1320CA0062C40C /* LocationBottomViewController.swift */,
 				18CFA6422B135C050062C40C /* DefectiveBottomViewController.swift */,
 				18DEEAE02B14473700F17B1E /* PresentFloorViewController.swift */,
 			);
@@ -605,7 +605,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1837D7D92B075F03000D953F /* Fonts.swift in Sources */,
-				18CFA6372B1320CA0062C40C /* RequiredSelectionBottomViewController.swift in Sources */,
+				18CFA6372B1320CA0062C40C /* LocationBottomViewController.swift in Sources */,
 				1837D80B2B076694000D953F /* UIStackView.swift in Sources */,
 				1889B2CB2B07557B00F5ABE6 /* FormSample.xcdatamodeld in Sources */,
 				1837D7EF2B0763CE000D953F /* MainViewController.swift in Sources */,

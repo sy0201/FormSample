@@ -47,7 +47,7 @@ final class CreateFormBaseView: BaseView {
         let locationLabel = UILabel()
         locationLabel.font = FontFamily.NotoSansKR.bold.font(size: 14)
         locationLabel.textColor = Asset.Color.green458E8F.color
-        locationLabel.text = "거실"
+        locationLabel.text = ""
         return locationLabel
     }()
 
@@ -131,7 +131,7 @@ final class CreateFormBaseView: BaseView {
         return photoTitleLabel
     }()
 
-    let unSelectedButton: UIButton = {
+    let unSelectedPhotoButton: UIButton = {
         let unSelectedButton = UIButton()
         unSelectedButton.setImage(UIImage(named: Asset.Icon.icCheckboxOff.name), for: .normal)
         unSelectedButton.titleLabel?.font = FontFamily.NotoSansKR.medium.font(size: 14)
@@ -235,6 +235,50 @@ final class CreateFormBaseView: BaseView {
         return textView
     }()
 
+    let shadowView: UIView = {
+        let shadowView = UIView()
+        shadowView.backgroundColor = Asset.Color.white.color
+        return shadowView
+    }()
+
+    let bottomView: UIView = {
+        let bottomView = UIView()
+        bottomView.backgroundColor = Asset.Color.white.color
+        return bottomView
+    }()
+
+    let closeBottomButton: UIButton = {
+        let closeBottomButton = UIButton()
+        closeBottomButton.backgroundColor = Asset.Color.white.color
+        closeBottomButton.layer.cornerRadius = 24
+        closeBottomButton.layer.borderWidth = 1
+        closeBottomButton.layer.borderColor = Asset.Color.grayEEF1F3.color.cgColor
+        closeBottomButton.titleLabel?.font = FontFamily.NotoSansKR.bold.font(size: 15)
+        closeBottomButton.setTitleColor(Asset.Color.gray9DA4AA.color, for: .normal)
+        closeBottomButton.setTitle(L10n.close, for: .normal)
+        return closeBottomButton
+    }()
+
+    let saveBottomButton: UIButton = {
+        let saveBottomButton = UIButton()
+        saveBottomButton.backgroundColor = Asset.Color.green0F4F51.color
+        saveBottomButton.layer.cornerRadius = 24
+        saveBottomButton.layer.borderColor = Asset.Color.grayEEF1F3.color.cgColor
+        saveBottomButton.titleLabel?.font = FontFamily.NotoSansKR.bold.font(size: 15)
+        saveBottomButton.setTitleColor(Asset.Color.white.color, for: .normal)
+        saveBottomButton.setTitle("저장하기", for: .normal)
+        return saveBottomButton
+    }()
+
+    let buttonStackView: UIStackView = {
+        let buttonStackView = UIStackView()
+        buttonStackView.axis = .horizontal
+        buttonStackView.alignment = .fill
+        buttonStackView.distribution = .fillProportionally
+        buttonStackView.spacing = 10
+        return buttonStackView
+    }()
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
@@ -254,8 +298,36 @@ final class CreateFormBaseView: BaseView {
     }
 
     override func setupUI() {
-        addSubviews([scrollView, mainView, titleView, locationView, defectiveView, locationStackView, defectiveStackView, photoView, photoStackView, attachPhotoStackView, hiddenStackView, defectiveInputView])
+        self.addSubview(scrollView)
+        addSubviews([mainView,
+                     titleView,
+                     locationView,
+                     defectiveView,
+                     locationStackView,
+                     defectiveStackView,
+                     photoView,
+                     photoStackView,
+                     attachPhotoStackView,
+                     hiddenStackView,
+                     defectiveInputView,
+                     shadowView,
+                     bottomView,
+                     buttonStackView])
         scrollView.addSubview(mainView)
+        mainView.addSubviews([titleView,
+                              locationView,
+                              defectiveView,
+                              locationStackView,
+                              defectiveStackView,
+                              photoView,
+                              photoStackView,
+                              attachPhotoStackView,
+                              hiddenStackView,
+                              defectiveInputView,
+                              shadowView,
+                              bottomView,
+                              buttonStackView])
+
         titleView.addSubviews([titleLabel, titleLineView])
 
         locationView.addSubviews([locationStackView, locationLineView, locationButton])
@@ -267,7 +339,7 @@ final class CreateFormBaseView: BaseView {
         photoView.addSubview(photoStackView)
         photoStackView.addArrangedSubviews([photoTopView, hiddenStackView, attachPhotoView, photoBottomView])
 
-        photoTopView.addSubviews([photoTitleLabel, unSelectedButton])
+        photoTopView.addSubviews([photoTitleLabel, unSelectedPhotoButton])
         hiddenStackView.addSubviews([attachPhotoStackView, photoBottomView])
 
         attachPhotoView.addSubview(attachPhotoStackView)
@@ -279,6 +351,9 @@ final class CreateFormBaseView: BaseView {
 
         defectiveInputView.addSubview(defectiveInputStackView)
         defectiveInputStackView.addSubviews([defectiveInputTitleLabel, defectiveTextView])
+
+        bottomView.addSubview(buttonStackView)
+        buttonStackView.addSubviews([closeBottomButton, saveBottomButton])
     }
 
     override func setupConstraint() {
@@ -287,8 +362,12 @@ final class CreateFormBaseView: BaseView {
         }
 
         mainView.snp.makeConstraints { make in
+            /** // 이거 써도 상관없음.
             make.top.bottom.equalTo(scrollView)
             make.left.right.equalTo(safeAreaLayoutGuide)
+             */
+            make.width.equalToSuperview()
+            make.centerX.top.bottom.equalToSuperview()
         }
 
         titleView.snp.makeConstraints { make in
@@ -327,8 +406,8 @@ final class CreateFormBaseView: BaseView {
         }
 
         defectiveView.snp.makeConstraints { make in
-            make.top.equalTo(locationView.snp.bottom)
             make.leading.trailing.equalTo(mainView)
+            make.top.equalTo(locationView.snp.bottom)
         }
 
         defectiveStackView.snp.makeConstraints { make in
@@ -347,8 +426,8 @@ final class CreateFormBaseView: BaseView {
         }
 
         photoView.snp.makeConstraints { make in
-            make.top.equalTo(defectiveView.snp.bottom)
             make.leading.trailing.equalTo(mainView)
+            make.top.equalTo(defectiveView.snp.bottom)
         }
 
         photoStackView.snp.makeConstraints { make in
@@ -364,12 +443,12 @@ final class CreateFormBaseView: BaseView {
             make.leading.top.bottom.equalTo(photoTopView).inset(24)
         }
 
-       hiddenStackView.snp.makeConstraints { make in
-           make.leading.trailing.equalTo(photoTopView).inset(24)
-           make.top.equalTo(photoTopView.snp.bottom)
+        hiddenStackView.snp.makeConstraints { make in
+            make.leading.trailing.equalTo(photoTopView).inset(24)
+            make.top.equalTo(photoTopView.snp.bottom)
         }
 
-        unSelectedButton.snp.makeConstraints { make in
+        unSelectedPhotoButton.snp.makeConstraints { make in
             make.trailing.equalTo(photoTopView.snp.trailing).inset(24)
             make.top.bottom.equalTo(photoTopView)
         }
@@ -442,9 +521,37 @@ final class CreateFormBaseView: BaseView {
         }
 
         defectiveTextView.snp.makeConstraints { make in
+            make.leading.trailing.equalTo(mainView).inset(24)
+            make.bottom.equalTo(mainView)
             make.top.equalTo(defectiveInputTitleLabel.snp.bottom).offset(8)
-            make.leading.trailing.bottom.equalTo(defectiveInputStackView)
             make.height.equalTo(120)
+        }
+
+        shadowView.snp.makeConstraints { make in
+            make.leading.trailing.bottom.equalToSuperview()
+            make.top.equalTo(bottomView.snp.top)
+        }
+
+        bottomView.snp.makeConstraints { make in
+            make.leading.trailing.equalTo(mainView)
+            make.top.equalTo(defectiveTextView.snp.bottom).offset(16)
+            make.bottom.equalTo(mainView.snp.bottom)
+        }
+
+        buttonStackView.snp.makeConstraints { make in
+            make.leading.trailing.top.bottom.equalTo(bottomView).inset(24)
+        }
+
+        closeBottomButton.snp.makeConstraints { make in
+            make.leading.equalTo(buttonStackView)
+            make.width.equalTo(98)
+            make.height.equalTo(50)
+        }
+
+        saveBottomButton.snp.makeConstraints { make in
+            make.leading.equalTo(closeBottomButton.snp.trailing).offset(buttonStackView.spacing)
+            make.trailing.equalTo(buttonStackView)
+            make.height.equalTo(50)
         }
     }
 }
@@ -456,23 +563,21 @@ extension CreateFormBaseView {
 
     func changeState() {
         if isAttachment {
-            unSelectedButton.setImage(UIImage(named: Asset.Icon.icCheckboxOn.name), for: .normal)
+            unSelectedPhotoButton.setImage(UIImage(named: Asset.Icon.icCheckboxOn.name), for: .normal)
             attachPhotoStackView.isHidden = true
         } else {
-            unSelectedButton.setImage(UIImage(named: Asset.Icon.icCheckboxOff.name), for: .normal)
+            unSelectedPhotoButton.setImage(UIImage(named: Asset.Icon.icCheckboxOff.name), for: .normal)
             attachPhotoStackView.isHidden = false
         }
     }
 
     func setupActions() {
-        unSelectedButton.addTarget(self, action: #selector(hiddenPhotoView), for: .touchUpInside)
+        unSelectedPhotoButton.addTarget(self, action: #selector(hiddenPhotoView), for: .touchUpInside)
     }
 
     @objc func hiddenPhotoView() {
-        print("선택안함")
         isAttachment.toggle()
         changeState()
-//        attachmentButtonAction?()
     }
 }
 

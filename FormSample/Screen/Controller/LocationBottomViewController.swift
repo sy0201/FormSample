@@ -1,5 +1,5 @@
 //
-//  RequiredSelectionBottomViewController.swift
+//  LocationBottomViewController.swift
 //  FormSample
 //
 //  Created by siyeon park on 2023/11/26.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class RequiredSelectionBottomViewController: BaseViewController {
+final class LocationBottomViewController: BaseViewController {
 
     let selectLocationBaseView = SelectLocationBaseView()
     var locationHandler: (String) -> Void = { _ in }
@@ -62,7 +62,7 @@ final class RequiredSelectionBottomViewController: BaseViewController {
     }
 }
 
-extension RequiredSelectionBottomViewController {
+extension LocationBottomViewController {
     func getLocationData() {
         locationViewModel.fetchLocationData {
             self.selectLocationBaseView.locationDataList = self.locationViewModel.locationModel.map { $0.locationName }

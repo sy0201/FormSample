@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class CreateFormBottomViewController: UIViewController {
+final class CreateFormBottomViewController: BaseViewController {
 
     let createFormBaseView = CreateFormBaseView()
     private let viewModel = WriteFormViewModel()
@@ -22,6 +22,11 @@ final class CreateFormBottomViewController: UIViewController {
         setupButtonTapped()
     }
 
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        createFormBaseView.shadowView.addTopShadow(shadowColor: UIColor.gray, shadowOpacity: 0.1, shadowRadius: 4, offset: CGSize(width: 0.0, height: -5.0))
+    }
+
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.createFormBaseView.defectiveTextView.resignFirstResponder()
     }
@@ -32,10 +37,14 @@ extension CreateFormBottomViewController {
         createFormBaseView.locationButton.addTarget(self, action: #selector(selectLocation), for: .touchUpInside)
 
         createFormBaseView.defectiveButton.addTarget(self, action: #selector(selectDefective), for: .touchUpInside)
+
+        createFormBaseView.closeBottomButton.addTarget(self, action: #selector(dismissBottomView), for: .touchUpInside)
+
+        createFormBaseView.saveBottomButton.addTarget(self, action: #selector(saveFormData), for: .touchUpInside)
     }
     
     @objc func selectLocation() {
-        let requiredSelectionBottomVC = RequiredSelectionBottomViewController()
+        let requiredSelectionBottomVC = LocationBottomViewController()
 
         let bottomSheetVC = CustomBottomSheetViewController(contentViewController: requiredSelectionBottomVC)
 
@@ -61,6 +70,15 @@ extension CreateFormBottomViewController {
 
         bottomSheetVC.modalPresentationStyle = .overFullScreen
         self.present(bottomSheetVC, animated: true, completion: nil)
+    }
+
+    @objc func dismissBottomView() {
+        self.back(animated: true)
+    }
+
+    @objc func saveFormData() {
+
+        self.back(animated: true)
     }
 }
 

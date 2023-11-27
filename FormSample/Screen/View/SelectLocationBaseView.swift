@@ -186,7 +186,7 @@ final class SelectLocationBaseView: BaseView {
 
         selectBottomButton.snp.makeConstraints { make in
             make.leading.trailing.top.bottom.equalTo(bottomView).inset(24)
-            make.height.equalTo(50)
+            make.height.equalTo(56)
         }
     }
     
