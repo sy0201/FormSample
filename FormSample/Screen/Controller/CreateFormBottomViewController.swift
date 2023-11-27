@@ -88,7 +88,7 @@ extension CreateFormBottomViewController {
     }
 
     @objc func selectPhoto() {
-        let selectPhotoBottomVC = SelectPhotoViewController()
+        let selectPhotoBottomVC = PhotoBottomViewController()
 
         let bottomSheetVC = CustomBottomSheetViewController(contentViewController: selectPhotoBottomVC)
 
@@ -107,7 +107,7 @@ extension CreateFormBottomViewController {
     }
 
     @objc func selectAlbum() {
-        let selectPhotoBottomVC = SelectPhotoViewController()
+        let selectPhotoBottomVC = PhotoBottomViewController()
 
         let bottomSheetVC = CustomBottomSheetViewController(contentViewController: selectPhotoBottomVC)
 

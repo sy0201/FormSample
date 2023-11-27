@@ -1,5 +1,5 @@
 //
-//  SelectPhotoViewController.swift
+//  PhotoBottomViewController.swift
 //  FormSample
 //
 //  Created by siyeon park on 2023/11/27.
@@ -8,7 +8,7 @@
 import UIKit
 import Photos
 
-final class SelectPhotoViewController: BaseViewController {
+final class PhotoBottomViewController: BaseViewController {
 
     let selectPhotoBaseView = SelectPhotoBaseView()
     var imagePicker = UIImagePickerController()
@@ -24,7 +24,7 @@ final class SelectPhotoViewController: BaseViewController {
     }
 }
 
-extension SelectPhotoViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+extension PhotoBottomViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func setupButtonTapped() {
         selectPhotoBaseView.dismissButton.addTarget(self, action: #selector(dismissBottomView), for: .touchUpInside)
 
