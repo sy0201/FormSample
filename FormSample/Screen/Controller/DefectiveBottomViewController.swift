@@ -20,12 +20,12 @@ final class DefectiveBottomViewController: BaseViewController {
         super.viewDidLoad()
         selectDefectiveBaseView.delegate = self
         selectDefectiveBaseView.setupTableView()
-        setupTargetButton()
+        setupButtonTapped()
     }
 }
 
 extension DefectiveBottomViewController {
-    func setupTargetButton() {
+    func setupButtonTapped() {
         selectDefectiveBaseView.dismissButton.addTarget(self, action: #selector(dismissBottomView), for: .touchUpInside)
     }
 

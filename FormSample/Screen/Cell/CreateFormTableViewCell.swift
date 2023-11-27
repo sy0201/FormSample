@@ -32,7 +32,7 @@ final class CreateFormTableViewCell: UITableViewCell, ReuseIdentifying {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupUI()
         setupConstraint()
-        setupActions()
+        setupButtonTapped()
     }
 
     required init?(coder: NSCoder) {
@@ -74,7 +74,7 @@ private extension CreateFormTableViewCell {
         }
     }
 
-    func setupActions() {
+    func setupButtonTapped() {
         createFormButton.addTarget(self, action: #selector(createFormButtonTapped), for: .touchUpInside)
     }
 

@@ -38,7 +38,7 @@ final class SelectApartmentBottomView: BaseView {
         addSubviews([tableView,
                      shadowView,
                      bottomView])
-        bottomView.addSubviews([closeBottomButton])
+        bottomView.addSubview(closeBottomButton)
 
         tableView.register(SelectApartmentHeaderView.self, forHeaderFooterViewReuseIdentifier: SelectApartmentHeaderView.reuseIdentifier)
         tableView.register(SelectRadioTableViewCell.self, forCellReuseIdentifier: SelectRadioTableViewCell.reuseIdentifier)
@@ -52,7 +52,7 @@ final class SelectApartmentBottomView: BaseView {
 
         shadowView.snp.makeConstraints { make in
             make.leading.trailing.bottom.equalToSuperview()
-            make.top.equalTo(bottomView.snp.top).offset(0)
+            make.top.equalTo(bottomView.snp.top)
         }
 
         bottomView.snp.makeConstraints { make in

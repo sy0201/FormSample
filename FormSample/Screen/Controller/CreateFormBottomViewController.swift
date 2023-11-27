@@ -10,7 +10,7 @@ import UIKit
 final class CreateFormBottomViewController: UIViewController {
 
     let createFormBaseView = CreateFormBaseView()
-    private let defectiveViewModel = WriteFormViewModel()
+    private let viewModel = WriteFormViewModel()
 
     override func loadView() {
         view = createFormBaseView
@@ -29,31 +29,33 @@ final class CreateFormBottomViewController: UIViewController {
 
 extension CreateFormBottomViewController {
     func setupButtonTapped() {
-        createFormBaseView.localButton.addTarget(self, action: #selector(selectLocal), for: .touchUpInside)
-        
-        createFormBaseView.defectiveButton.addTarget(self, action: #selector(selectDefective), for: .touchUpInside)
+        createFormBaseView.locationButton.addTarget(self, action: #selector(selectLocation), for: .touchUpInside)
 
-        //createFormBaseView.unSelectedButton.addTarget(self, action: #selector(hiddenPhotoView), for: .touchUpInside)
+        createFormBaseView.defectiveButton.addTarget(self, action: #selector(selectDefective), for: .touchUpInside)
     }
     
-    @objc func selectLocal() {
+    @objc func selectLocation() {
         let requiredSelectionBottomVC = RequiredSelectionBottomViewController()
-        
+
         let bottomSheetVC = CustomBottomSheetViewController(contentViewController: requiredSelectionBottomVC)
-        
+
+        requiredSelectionBottomVC.locationHandler = { [self] text in
+            createFormBaseView.locationLabel.text = text
+        }
+
         bottomSheetVC.modalPresentationStyle = .overFullScreen
         self.present(bottomSheetVC, animated: true, completion: nil)
     }
     
     @objc func selectDefective() {
-        let defectiveSelectionBottomVC = DefectiveBottomViewController()
+        let defectiveBottomVC = DefectiveBottomViewController()
 
-        let defectiveList = defectiveViewModel.defectiveDataList.map { $0.defectiveItem }
-        defectiveSelectionBottomVC.selectDefectiveBaseView.setRadioDataList(data: defectiveList)
+        let defectiveList = viewModel.defectiveDataList.map { $0.defectiveItem }
+        defectiveBottomVC.selectDefectiveBaseView.setRadioDataList(data: defectiveList)
 
-        let bottomSheetVC = CustomBottomSheetViewController(contentViewController: defectiveSelectionBottomVC)
+        let bottomSheetVC = CustomBottomSheetViewController(contentViewController: defectiveBottomVC)
 
-        defectiveSelectionBottomVC.defectiveHandler = { [self] text in
+        defectiveBottomVC.defectiveHandler = { [self] text in
             createFormBaseView.defectiveLabel.text = text
         }
 
@@ -64,6 +66,6 @@ extension CreateFormBottomViewController {
 
 extension CreateFormBottomViewController {
     func getDefectiveData() {
-        defectiveViewModel.fetchDefectiveData {}
+        viewModel.fetchDefectiveData {}
     }
 }

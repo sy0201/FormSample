@@ -12,9 +12,4 @@ struct Enum {
         case left = "LEFT"
         case right = "RIGHT"
     }
-    
-    enum RequiredSelect: String {
-        case location = "LOCATION"
-        case defective = "DEFECTIVE"
-    }
 }

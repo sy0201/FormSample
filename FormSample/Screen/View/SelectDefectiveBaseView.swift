@@ -43,7 +43,6 @@ final class SelectDefectiveBaseView: BaseView {
         contentLabel.text = L10n.formMessage19
         return contentLabel
     }()
-
     
     let tableView: UITableView = {
         let tableView = UITableView()

@@ -20,7 +20,7 @@ final class SelectApartmentBottomViewController: BaseViewController {
         super.viewDidLoad()
         selectApartmentBottomView.delegate = self
         selectApartmentBottomView.setupTableView()
-        setupTargetButton()
+        setupButtonTapped()
     }
 
     override func viewDidLayoutSubviews() {
@@ -30,7 +30,7 @@ final class SelectApartmentBottomViewController: BaseViewController {
 }
 
 extension SelectApartmentBottomViewController {
-    func setupTargetButton() {
+    func setupButtonTapped() {
         selectApartmentBottomView.closeBottomButton.addTarget(self, action: #selector(closeBottomView), for: .touchUpInside)
     }
 

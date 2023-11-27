@@ -34,40 +34,40 @@ final class CreateFormBaseView: BaseView {
         return lineView
     }()
 
-    private let localView = UIView()
-    private let localTitleLabel: UILabel = {
-        let localTitleLabel = UILabel()
-        localTitleLabel.font = FontFamily.NotoSansKR.regular.font(size: 14)
-        localTitleLabel.textColor = Asset.Color.gray2D3338.color
-        localTitleLabel.text = L10n.formMessage9
-        return localTitleLabel
+    private let locationView = UIView()
+    private let locationTitleLabel: UILabel = {
+        let locationTitleLabel = UILabel()
+        locationTitleLabel.font = FontFamily.NotoSansKR.regular.font(size: 14)
+        locationTitleLabel.textColor = Asset.Color.gray2D3338.color
+        locationTitleLabel.text = L10n.formMessage9
+        return locationTitleLabel
     }()
 
-    let localLabel: UILabel = {
-        let localLabel = UILabel()
-        localLabel.font = FontFamily.NotoSansKR.bold.font(size: 14)
-        localLabel.textColor = Asset.Color.green458E8F.color
-        localLabel.text = "거실"
-        return localLabel
+    let locationLabel: UILabel = {
+        let locationLabel = UILabel()
+        locationLabel.font = FontFamily.NotoSansKR.bold.font(size: 14)
+        locationLabel.textColor = Asset.Color.green458E8F.color
+        locationLabel.text = "거실"
+        return locationLabel
     }()
 
-    let localStackView: UIStackView = {
-        let localStackView = UIStackView()
-        localStackView.axis = .vertical
-        localStackView.alignment = .leading
-        localStackView.distribution = .fillProportionally
-        localStackView.spacing = 0
-        return localStackView
+    let locationStackView: UIStackView = {
+        let locationStackView = UIStackView()
+        locationStackView.axis = .vertical
+        locationStackView.alignment = .leading
+        locationStackView.distribution = .fillProportionally
+        locationStackView.spacing = 0
+        return locationStackView
     }()
 
-    let localButton: UIButton = {
-        let localButton = UIButton()
-        localButton.setImage(UIImage(named: Asset.Icon.icArrowDefault.name), for: .normal)
-        localButton.imageEdgeInsets = .init(top: 0, left: 340, bottom: 0, right: 0)
-        return localButton
+    let locationButton: UIButton = {
+        let locationButton = UIButton()
+        locationButton.setImage(UIImage(named: Asset.Icon.icArrowDefault.name), for: .normal)
+        locationButton.imageEdgeInsets = .init(top: 0, left: 340, bottom: 0, right: 0)
+        return locationButton
     }()
 
-    private let localLineView: UIView = {
+    private let locationLineView: UIView = {
         let lineView = UIView()
         lineView.backgroundColor = Asset.Color.grayEEF1F3.color
         return lineView
@@ -254,12 +254,12 @@ final class CreateFormBaseView: BaseView {
     }
 
     override func setupUI() {
-        addSubviews([scrollView, mainView, titleView, localView, defectiveView, localStackView, defectiveStackView, photoView, photoStackView, attachPhotoStackView, hiddenStackView, defectiveInputView])
+        addSubviews([scrollView, mainView, titleView, locationView, defectiveView, locationStackView, defectiveStackView, photoView, photoStackView, attachPhotoStackView, hiddenStackView, defectiveInputView])
         scrollView.addSubview(mainView)
         titleView.addSubviews([titleLabel, titleLineView])
 
-        localView.addSubviews([localStackView, localLineView, localButton])
-        localStackView.addArrangedSubviews([localTitleLabel, localLabel])
+        locationView.addSubviews([locationStackView, locationLineView, locationButton])
+        locationStackView.addArrangedSubviews([locationTitleLabel, locationLabel])
 
         defectiveView.addSubviews([defectiveStackView, defectiveLineView, defectiveButton])
         defectiveStackView.addArrangedSubviews([defectiveTitleLabel, defectiveLabel])
@@ -306,28 +306,28 @@ final class CreateFormBaseView: BaseView {
             make.height.equalTo(2)
         }
 
-        localView.snp.makeConstraints { make in
+        locationView.snp.makeConstraints { make in
             make.leading.trailing.equalTo(mainView)
             make.top.equalTo(titleView.snp.bottom)
         }
 
-        localStackView.snp.makeConstraints { make in
-            make.leading.trailing.equalTo(localView).inset(24)
-            make.top.bottom.equalTo(localView).inset(16)
+        locationStackView.snp.makeConstraints { make in
+            make.leading.trailing.equalTo(locationView).inset(24)
+            make.top.bottom.equalTo(locationView).inset(16)
         }
 
-        localLineView.snp.makeConstraints { make in
-            make.leading.trailing.equalTo(localView).inset(24)
-            make.bottom.equalTo(localView.snp.bottom)
+        locationLineView.snp.makeConstraints { make in
+            make.leading.trailing.equalTo(locationView).inset(24)
+            make.bottom.equalTo(locationView.snp.bottom)
             make.height.equalTo(1)
         }
 
-        localButton.snp.makeConstraints { make in
-            make.leading.trailing.top.bottom.equalTo(localView)
+        locationButton.snp.makeConstraints { make in
+            make.leading.trailing.top.bottom.equalTo(locationView)
         }
 
         defectiveView.snp.makeConstraints { make in
-            make.top.equalTo(localView.snp.bottom)
+            make.top.equalTo(locationView.snp.bottom)
             make.leading.trailing.equalTo(mainView)
         }
 

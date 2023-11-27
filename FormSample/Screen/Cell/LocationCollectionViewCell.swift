@@ -35,17 +35,19 @@ final class LocationCollectionViewCell: UICollectionViewCell, ReuseIdentifying {
         super.init(frame: frame)
         setupUI()
         setupConstraint()
+        setupButtonTapped()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setupAction() {
-        locationButton.addTarget(self, action: #selector(locationButtonTapped), for: .touchUpInside)
+    func setupButtonTapped() {
+        locationButton.addTarget(self, action: #selector(locationCellTapped), for: .touchUpInside)
     }
     
-    @objc func locationButtonTapped() {
+    @objc func locationCellTapped() {
+        isSelectedLocation = !isSelectedLocation
         locationCellButtonAction?()
     }
 }
@@ -76,17 +78,20 @@ extension LocationCollectionViewCell {
         }
     }
     
-    func configure(with data: String) {
+    func configure(with data: String, isSelected: Bool) {
         locationLabel.text = data
+        setOn(isSelectedLocation: isSelected)
+        changeState()
     }
     
     func setOn(isSelectedLocation: Bool) {
-        self.isSelectedLocation = isSelectedLocation
+        self.isSelectedLocation = !isSelectedLocation
     }
     
     func changeState() {
         roundView.layer.borderColor = isSelectedLocation ? Asset.Color.green0F4F51.color.cgColor : Asset.Color.grayF4F5F6.color.cgColor
         roundView.layer.borderWidth = isSelectedLocation ? 2 : 0
-        locationLabel.textColor = isSelectedLocation ? Asset.Color.green0F4F51.color : Asset.Color.grayF4F5F6.color
+        locationLabel.font = isSelectedLocation ? FontFamily.NotoSansKR.bold.font(size: 14) : FontFamily.NotoSansKR.regular.font(size: 14)
+        locationLabel.textColor = isSelectedLocation ? Asset.Color.green0F4F51.color : Asset.Color.gray505C65.color
     }
 }
