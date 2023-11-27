@@ -63,6 +63,8 @@
 		18DEEAE32B1447F000F17B1E /* FloorBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DEEAE22B1447F000F17B1E /* FloorBaseView.swift */; };
 		18DEEAE52B147AC900F17B1E /* PhotoBottomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DEEAE42B147AC900F17B1E /* PhotoBottomViewController.swift */; };
 		18DEEAE82B147AE400F17B1E /* SelectPhotoBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DEEAE72B147AE400F17B1E /* SelectPhotoBaseView.swift */; };
+		18DEEAEE2B14968900F17B1E /* UnRegisterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DEEAED2B14968900F17B1E /* UnRegisterTableViewCell.swift */; };
+		18DEEAF02B14980400F17B1E /* DetailUnRegisterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DEEAEF2B14980400F17B1E /* DetailUnRegisterTableViewCell.swift */; };
 		AC24BACD3FCA0BEB0197B133 /* Pods_FormSample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBFCFB0FD50577C748716483 /* Pods_FormSample.framework */; };
 /* End PBXBuildFile section */
 
@@ -128,6 +130,8 @@
 		18DEEAE22B1447F000F17B1E /* FloorBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloorBaseView.swift; sourceTree = "<group>"; };
 		18DEEAE42B147AC900F17B1E /* PhotoBottomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoBottomViewController.swift; sourceTree = "<group>"; };
 		18DEEAE72B147AE400F17B1E /* SelectPhotoBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectPhotoBaseView.swift; sourceTree = "<group>"; };
+		18DEEAED2B14968900F17B1E /* UnRegisterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnRegisterTableViewCell.swift; sourceTree = "<group>"; };
+		18DEEAEF2B14980400F17B1E /* DetailUnRegisterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailUnRegisterTableViewCell.swift; sourceTree = "<group>"; };
 		745EFA50D9C00CBC5CFC1949 /* Pods-FormSample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FormSample.debug.xcconfig"; path = "Target Support Files/Pods-FormSample/Pods-FormSample.debug.xcconfig"; sourceTree = "<group>"; };
 		EBFCFB0FD50577C748716483 /* Pods_FormSample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FormSample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -408,6 +412,8 @@
 				189AECBB2B0C54B90038E377 /* ApplicationFormTopTableViewCell.swift */,
 				18D67D3C2B0DE0D10012FA13 /* CreateFormTableViewCell.swift */,
 				18CFA63E2B1329D70062C40C /* LocationCollectionViewCell.swift */,
+				18DEEAED2B14968900F17B1E /* UnRegisterTableViewCell.swift */,
+				18DEEAEF2B14980400F17B1E /* DetailUnRegisterTableViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -633,6 +639,7 @@
 				18DEEAE52B147AC900F17B1E /* PhotoBottomViewController.swift in Sources */,
 				189AECB32B0B21A10038E377 /* SelectApartmentHeaderView.swift in Sources */,
 				1837D7E92B076369000D953F /* BaseViewController.swift in Sources */,
+				18DEEAEE2B14968900F17B1E /* UnRegisterTableViewCell.swift in Sources */,
 				18CFA6462B135EA90062C40C /* SelectRadioCellDelegate.swift in Sources */,
 				1837D7EC2B0763B8000D953F /* MainView.swift in Sources */,
 				1878D0062B109AF00074DAAC /* SelectLocationBaseView.swift in Sources */,
@@ -640,6 +647,7 @@
 				18CFA6412B1359930062C40C /* SelectDefectiveBaseView.swift in Sources */,
 				182735662B0A24E000D1EE83 /* SelectApartmentBottomViewController.swift in Sources */,
 				1837D8062B076518000D953F /* ApartmentViewModel.swift in Sources */,
+				18DEEAF02B14980400F17B1E /* DetailUnRegisterTableViewCell.swift in Sources */,
 				189AECBC2B0C54B90038E377 /* ApplicationFormTopTableViewCell.swift in Sources */,
 				1837D80D2B07673E000D953F /* CustomBottomSheetViewController.swift in Sources */,
 				189AECBA2B0C51630038E377 /* ApplicationFormViewController.swift in Sources */,
