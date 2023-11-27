@@ -9,7 +9,10 @@ import UIKit
 import SnapKit
 
 final class SelectApartmentBottomView: BaseView {
-    
+
+    private var radioDataList: [String] = []
+    weak var delegate: SelectRadioCellDelegate?
+
     let tableView = UITableView()
     let shadowView: UIView = {
         let shadowView = UIView()
@@ -18,8 +21,6 @@ final class SelectApartmentBottomView: BaseView {
     }()
 
     private let bottomView = UIView()
-    private var radioDataList: [String] = []
-    weak var delegate: SelectRadioCellDelegate?
 
     let closeBottomButton: UIButton = {
         let closeBottomButton = UIButton()
@@ -34,7 +35,9 @@ final class SelectApartmentBottomView: BaseView {
     }()
 
     override func setupUI() {
-        addSubviews([tableView, shadowView, bottomView])
+        addSubviews([tableView,
+                     shadowView,
+                     bottomView])
         bottomView.addSubviews([closeBottomButton])
 
         tableView.register(SelectApartmentHeaderView.self, forHeaderFooterViewReuseIdentifier: SelectApartmentHeaderView.reuseIdentifier)

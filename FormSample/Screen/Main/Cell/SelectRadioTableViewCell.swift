@@ -23,11 +23,11 @@ final class SelectRadioTableViewCell: UITableViewCell, ReuseIdentifying {
         return selectImg
     }()
 
-    let selectApartmentLabel: UILabel = {
-        let selectApartmentLabel = UILabel()
-        selectApartmentLabel.font = FontFamily.NotoSansKR.regular.font(size: 16)
-        selectApartmentLabel.textColor = Asset.Color.black.color
-        return selectApartmentLabel
+    let selectItemLabel: UILabel = {
+        let selectItemLabel = UILabel()
+        selectItemLabel.font = FontFamily.NotoSansKR.regular.font(size: 16)
+        selectItemLabel.textColor = Asset.Color.black.color
+        return selectItemLabel
     }()
 
     private let stackView: UIStackView = {
@@ -54,7 +54,7 @@ extension SelectRadioTableViewCell {
     func setupUI() {
         selectionStyle = .none
         addSubviews([stackView])
-        stackView.addArrangedSubviews([selectImg, selectApartmentLabel])
+        stackView.addArrangedSubviews([selectImg, selectItemLabel])
     }
 
     func setupConstraint() {
@@ -67,13 +67,13 @@ extension SelectRadioTableViewCell {
             make.width.height.equalTo(24)
         }
 
-        selectApartmentLabel.snp.makeConstraints { make in
+        selectItemLabel.snp.makeConstraints { make in
             make.centerY.equalTo(selectImg.snp.centerY)
         }
     }
 
     func configure(with data: String) {
-        selectApartmentLabel.text = data
+        selectItemLabel.text = data
     }
 
     func setOn(isRadio: Bool) {

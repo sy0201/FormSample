@@ -7,30 +7,38 @@
 
 import UIKit
 
-final class DefectiveBottomViewController: UIViewController {
+final class DefectiveBottomViewController: BaseViewController {
 
-    let defectiveSelectionBaseView = DefectiveSelectionBaseView()
-    private let defectiveViewModel = WriteFormViewModel()
+    let selectDefectiveBaseView = SelectDefectiveBaseView()
+    var defectiveHandler: (String) -> Void = { _ in }
 
     override func loadView() {
-        view = defectiveSelectionBaseView
+        view = selectDefectiveBaseView
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupCollectionView()
-        getDefectiveData()
-    }
-    
-    private func setupCollectionView() {
-        defectiveSelectionBaseView.setupTableView()
+        selectDefectiveBaseView.delegate = self
+        selectDefectiveBaseView.setupTableView()
+        setupTargetButton()
     }
 }
 
 extension DefectiveBottomViewController {
-    func getDefectiveData() {
-        defectiveViewModel.fetchDefectiveData {
-            self.defectiveSelectionBaseView.defectiveDataList = self.defectiveViewModel.defectiveItemModel.map({ $0.defectiveItem })
+    func setupTargetButton() {
+        selectDefectiveBaseView.dismissButton.addTarget(self, action: #selector(dismissBottomView), for: .touchUpInside)
+    }
+
+    @objc func dismissBottomView() {
+        back(animated: true)
+    }
+}
+
+extension DefectiveBottomViewController: SelectRadioCellDelegate {
+    func didSelectItem(_ item: String) {
+        defectiveHandler(item)
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.4) {
+            self.back(animated: true)
         }
     }
 }

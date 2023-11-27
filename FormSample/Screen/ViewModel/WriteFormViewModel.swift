@@ -12,7 +12,7 @@ final class WriteFormViewModel {
     var writeFormModel = WriteFormModel()
 
     var locationModel: [LocationModel] = []
-    var defectiveItemModel: [DefectiveItemModel] = []
+    var defectiveDataList: [DefectiveItemModel] = []
 }
 
 extension WriteFormViewModel {
@@ -25,7 +25,7 @@ extension WriteFormViewModel {
 
     func fetchDefectiveData(completion: @escaping () -> ()) {
         NetworkingManager.shared.getDefectiveMock { [weak self] data in
-            self?.defectiveItemModel = data
+            self?.defectiveDataList = data
             completion()
         }
     }

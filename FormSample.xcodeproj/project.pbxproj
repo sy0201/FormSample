@@ -25,7 +25,7 @@
 		1837D80D2B07673E000D953F /* CustomBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1837D80C2B07673E000D953F /* CustomBottomSheetViewController.swift */; };
 		1878D0022B0EDF8A0074DAAC /* CreateFormBottomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1878D0012B0EDF8A0074DAAC /* CreateFormBottomViewController.swift */; };
 		1878D0042B0EF1550074DAAC /* CreateFormBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1878D0032B0EF1550074DAAC /* CreateFormBaseView.swift */; };
-		1878D0062B109AF00074DAAC /* RequiredSelectionBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1878D0052B109AF00074DAAC /* RequiredSelectionBaseView.swift */; };
+		1878D0062B109AF00074DAAC /* SelectLocationBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1878D0052B109AF00074DAAC /* SelectLocationBaseView.swift */; };
 		1889B2C12B07557B00F5ABE6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1889B2C02B07557B00F5ABE6 /* AppDelegate.swift */; };
 		1889B2C32B07557B00F5ABE6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1889B2C22B07557B00F5ABE6 /* SceneDelegate.swift */; };
 		1889B2CB2B07557B00F5ABE6 /* FormSample.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1889B2C92B07557B00F5ABE6 /* FormSample.xcdatamodeld */; };
@@ -54,7 +54,7 @@
 		18CFA63C2B1327B10062C40C /* Defective.json in Resources */ = {isa = PBXBuildFile; fileRef = 1837D7DB2B0761D0000D953F /* Defective.json */; };
 		18CFA63D2B1327B30062C40C /* Location.json in Resources */ = {isa = PBXBuildFile; fileRef = 1837D7DC2B0761D0000D953F /* Location.json */; };
 		18CFA63F2B1329D70062C40C /* LocationCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CFA63E2B1329D70062C40C /* LocationCollectionViewCell.swift */; };
-		18CFA6412B1359930062C40C /* DefectiveSelectionBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CFA6402B1359930062C40C /* DefectiveSelectionBaseView.swift */; };
+		18CFA6412B1359930062C40C /* SelectDefectiveBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CFA6402B1359930062C40C /* SelectDefectiveBaseView.swift */; };
 		18CFA6432B135C050062C40C /* DefectiveBottomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CFA6422B135C050062C40C /* DefectiveBottomViewController.swift */; };
 		18CFA6462B135EA90062C40C /* SelectRadioCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CFA6452B135EA90062C40C /* SelectRadioCellDelegate.swift */; };
 		18D67D3D2B0DE0D10012FA13 /* CreateFormTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D67D3C2B0DE0D10012FA13 /* CreateFormTableViewCell.swift */; };
@@ -89,7 +89,7 @@
 		1837D80C2B07673E000D953F /* CustomBottomSheetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomBottomSheetViewController.swift; sourceTree = "<group>"; };
 		1878D0012B0EDF8A0074DAAC /* CreateFormBottomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateFormBottomViewController.swift; sourceTree = "<group>"; };
 		1878D0032B0EF1550074DAAC /* CreateFormBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateFormBaseView.swift; sourceTree = "<group>"; };
-		1878D0052B109AF00074DAAC /* RequiredSelectionBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequiredSelectionBaseView.swift; sourceTree = "<group>"; };
+		1878D0052B109AF00074DAAC /* SelectLocationBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectLocationBaseView.swift; sourceTree = "<group>"; };
 		1889B2BD2B07557B00F5ABE6 /* FormSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FormSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1889B2C02B07557B00F5ABE6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1889B2C22B07557B00F5ABE6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -115,7 +115,7 @@
 		189AECBE2B0C59930038E377 /* ApplicationFormBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationFormBaseView.swift; sourceTree = "<group>"; };
 		18CFA6362B1320CA0062C40C /* RequiredSelectionBottomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequiredSelectionBottomViewController.swift; sourceTree = "<group>"; };
 		18CFA63E2B1329D70062C40C /* LocationCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCollectionViewCell.swift; sourceTree = "<group>"; };
-		18CFA6402B1359930062C40C /* DefectiveSelectionBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefectiveSelectionBaseView.swift; sourceTree = "<group>"; };
+		18CFA6402B1359930062C40C /* SelectDefectiveBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectDefectiveBaseView.swift; sourceTree = "<group>"; };
 		18CFA6422B135C050062C40C /* DefectiveBottomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefectiveBottomViewController.swift; sourceTree = "<group>"; };
 		18CFA6452B135EA90062C40C /* SelectRadioCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectRadioCellDelegate.swift; sourceTree = "<group>"; };
 		18D67D3C2B0DE0D10012FA13 /* CreateFormTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateFormTableViewCell.swift; sourceTree = "<group>"; };
@@ -407,8 +407,8 @@
 			children = (
 				189AECBE2B0C59930038E377 /* ApplicationFormBaseView.swift */,
 				1878D0032B0EF1550074DAAC /* CreateFormBaseView.swift */,
-				1878D0052B109AF00074DAAC /* RequiredSelectionBaseView.swift */,
-				18CFA6402B1359930062C40C /* DefectiveSelectionBaseView.swift */,
+				1878D0052B109AF00074DAAC /* SelectLocationBaseView.swift */,
+				18CFA6402B1359930062C40C /* SelectDefectiveBaseView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -620,9 +620,9 @@
 				1837D7E92B076369000D953F /* BaseViewController.swift in Sources */,
 				18CFA6462B135EA90062C40C /* SelectRadioCellDelegate.swift in Sources */,
 				1837D7EC2B0763B8000D953F /* MainView.swift in Sources */,
-				1878D0062B109AF00074DAAC /* RequiredSelectionBaseView.swift in Sources */,
+				1878D0062B109AF00074DAAC /* SelectLocationBaseView.swift in Sources */,
 				182735642B0A1C5100D1EE83 /* Strings.swift in Sources */,
-				18CFA6412B1359930062C40C /* DefectiveSelectionBaseView.swift in Sources */,
+				18CFA6412B1359930062C40C /* SelectDefectiveBaseView.swift in Sources */,
 				182735662B0A24E000D1EE83 /* SelectApartmentBottomViewController.swift in Sources */,
 				1837D8062B076518000D953F /* ApartmentViewModel.swift in Sources */,
 				189AECBC2B0C54B90038E377 /* ApplicationFormTopTableViewCell.swift in Sources */,

@@ -38,7 +38,7 @@ extension MainViewController {
     @objc func selectApartment() {
         let selectApartmentBottomVC = SelectApartmentBottomViewController()
 
-        let apartmentNameList = viewModel.apartmentNameData.map({ $0.apartmentName })
+        let apartmentNameList = viewModel.apartmentNameDataList.map({ $0.apartmentName })
         selectApartmentBottomVC.selectApartmentBottomView.setRadioDataList(data: apartmentNameList)
 
         let bottomSheetVC = CustomBottomSheetViewController(contentViewController: selectApartmentBottomVC)

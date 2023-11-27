@@ -9,11 +9,11 @@ import UIKit
 
 final class RequiredSelectionBottomViewController: UIViewController {
 
-    let requiredSelectionBaseView = RequiredSelectionBaseView()
+    let selectLocationBaseView = SelectLocationBaseView()
     private let locationViewModel = WriteFormViewModel()
 
     override func loadView() {
-        view = requiredSelectionBaseView
+        view = selectLocationBaseView
     }
     
     override func viewDidLoad() {
@@ -23,14 +23,14 @@ final class RequiredSelectionBottomViewController: UIViewController {
     }
     
     private func setupCollectionView() {
-        requiredSelectionBaseView.setupCollectionView()
+        selectLocationBaseView.setupCollectionView()
     }
 }
 
 extension RequiredSelectionBottomViewController {
     func getLocationData() {
         locationViewModel.fetchLocationData {
-            self.requiredSelectionBaseView.locationDataList = self.locationViewModel.locationModel.map { $0.locationName }
+            self.selectLocationBaseView.locationDataList = self.locationViewModel.locationModel.map { $0.locationName }
         }
     }
 }

@@ -30,10 +30,10 @@ internal enum L10n {
   internal static let formMessage16 = L10n.tr("Localizable", "Form_message16", fallback: "정확한 하자 접수를 위해 최대한 자세히 입력 바랍니다. 예) 도배 : 벽위치(입구 맞은 벽) + 발생부위(중간위치) + 하자상태(찢김)")
   /// 위치 선택
   internal static let formMessage17 = L10n.tr("Localizable", "Form_message17", fallback: "위치 선택")
-  /// 
-  internal static let formMessage18 = L10n.tr("Localizable", "Form_message18", fallback: "")
-  /// 
-  internal static let formMessage19 = L10n.tr("Localizable", "Form_message19", fallback: "")
+  /// 평면도 보기
+  internal static let formMessage18 = L10n.tr("Localizable", "Form_message18", fallback: "평면도 보기")
+  /// 빠른 하자항목으로 신청서를 편리하게 작성하세요.
+  internal static let formMessage19 = L10n.tr("Localizable", "Form_message19", fallback: "빠른 하자항목으로 신청서를 편리하게 작성하세요.")
   /// 신청서 작성
   internal static let formMessage2 = L10n.tr("Localizable", "Form_message2", fallback: "신청서 작성")
   /// 

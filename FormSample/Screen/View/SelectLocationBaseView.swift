@@ -1,5 +1,5 @@
 //
-//  RequiredSelectionBaseView.swift
+//  SelectLocationBaseView.swift
 //  FormSample
 //
 //  Created by siyeon park on 2023/11/24.
@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-final class RequiredSelectionBaseView: BaseView {
+final class SelectLocationBaseView: BaseView {
     
     var currentView: Enum.RequiredSelect = .location
     var locationDataList: [String] = [] {
@@ -42,8 +42,8 @@ final class RequiredSelectionBaseView: BaseView {
         let floorPlanButton = UIButton()
         floorPlanButton.titleLabel?.font = FontFamily.NotoSansKR.medium.font(size: 13)
         floorPlanButton.setTitleColor(.white, for: .normal)
-        floorPlanButton.setTitle("평면도 보기", for: .normal)
-        floorPlanButton.setImage(UIImage(named: Asset.Icon.icArrow.name), for: .normal)
+        floorPlanButton.setTitle(L10n.formMessage18, for: .normal)
+        floorPlanButton.setImage(UIImage(named: Asset.Icon.icLayout.name), for: .normal)
         return floorPlanButton
     }()
 
@@ -110,7 +110,7 @@ final class RequiredSelectionBaseView: BaseView {
         
         collectionView.snp.makeConstraints { make in
             make.leading.trailing.bottom.equalTo(mainView)
-            make.top.equalTo(floorPlanView.snp.bottom)
+            make.top.equalTo(floorPlanView.snp.bottom).inset(8)
             make.bottom.equalTo(mainView.snp.bottom)
         }
     }
@@ -128,7 +128,7 @@ final class RequiredSelectionBaseView: BaseView {
     }
 }
 
-extension RequiredSelectionBaseView: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
+extension SelectLocationBaseView: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         locationDataList.count
     }

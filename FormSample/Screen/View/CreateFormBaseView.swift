@@ -43,7 +43,7 @@ final class CreateFormBaseView: BaseView {
         return localTitleLabel
     }()
 
-    private let localLabel: UILabel = {
+    let localLabel: UILabel = {
         let localLabel = UILabel()
         localLabel.font = FontFamily.NotoSansKR.bold.font(size: 14)
         localLabel.textColor = Asset.Color.green458E8F.color
@@ -82,11 +82,11 @@ final class CreateFormBaseView: BaseView {
         return defectiveTitleLabel
     }()
 
-    private let defectiveLabel: UILabel = {
+     let defectiveLabel: UILabel = {
         let defectiveLabel = UILabel()
         defectiveLabel.font = FontFamily.NotoSansKR.bold.font(size: 14)
         defectiveLabel.textColor = Asset.Color.green458E8F.color
-        defectiveLabel.text = "거실 아트월 하단 스위치/콘센트 고정 (부착) 불량"
+        defectiveLabel.text = ""
         defectiveLabel.numberOfLines = 0
         return defectiveLabel
     }()

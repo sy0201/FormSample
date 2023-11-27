@@ -9,11 +9,11 @@ import Foundation
 
 final class ApartmentViewModel {
 
-    var apartmentNameData: [ApartmentModel] = []
+    var apartmentNameDataList: [ApartmentModel] = []
 
     func fetchApartmentData(completion: @escaping () -> ()) {
         NetworkingManager.shared.getApartmentMock { [weak self] data in
-            self?.apartmentNameData = data
+            self?.apartmentNameDataList = data
             completion()
         }
     }
