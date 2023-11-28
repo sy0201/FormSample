@@ -9,7 +9,8 @@ import UIKit
 
 final class CreateFormBottomViewController: BaseViewController {
 
-    let createFormBaseView = CreateFormBaseView()
+    let createFormBaseView = CreateBaseView()
+
     private let viewModel = WriteFormViewModel()
 
     override func loadView() {
@@ -31,7 +32,7 @@ final class CreateFormBottomViewController: BaseViewController {
     }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.createFormBaseView.defectiveTextView.resignFirstResponder()
+        self.createFormBaseView.contentTextView.resignFirstResponder()
     }
 }
 
@@ -50,11 +51,11 @@ extension CreateFormBottomViewController {
         createFormBaseView.zoomOutButton.addTarget(self, action: #selector(selectAlbum), for: .touchUpInside)
 
         createFormBaseView.didChangeContentHandler = { [self] text in
-            createFormBaseView.defectiveTextView.text = text
+            createFormBaseView.contentTextView.text = text
             viewModel.writeFormModel.contentData = text
         }
     }
-    
+
     @objc func selectLocation() {
         let requiredSelectionBottomVC = LocationBottomViewController()
 
@@ -68,7 +69,7 @@ extension CreateFormBottomViewController {
         bottomSheetVC.modalPresentationStyle = .overFullScreen
         present(bottomSheetVC, animated: true, completion: nil)
     }
-    
+
     @objc func selectDefective() {
         let defectiveBottomVC = DefectiveBottomViewController()
 

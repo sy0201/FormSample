@@ -24,7 +24,6 @@
 		1837D80B2B076694000D953F /* UIStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1837D80A2B076694000D953F /* UIStackView.swift */; };
 		1837D80D2B07673E000D953F /* CustomBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1837D80C2B07673E000D953F /* CustomBottomSheetViewController.swift */; };
 		1878D0022B0EDF8A0074DAAC /* CreateFormBottomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1878D0012B0EDF8A0074DAAC /* CreateFormBottomViewController.swift */; };
-		1878D0042B0EF1550074DAAC /* CreateFormBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1878D0032B0EF1550074DAAC /* CreateFormBaseView.swift */; };
 		1878D0062B109AF00074DAAC /* SelectLocationBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1878D0052B109AF00074DAAC /* SelectLocationBaseView.swift */; };
 		1889B2C12B07557B00F5ABE6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1889B2C02B07557B00F5ABE6 /* AppDelegate.swift */; };
 		1889B2C32B07557B00F5ABE6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1889B2C22B07557B00F5ABE6 /* SceneDelegate.swift */; };
@@ -65,6 +64,7 @@
 		18DEEAE82B147AE400F17B1E /* SelectPhotoBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DEEAE72B147AE400F17B1E /* SelectPhotoBaseView.swift */; };
 		18DEEAEE2B14968900F17B1E /* UnRegisterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DEEAED2B14968900F17B1E /* UnRegisterTableViewCell.swift */; };
 		18DEEAF02B14980400F17B1E /* DetailUnRegisterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DEEAEF2B14980400F17B1E /* DetailUnRegisterTableViewCell.swift */; };
+		18DEEAF22B15C08800F17B1E /* CreateBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DEEAF12B15C08800F17B1E /* CreateBaseView.swift */; };
 		AC24BACD3FCA0BEB0197B133 /* Pods_FormSample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBFCFB0FD50577C748716483 /* Pods_FormSample.framework */; };
 /* End PBXBuildFile section */
 
@@ -94,7 +94,6 @@
 		1837D80A2B076694000D953F /* UIStackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIStackView.swift; sourceTree = "<group>"; };
 		1837D80C2B07673E000D953F /* CustomBottomSheetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomBottomSheetViewController.swift; sourceTree = "<group>"; };
 		1878D0012B0EDF8A0074DAAC /* CreateFormBottomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateFormBottomViewController.swift; sourceTree = "<group>"; };
-		1878D0032B0EF1550074DAAC /* CreateFormBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateFormBaseView.swift; sourceTree = "<group>"; };
 		1878D0052B109AF00074DAAC /* SelectLocationBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectLocationBaseView.swift; sourceTree = "<group>"; };
 		1889B2BD2B07557B00F5ABE6 /* FormSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FormSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1889B2C02B07557B00F5ABE6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -132,6 +131,7 @@
 		18DEEAE72B147AE400F17B1E /* SelectPhotoBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectPhotoBaseView.swift; sourceTree = "<group>"; };
 		18DEEAED2B14968900F17B1E /* UnRegisterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnRegisterTableViewCell.swift; sourceTree = "<group>"; };
 		18DEEAEF2B14980400F17B1E /* DetailUnRegisterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailUnRegisterTableViewCell.swift; sourceTree = "<group>"; };
+		18DEEAF12B15C08800F17B1E /* CreateBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateBaseView.swift; sourceTree = "<group>"; };
 		745EFA50D9C00CBC5CFC1949 /* Pods-FormSample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FormSample.debug.xcconfig"; path = "Target Support Files/Pods-FormSample/Pods-FormSample.debug.xcconfig"; sourceTree = "<group>"; };
 		EBFCFB0FD50577C748716483 /* Pods_FormSample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FormSample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -422,7 +422,7 @@
 			isa = PBXGroup;
 			children = (
 				189AECBE2B0C59930038E377 /* ApplicationFormBaseView.swift */,
-				1878D0032B0EF1550074DAAC /* CreateFormBaseView.swift */,
+				18DEEAF12B15C08800F17B1E /* CreateBaseView.swift */,
 				18DEEAE22B1447F000F17B1E /* FloorBaseView.swift */,
 				1878D0052B109AF00074DAAC /* SelectLocationBaseView.swift */,
 				18CFA6402B1359930062C40C /* SelectDefectiveBaseView.swift */,
@@ -617,6 +617,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1837D7D92B075F03000D953F /* Fonts.swift in Sources */,
+				18DEEAF22B15C08800F17B1E /* CreateBaseView.swift in Sources */,
 				18CFA6372B1320CA0062C40C /* LocationBottomViewController.swift in Sources */,
 				1837D80B2B076694000D953F /* UIStackView.swift in Sources */,
 				1889B2CB2B07557B00F5ABE6 /* FormSample.xcdatamodeld in Sources */,
@@ -625,7 +626,6 @@
 				18DEEAE12B14473700F17B1E /* PresentFloorViewController.swift in Sources */,
 				18CFA63B2B13254D0062C40C /* FormViewModel.swift in Sources */,
 				189AECB72B0B6E9D0038E377 /* BottomEmptyTableViewCell.swift in Sources */,
-				1878D0042B0EF1550074DAAC /* CreateFormBaseView.swift in Sources */,
 				1837D7D82B075F03000D953F /* Assets.swift in Sources */,
 				189AECAD2B0AF8C00038E377 /* ReuseIdentifying.swift in Sources */,
 				189AECAF2B0B182A0038E377 /* UIViewController.swift in Sources */,

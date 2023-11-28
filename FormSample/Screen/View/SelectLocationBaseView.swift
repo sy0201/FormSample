@@ -238,5 +238,7 @@ extension SelectLocationBaseView: UICollectionViewDelegateFlowLayout, UICollecti
         let selectedCell = LocationCollectionViewCell()
         selectedCell.setOn(isSelectedLocation: !selectedCell.isSelectedLocation)
         print("cell bool \( selectedCell.isSelectedLocation)")
+        // TODO: 여기서도 데이터 전달 연결해줄것
+
     }
 }
