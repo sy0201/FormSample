@@ -10,7 +10,7 @@ import SnapKit
 
 final class SelectLocationBaseView: BaseView {
     
-    var locationDataAction: (() -> Void)?
+    var locationCellDataAction: (String) -> Void = { _ in }
     var locationDataList: [String] = []
     var selectionLocation: String?
     
@@ -235,8 +235,7 @@ extension SelectLocationBaseView: UICollectionViewDelegateFlowLayout, UICollecti
             return
         }
         let selectedData = locationDataList[indexPath.row]
-
         selectionLocation = selectedData
-        //createFormBaseView.locationLabel.text = selectedData
+        locationCellDataAction(selectionLocation ?? "")
     }
 }

@@ -55,11 +55,10 @@ final class LocationBottomViewController: BaseViewController {
 
     @objc func selectLocationButton() {
         print("선택하기 탭")
-        guard let selectedLocation = selectLocationBaseView.selectionLocation else {
-            // 선택한 위치가 없는 경우에 대한 처리
-            return
+        selectLocationBaseView.locationCellDataAction = { [self] text in
+            self.locationHandler(text)
         }
-        self.locationHandler(selectedLocation)
+        back(animated: true)
     }
 }
 
