@@ -15,29 +15,77 @@ final class UnRegisterTableViewCell: UITableViewCell, ReuseIdentifying {
             self.changeState()
         }
     }
-    
+
+    let mainView = UIView()
     let selectImg: UIImageView = {
         let selectImg = UIImageView()
         selectImg.image = Asset.Icon.icCheckboxOff.image
-        selectImg.bounds.size.height = 24
         return selectImg
     }()
 
-    let selectItemLabel: UILabel = {
-        let selectItemLabel = UILabel()
-        selectItemLabel.font = FontFamily.NotoSansKR.regular.font(size: 16)
-        selectItemLabel.textColor = Asset.Color.black.color
-        return selectItemLabel
-    }()
-
-    private let stackView: UIStackView = {
+    private let labelStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.alignment = .leading
         stackView.distribution = .fillProportionally
-        stackView.spacing = 16
+        stackView.spacing = 4
         return stackView
     }()
+    let locationLabel: UILabel = {
+        let locationLabel = UILabel()
+        locationLabel.font = FontFamily.NotoSansKR.medium.font(size: 15)
+        locationLabel.textColor = Asset.Color.black.color
+        locationLabel.text = "드레스룸"
+        return locationLabel
+    }()
+    let checkButton = UIButton()
+
+    private let countStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.alignment = .leading
+        stackView.distribution = .fillProportionally
+        stackView.spacing = 4
+        return stackView
+    }()
+    let locationCountLabel: UILabel = {
+        let locationCountLabel = UILabel()
+        locationCountLabel.font = FontFamily.NotoSansKR.bold.font(size: 15)
+        locationCountLabel.textColor = Asset.Color.green458E8F.color
+        locationCountLabel.text = "3"
+        return locationCountLabel
+    }()
+
+    let selectLocationCountLabel: UILabel = {
+        let selectLocationCountLabel = UILabel()
+        selectLocationCountLabel.font = FontFamily.NotoSansKR.regular.font(size: 16)
+        selectLocationCountLabel.textColor = Asset.Color.green458E8F.color
+        selectLocationCountLabel.text = "(3)"
+        return selectLocationCountLabel
+    }()
+
+    let rightStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.alignment = .leading
+        stackView.distribution = .fillProportionally
+        stackView.spacing = 0
+        return stackView
+    }()
+
+    let selectDeleteLabel: UILabel = {
+        let selectDeleteLabel = UILabel()
+        selectDeleteLabel.font = FontFamily.NotoSansKR.bold.font(size: 13)
+        selectDeleteLabel.textColor = Asset.Color.grayCDD1D4.color
+        selectDeleteLabel.text = "선택삭제"
+        return selectDeleteLabel
+    }()
+    let moreDetailImg: UIImageView = {
+        let moreImg = UIImageView()
+        moreImg.image = Asset.Icon.icArrowBottom.image
+        return moreImg
+    }()
+    let rightButton = UIButton()
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -53,27 +101,48 @@ final class UnRegisterTableViewCell: UITableViewCell, ReuseIdentifying {
 extension UnRegisterTableViewCell {
     func setupUI() {
         selectionStyle = .none
-        addSubviews([stackView])
-        stackView.addArrangedSubviews([selectImg, selectItemLabel])
+        addSubviews([mainView, labelStackView, countStackView, rightStackView])
+        mainView.addSubviews([selectImg, checkButton, labelStackView, rightStackView, rightButton])
+
+        labelStackView.addArrangedSubviews([locationLabel, countStackView])
+        countStackView.addArrangedSubviews([locationCountLabel, selectLocationCountLabel])
+        rightStackView.addArrangedSubviews([selectDeleteLabel, moreDetailImg])
     }
 
     func setupConstraint() {
-        stackView.snp.makeConstraints { make in
-            make.leading.trailing.equalToSuperview().inset(24)
-            make.top.bottom.equalToSuperview().inset(12)
+        mainView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
         }
 
         selectImg.snp.makeConstraints { make in
-            make.width.height.equalTo(24)
+            make.leading.equalTo(mainView).offset(24)
+            make.top.bottom.equalTo(mainView).inset(18)
+            make.height.equalTo(24)
         }
 
-        selectItemLabel.snp.makeConstraints { make in
+        checkButton.snp.makeConstraints { make in
+            make.leading.top.bottom.equalTo(mainView)
+        }
+
+        labelStackView.snp.makeConstraints { make in
+            make.leading.equalTo(selectImg.snp.trailing).offset(8)
+            make.trailing.equalTo(checkButton.snp.trailing)
             make.centerY.equalTo(selectImg.snp.centerY)
+        }
+
+        rightStackView.snp.makeConstraints { make in
+            make.trailing.equalTo(mainView.snp.trailing).inset(24)
+            make.centerY.equalTo(mainView.snp.centerY)
+        }
+
+        rightButton.snp.makeConstraints { make in
+            make.trailing.top.bottom.equalTo(mainView)
+            make.leading.equalTo(rightStackView)
         }
     }
 
     func configure(with data: String) {
-        selectItemLabel.text = data
+        locationLabel.text = data
     }
 
     func setOn(isCheckRegister: Bool) {
