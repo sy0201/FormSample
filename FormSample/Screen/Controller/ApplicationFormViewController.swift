@@ -18,7 +18,6 @@ final class ApplicationFormViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        applicationFormView.setCurrentTab(.left)
         getApartmentNameData()
         setupButtonTapped()
     }
@@ -46,11 +45,13 @@ final class ApplicationFormViewController: BaseViewController {
     @objc func leftTapped() {
         applicationFormView.setCurrentTab(.left)
         applicationFormView.tabSelected(tab: .left)
+        applicationFormView.tableView.reloadData()
     }
 
     @objc func rightTapped() {
         applicationFormView.setCurrentTab(.right)
         applicationFormView.tabSelected(tab: .right)
+        applicationFormView.tableView.reloadData()
     }
 
     func createFormButtonTapped() {

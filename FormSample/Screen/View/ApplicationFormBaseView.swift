@@ -125,6 +125,9 @@ final class ApplicationFormBaseView: BaseView {
     }
 
     override func setupUI() {
+        setCurrentTab(.left)
+        tabSelected(tab: .left)
+
         mainBackgroundView.backgroundColor = .white
         addSubviews([mainBackgroundView, topStackView, navigationView, apartmentView, tabMenuView, tabMenuStackView, leftTabLabel, rightTabLabel, leftButton, rightButton, tableView])
 
@@ -261,6 +264,7 @@ final class ApplicationFormBaseView: BaseView {
 
         tableView.register(ApplicationFormTopTableViewCell.self, forCellReuseIdentifier: ApplicationFormTopTableViewCell.reuseIdentifier)
         tableView.register(CreateFormTableViewCell.self, forCellReuseIdentifier: CreateFormTableViewCell.reuseIdentifier)
+        tableView.register(UnRegisterTableViewCell.self, forCellReuseIdentifier: UnRegisterTableViewCell.reuseIdentifier)
         tableView.register(DetailUnRegisterTableViewCell.self, forCellReuseIdentifier: DetailUnRegisterTableViewCell.reuseIdentifier)
     }
 
@@ -275,7 +279,6 @@ final class ApplicationFormBaseView: BaseView {
             label.textColor = Asset.Color.green0F4F51.color
 
         } else {
-
             view.isHidden = true
             label.textColor = Asset.Color.gray9DA4AA.color
         }
@@ -286,38 +289,57 @@ final class ApplicationFormBaseView: BaseView {
     }
 
     func changeState() {
-        leftSelectLineTabView.isHidden = isTabMenuTapped ? true : false
-        rightSelectLineTabView.isHidden = isTabMenuTapped ? true : false
-        leftTabLabel.textColor = isTabMenuTapped ? Asset.Color.green0F4F51.color : Asset.Color.gray9DA4AA.color
-        rightTabLabel.textColor = isTabMenuTapped ? Asset.Color.green0F4F51.color : Asset.Color.gray9DA4AA.color
+        let isSelected = isTabMenuTapped
+
+        leftSelectLineTabView.isHidden = isSelected
+        rightSelectLineTabView.isHidden = isSelected
+
+        leftTabLabel.font = isSelected ? FontFamily.NotoSansKR.bold.font(size: 15) : FontFamily.NotoSansKR.medium.font(size: 15)
+        rightTabLabel.font = isSelected ? FontFamily.NotoSansKR.bold.font(size: 15) : FontFamily.NotoSansKR.medium.font(size: 15)
+
+        let textColor = isSelected ? Asset.Color.green0F4F51.color : Asset.Color.gray9DA4AA.color
+        leftTabLabel.textColor = textColor
+        rightTabLabel.textColor = textColor
     }
 }
 
 extension ApplicationFormBaseView: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        2
+        switch currentTab {
+        case .left:
+            return 2
+        case .right:
+            return 2
+
+        }
+        return 0
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        switch indexPath.row {
-        case 0:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "ApplicationFormTopTableViewCell", for: indexPath) as? ApplicationFormTopTableViewCell else { return UITableViewCell() }
-            return cell
-        case 1:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "CreateFormTableViewCell", for: indexPath) as? CreateFormTableViewCell else { return UITableViewCell() }
-            cell.createFormCellButtonAction = { [weak self] in
-                self?.handleCreateFormButton()
+        switch currentTab {
+        case .left:
+            if indexPath.row == 0 {
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: "ApplicationFormTopTableViewCell", for: indexPath) as? ApplicationFormTopTableViewCell else { return UITableViewCell() }
+                return cell
+            } else {
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: "CreateFormTableViewCell", for: indexPath) as? CreateFormTableViewCell else { return UITableViewCell() }
+                cell.createFormCellButtonAction = { [weak self] in
+                    self?.handleCreateFormButton()
+                }
+                return cell
             }
-            return cell
 
-//            guard let cell = tableView.dequeueReusableCell(withIdentifier: "DetailUnRegisterTableViewCell", for: indexPath) as? DetailUnRegisterTableViewCell else { return UITableViewCell() }
-//
-//            return cell
+        case .right:
+            if indexPath.row == 0 {
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: "ApplicationFormTopTableViewCell", for: indexPath) as? ApplicationFormTopTableViewCell else { return UITableViewCell() }
+                return cell
+            } else {
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: "UnRegisterTableViewCell", for: indexPath) as? UnRegisterTableViewCell else { return UITableViewCell() }
 
-        default:
-            break
+                return cell
+            }
+            return UITableViewCell()
         }
-        return UITableViewCell()
     }
 
     func handleCreateFormButton() {
