@@ -304,15 +304,15 @@ extension ApplicationFormBaseView: UITableViewDelegate, UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "ApplicationFormTopTableViewCell", for: indexPath) as? ApplicationFormTopTableViewCell else { return UITableViewCell() }
             return cell
         case 1:
-//            guard let cell = tableView.dequeueReusableCell(withIdentifier: "CreateFormTableViewCell", for: indexPath) as? CreateFormTableViewCell else { return UITableViewCell() }
-//            cell.createFormCellButtonAction = { [weak self] in
-//                self?.handleCreateFormButton()
-//            }
-//            return cell
-
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "DetailUnRegisterTableViewCell", for: indexPath) as? DetailUnRegisterTableViewCell else { return UITableViewCell() }
-
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "CreateFormTableViewCell", for: indexPath) as? CreateFormTableViewCell else { return UITableViewCell() }
+            cell.createFormCellButtonAction = { [weak self] in
+                self?.handleCreateFormButton()
+            }
             return cell
+
+//            guard let cell = tableView.dequeueReusableCell(withIdentifier: "DetailUnRegisterTableViewCell", for: indexPath) as? DetailUnRegisterTableViewCell else { return UITableViewCell() }
+//
+//            return cell
 
         default:
             break

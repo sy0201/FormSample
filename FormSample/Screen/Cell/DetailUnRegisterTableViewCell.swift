@@ -53,6 +53,7 @@ final class DetailUnRegisterTableViewCell: UITableViewCell, ReuseIdentifying {
         return topStackView
     }()
 
+    private let middleView = UIView()
     private let defectiveLabel: UILabel = {
         let defectiveLabel = UILabel()
         defectiveLabel.font = FontFamily.NotoSansKR.bold.font(size: 16)
@@ -61,14 +62,13 @@ final class DetailUnRegisterTableViewCell: UITableViewCell, ReuseIdentifying {
         return defectiveLabel
     }()
 
-    private let middleView = UIView()
-
     let attachPhotoView: UIView = UIView()
 
     let zoomInImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.layer.cornerRadius = 12
         imageView.clipsToBounds = true
+        imageView.backgroundColor = .yellow
         return imageView
     }()
 
@@ -76,6 +76,7 @@ final class DetailUnRegisterTableViewCell: UITableViewCell, ReuseIdentifying {
         let imageView = UIImageView()
         imageView.layer.cornerRadius = 12
         imageView.clipsToBounds = true
+        imageView.backgroundColor = .yellow
         return imageView
     }()
 
@@ -125,7 +126,7 @@ extension DetailUnRegisterTableViewCell {
         middleView.addSubviews([attachPhotoView, attachPhotoStackView])
 
         attachPhotoView.addSubview(attachPhotoStackView)
-        attachPhotoStackView.addArrangedSubviews([zoomInImageView,  zoomOutImageView])
+        attachPhotoStackView.addArrangedSubviews([zoomInImageView, zoomOutImageView])
     }
 
     func setupConstraint() {
@@ -149,6 +150,7 @@ extension DetailUnRegisterTableViewCell {
         topStackView.snp.makeConstraints { make in
             make.trailing.equalTo(topView).inset(16)
             make.top.equalTo(topView).inset(27)
+            make.centerY.equalTo(checkButton.snp.centerY)
         }
 
         middleView.snp.makeConstraints { make in
@@ -159,29 +161,29 @@ extension DetailUnRegisterTableViewCell {
         defectiveLabel.snp.makeConstraints { make in
             make.leading.trailing.equalTo(middleView).inset(16)
             make.top.equalTo(middleView).offset(16)
-            make.bottom.equalTo(middleView).inset(16)
+            make.bottom.equalTo(middleView).offset(-16)
         }
 
         attachPhotoView.snp.makeConstraints { make in
             make.leading.trailing.equalTo(imgHiddenStackView)
             make.top.equalTo(middleView.snp.bottom)
+            make.bottom.equalTo(imgHiddenStackView).inset(16)
         }
 
         attachPhotoStackView.snp.makeConstraints { make in
-            make.leading.trailing.equalTo(mainView).inset(24)
+            make.leading.trailing.equalTo(imgHiddenStackView).inset(24)
             make.top.equalTo(attachPhotoView.snp.bottom).inset(16)
-            make.bottom.equalTo(mainView).inset(16)
         }
 
         zoomInImageView.snp.makeConstraints { make in
             make.leading.equalTo(attachPhotoStackView).inset(16)
-            make.bottom.equalTo(mainView).inset(16)
+            make.top.bottom.equalTo(attachPhotoStackView).inset(16)
             make.height.equalTo(130)
         }
 
         zoomOutImageView.snp.makeConstraints { make in
             make.trailing.equalTo(attachPhotoStackView).inset(8)
-            make.bottom.equalTo(mainView).inset(16)
+            make.centerY.equalTo(zoomInImageView.snp.centerY)
             make.height.equalTo(130)
         }
     }
