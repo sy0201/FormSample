@@ -278,12 +278,6 @@ final class CreateBaseView: BaseView {
         fatalError("init(coder:) has not been implemented")
     }
 
-    override func layoutSubviews() {
-        super.layoutSubviews()
-//        zoomInImageView.layer.cornerRadius = 4
-//        zoomOutImageView.layer.cornerRadius = 4
-    }
-
     override func setupUI() {
         addSubviews([mainView,
                      titleView,

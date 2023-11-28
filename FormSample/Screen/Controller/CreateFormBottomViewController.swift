@@ -29,6 +29,8 @@ final class CreateFormBottomViewController: BaseViewController {
 
         createFormBaseView.zoomInView.addDashedBorder(to: createFormBaseView.zoomInView, withRadius: 12, borderWidth: 1)
         createFormBaseView.zoomOutView.addDashedBorder(to: createFormBaseView.zoomOutView, withRadius: 12, borderWidth: 1)
+        createFormBaseView.zoomInImageView.layer.cornerRadius = 4
+        createFormBaseView.zoomOutImageView.layer.cornerRadius = 4
     }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
