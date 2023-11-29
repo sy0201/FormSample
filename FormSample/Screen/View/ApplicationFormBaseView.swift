@@ -362,12 +362,12 @@ extension ApplicationFormBaseView: UITableViewDelegate, UITableViewDataSource {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: "ApplicationFormTopTableViewCell", for: indexPath) as? ApplicationFormTopTableViewCell else { return UITableViewCell() }
                 return cell
             } else {
-                guard let cell = tableView.dequeueReusableCell(withIdentifier: "UnRegisterTableViewCell", for: indexPath) as? UnRegisterTableViewCell else { return UITableViewCell() }
-
-                return cell
-//                guard let cell = tableView.dequeueReusableCell(withIdentifier: "DetailUnRegisterTableViewCell", for: indexPath) as? DetailUnRegisterTableViewCell else { return UITableViewCell() }
+//                guard let cell = tableView.dequeueReusableCell(withIdentifier: "UnRegisterTableViewCell", for: indexPath) as? UnRegisterTableViewCell else { return UITableViewCell() }
 //
 //                return cell
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: "DetailUnRegisterTableViewCell", for: indexPath) as? DetailUnRegisterTableViewCell else { return UITableViewCell() }
+
+                return cell
             }
         }
     }
