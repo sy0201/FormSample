@@ -34,6 +34,11 @@ final class SelectApartmentBottomView: BaseView {
         return closeBottomButton
     }()
 
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        shadowView.addTopShadow(shadowColor: UIColor.gray, shadowOpacity: 0.1, shadowRadius: 4, offset: CGSize(width: 0.0, height: -5.0))
+    }
+
     override func setupUI() {
         addSubviews([tableView,
                      shadowView,

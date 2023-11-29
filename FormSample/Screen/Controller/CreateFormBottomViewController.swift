@@ -23,16 +23,6 @@ final class CreateFormBottomViewController: BaseViewController {
         setupButtonTapped()
     }
 
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        createFormBaseView.shadowView.addTopShadow(shadowColor: UIColor.gray, shadowOpacity: 0.1, shadowRadius: 4, offset: CGSize(width: 0.0, height: -5.0))
-
-        createFormBaseView.zoomInView.addDashedBorder(to: createFormBaseView.zoomInView, withRadius: 12, borderWidth: 1)
-        createFormBaseView.zoomOutView.addDashedBorder(to: createFormBaseView.zoomOutView, withRadius: 12, borderWidth: 1)
-        createFormBaseView.zoomInImageView.layer.cornerRadius = 4
-        createFormBaseView.zoomOutImageView.layer.cornerRadius = 4
-    }
-
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.createFormBaseView.contentTextView.resignFirstResponder()
     }

@@ -276,6 +276,16 @@ final class CreateBaseView: BaseView {
         fatalError("init(coder:) has not been implemented")
     }
 
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        shadowView.addTopShadow(shadowColor: UIColor.gray, shadowOpacity: 0.1, shadowRadius: 4, offset: CGSize(width: 0.0, height: -5.0))
+
+        zoomInView.addDashedBorder(to: zoomInView, withRadius: 12, borderWidth: 1)
+        zoomOutView.addDashedBorder(to: zoomOutView, withRadius: 12, borderWidth: 1)
+        zoomInImageView.layer.cornerRadius = 4
+        zoomOutImageView.layer.cornerRadius = 4
+    }
+
     override func setupUI() {
         addSubviews([mainView,
                      titleView,

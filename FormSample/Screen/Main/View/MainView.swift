@@ -88,6 +88,11 @@ final class MainView: BaseView {
         return applicationButton
     }()
 
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        gradationView.gradationView([.black.withAlphaComponent(0.6), .black.withAlphaComponent(0.0)])
+    }
+    
     override func setupUI() {
         addSubviews([backgroundImageView,
                      gradationView,

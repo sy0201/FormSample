@@ -21,11 +21,6 @@ final class MainViewController: BaseViewController {
         getApartmentData()
         setupButtonTapped()
     }
-
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        mainView.gradationView.gradationView([.black.withAlphaComponent(0.6), .black.withAlphaComponent(0.0)])
-    }
 }
 
 extension MainViewController {

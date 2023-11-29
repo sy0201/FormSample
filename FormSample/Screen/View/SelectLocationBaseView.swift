@@ -89,6 +89,11 @@ final class SelectLocationBaseView: BaseView {
         selectBottomButton.setTitle("선택하기", for: .normal)
         return selectBottomButton
     }()
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        shadowView.addTopShadow(shadowColor: UIColor.gray, shadowOpacity: 0.1, shadowRadius: 4, offset: CGSize(width: 0.0, height: -5.0))
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
