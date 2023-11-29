@@ -86,7 +86,6 @@ extension PhotoBottomViewController: UIImagePickerControllerDelegate, UINavigati
 
     func openAlbum(type: Enum.PhotoType) {
         presentImagePicker(sourceType: .photoLibrary)
-
     }
 
     private func presentImagePicker(sourceType: UIImagePickerController.SourceType) {

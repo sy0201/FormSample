@@ -10,6 +10,7 @@ import SnapKit
 
 final class CreateBaseView: BaseView {
 
+    var unSelectedPhoto: (Bool) -> Void = { _ in }
     var didChangeContentHandler: (String) -> Void = { _ in }
     var isAttachment: Bool = false {
         didSet {
@@ -293,7 +294,8 @@ final class CreateBaseView: BaseView {
                      defectiveView,
                      photoView,
                      contentInputView,
-                     shadowView,bottomView,])
+                     shadowView,
+                     bottomView])
 
         titleView.addSubviews([titleLabel, titleLineView])
         locationView.addSubviews([locationButton,
@@ -512,9 +514,14 @@ extension CreateBaseView {
 
     func changeState() {
         if isAttachment {
+            print("선택안함 체크\(isAttachment)")
+            unSelectedPhoto(isAttachment)
             unSelectedPhotoButton.setImage(UIImage(named: Asset.Icon.icCheckboxOn.name), for: .normal)
             hiddenStackView.isHidden = true
+
         } else {
+            print("선택안함 해제\(isAttachment)")
+            unSelectedPhoto(isAttachment)
             unSelectedPhotoButton.setImage(UIImage(named: Asset.Icon.icCheckboxOff.name), for: .normal)
             hiddenStackView.isHidden = false
         }
@@ -531,10 +538,17 @@ extension CreateBaseView {
 }
 
 extension CreateBaseView: UITextViewDelegate {
+    func textViewDidChange(_ textView: UITextView) {
+        didChangeContentHandler(contentTextView.text)
+    }
+
     func textViewDidBeginEditing(_ textView: UITextView) {
-        if contentTextView == Asset.Color.gray9DA4AA.color {
-            contentTextView.text = nil
+        if textView.text.isEmpty {
+            contentTextView.textColor = Asset.Color.gray9DA4AA.color
+            contentTextView.text = L10n.formMessage16
+        } else if textView.text == L10n.formMessage16 {
             contentTextView.textColor = Asset.Color.black.color
+            contentTextView.text = nil
         }
     }
 
@@ -543,13 +557,5 @@ extension CreateBaseView: UITextViewDelegate {
             contentTextView.text =  L10n.formMessage16
             contentTextView.textColor = Asset.Color.gray9DA4AA.color
         }
-    }
-
-    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-        let inputString = text.trimmingCharacters(in: .whitespacesAndNewlines)
-        guard let oldString = textView.text, let newRange = Range(range, in: oldString) else { return true }
-        let newString = oldString.replacingCharacters(in: newRange, with: inputString).trimmingCharacters(in: .whitespacesAndNewlines)
-
-        return true
     }
 }
