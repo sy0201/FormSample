@@ -12,18 +12,10 @@ final class DetailUnRegisterTableViewCell: UITableViewCell, ReuseIdentifying {
 
     let mainView: UIView = {
         let mainView = UIView()
-        mainView.backgroundColor = Asset.Color.white.color
+        //mainView.backgroundColor = Asset.Color.white.color
+        mainView.backgroundColor = Asset.Color.green799069.color
         mainView.layer.cornerRadius = 10
         return mainView
-    }()
-
-    let imgHiddenStackView: UIStackView = {
-        let topStackView = UIStackView()
-        topStackView.axis = .vertical
-        topStackView.alignment = .fill
-        topStackView.distribution = .fillProportionally
-        topStackView.spacing = 16
-        return topStackView
     }()
 
     private let topView = UIView()
@@ -31,6 +23,15 @@ final class DetailUnRegisterTableViewCell: UITableViewCell, ReuseIdentifying {
         let checkButton = UIButton()
         checkButton.setImage(UIImage(named: Asset.Icon.icCheckOff.name), for: .normal)
         return checkButton
+    }()
+
+    let topStackView: UIStackView = {
+        let topStackView = UIStackView()
+        topStackView.axis = .horizontal
+        topStackView.alignment = .fill
+        topStackView.distribution = .fillEqually
+        topStackView.spacing = 8
+        return topStackView
     }()
     let modifyButton: UIButton = {
         let modifyButton = UIButton()
@@ -44,15 +45,15 @@ final class DetailUnRegisterTableViewCell: UITableViewCell, ReuseIdentifying {
         deleteButton.setImage(UIImage(named: Asset.Icon.icGrayClose.name), for: .normal)
         return deleteButton
     }()
-    let topStackView: UIStackView = {
-        let topStackView = UIStackView()
-        topStackView.axis = .horizontal
-        topStackView.alignment = .fill
-        topStackView.distribution = .fillEqually
-        topStackView.spacing = 16
-        return topStackView
-    }()
 
+    let imgHiddenStackView: UIStackView = {
+        let imgHiddenStackView = UIStackView()
+        imgHiddenStackView.axis = .vertical
+        imgHiddenStackView.alignment = .fill
+        imgHiddenStackView.distribution = .fillProportionally
+        imgHiddenStackView.spacing = 0
+        return imgHiddenStackView
+    }()
     private let middleView = UIView()
     private let defectiveLabel: UILabel = {
         let defectiveLabel = UILabel()
@@ -63,7 +64,14 @@ final class DetailUnRegisterTableViewCell: UITableViewCell, ReuseIdentifying {
     }()
 
     let attachPhotoView: UIView = UIView()
-
+    let attachPhotoStackView: UIStackView = {
+        let attachPhotoStackView = UIStackView()
+        attachPhotoStackView.axis = .horizontal
+        attachPhotoStackView.alignment = .fill
+        attachPhotoStackView.distribution = .fillEqually
+        attachPhotoStackView.spacing = 8
+        return attachPhotoStackView
+    }()
     let zoomInImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.layer.cornerRadius = 12
@@ -71,22 +79,12 @@ final class DetailUnRegisterTableViewCell: UITableViewCell, ReuseIdentifying {
         imageView.backgroundColor = .yellow
         return imageView
     }()
-
     let zoomOutImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.layer.cornerRadius = 12
         imageView.clipsToBounds = true
-        imageView.backgroundColor = .yellow
+        imageView.backgroundColor = .systemPink
         return imageView
-    }()
-
-    let attachPhotoStackView: UIStackView = {
-        let attachPhotoStackView = UIStackView()
-        attachPhotoStackView.axis = .horizontal
-        attachPhotoStackView.alignment = .fill
-        attachPhotoStackView.distribution = .fillEqually
-        attachPhotoStackView.spacing = 10
-        return attachPhotoStackView
     }()
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -102,66 +100,54 @@ final class DetailUnRegisterTableViewCell: UITableViewCell, ReuseIdentifying {
 
 extension DetailUnRegisterTableViewCell {
     func setupUI() {
-        addSubviews([mainView,
-                     topView,
-                     imgHiddenStackView,
-                     topStackView,
-                     checkButton,
-                     middleView,
-                     attachPhotoView,
-                     attachPhotoStackView])
-        mainView.addSubviews([topView,
-                              imgHiddenStackView,
-                              middleView,
-                              attachPhotoView,
-                              attachPhotoStackView])
-        imgHiddenStackView.addArrangedSubviews([topView,
-                                        middleView,
-                                        attachPhotoView])
-        topView.addSubviews([checkButton,
-                             topStackView,
-                             defectiveLabel])
+        addSubviews([mainView])
+        mainView.addSubviews([topView, imgHiddenStackView])
+        topView.addSubviews([checkButton, topStackView])
         topStackView.addArrangedSubviews([modifyButton, deleteButton])
 
-        middleView.addSubviews([attachPhotoView, attachPhotoStackView])
+        imgHiddenStackView.addArrangedSubviews([middleView, attachPhotoView])
 
-        attachPhotoView.addSubview(attachPhotoStackView)
+        middleView.addSubview(defectiveLabel)
+        attachPhotoView.addSubviews([attachPhotoStackView])
         attachPhotoStackView.addArrangedSubviews([zoomInImageView, zoomOutImageView])
     }
-
     func setupConstraint() {
         mainView.snp.makeConstraints { make in
-            make.edges.top.bottom.equalToSuperview()
-        }
-
-        imgHiddenStackView.snp.makeConstraints { make in
-            make.leading.trailing.top.bottom.equalTo(mainView)
+            //make.edges.equalToSuperview().inset(16)
+            make.leading.trailing.equalToSuperview().inset(16)
+            make.top.equalToSuperview().inset(24)
+            make.bottom.equalTo(imgHiddenStackView.snp.bottom).offset(16)
         }
 
         topView.snp.makeConstraints { make in
-            make.leading.trailing.top.equalTo(imgHiddenStackView)
+            make.leading.trailing.top.equalTo(mainView)
+            make.bottom.equalTo(mainView)
         }
 
         checkButton.snp.makeConstraints { make in
-            make.leading.equalTo(topView).inset(16)
-            make.top.equalTo(topView).inset(27)
+            make.leading.bottom.equalTo(topView).inset(16)
+            make.top.equalTo(topView).inset(24)
         }
 
         topStackView.snp.makeConstraints { make in
             make.trailing.equalTo(topView).inset(16)
-            make.top.equalTo(topView).inset(27)
             make.centerY.equalTo(checkButton.snp.centerY)
         }
 
+        imgHiddenStackView.snp.makeConstraints { make in
+            make.leading.trailing.equalTo(mainView)
+            make.top.equalTo(topStackView.snp.bottom)
+            make.bottom.equalTo(mainView)
+        }
+
         middleView.snp.makeConstraints { make in
-            make.leading.trailing.equalTo(imgHiddenStackView)
-            make.top.equalTo(topView.snp.bottom)
+            make.leading.trailing.bottom.equalTo(imgHiddenStackView)
+            make.top.equalTo(imgHiddenStackView)
         }
 
         defectiveLabel.snp.makeConstraints { make in
             make.leading.trailing.equalTo(middleView).inset(16)
-            make.top.equalTo(middleView).offset(16)
-            make.bottom.equalTo(middleView).offset(-16)
+            make.top.bottom.equalTo(middleView)
         }
 
         attachPhotoView.snp.makeConstraints { make in
@@ -171,20 +157,15 @@ extension DetailUnRegisterTableViewCell {
         }
 
         attachPhotoStackView.snp.makeConstraints { make in
-            make.leading.trailing.equalTo(imgHiddenStackView).inset(24)
-            make.top.equalTo(attachPhotoView.snp.bottom).inset(16)
+            make.leading.trailing.equalTo(attachPhotoView).inset(16)
         }
 
         zoomInImageView.snp.makeConstraints { make in
-            make.leading.equalTo(attachPhotoStackView).inset(16)
-            make.top.bottom.equalTo(attachPhotoStackView).inset(16)
-            make.height.equalTo(130)
+            make.width.height.equalTo(176)
         }
 
         zoomOutImageView.snp.makeConstraints { make in
-            make.trailing.equalTo(attachPhotoStackView).inset(8)
-            make.centerY.equalTo(zoomInImageView.snp.centerY)
-            make.height.equalTo(130)
+            make.width.height.equalTo(176)
         }
     }
 }

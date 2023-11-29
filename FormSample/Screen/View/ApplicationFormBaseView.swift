@@ -93,6 +93,12 @@ final class ApplicationFormBaseView: BaseView {
         rightTabLabel.text = L10n.formMessage3
         return rightTabLabel
     }()
+    let rightPointView: UIView = {
+        let pointView = UIView()
+        pointView.backgroundColor = .red
+        pointView.layer.cornerRadius = 3
+        return pointView
+    }()
     let rightButton = UIButton()
 
     private let tabMenuView = UIView()
@@ -129,14 +135,31 @@ final class ApplicationFormBaseView: BaseView {
         tabSelected(tab: .left)
 
         mainBackgroundView.backgroundColor = .white
-        addSubviews([mainBackgroundView, topStackView, navigationView, apartmentView, tabMenuView, tabMenuStackView, leftTabLabel, rightTabLabel, leftButton, rightButton, tableView])
+        addSubviews([mainBackgroundView,
+                     topStackView,
+                     navigationView,
+                     apartmentView,
+                     tabMenuView,
+                     tabMenuStackView,
+                     leftTabLabel,
+                     rightPointView,
+                     rightTabLabel,
+                     leftButton,
+                     rightButton,
+                     tableView])
+        topStackView.addArrangedSubviews([navigationView,
+                                          apartmentView,
+                                          tabMenuView])
 
-        topStackView.addArrangedSubviews([navigationView, apartmentView, tabMenuView])
-
-        navigationView.addSubviews([backButtonImage, navigationLabel, backButton])
+        navigationView.addSubviews([backButtonImage,
+                                    navigationLabel,
+                                    backButton])
         apartmentView.addSubviews([pinImage, apartmentLabel])
         tabMenuView.addSubviews([tabMenuStackView, tabLineView])
-        tabMenuStackView.addSubviews([leftTabView, rightTabView, leftSelectLineTabView, rightSelectLineTabView])
+        tabMenuStackView.addSubviews([leftTabView,
+                                      rightTabView,
+                                      leftSelectLineTabView,
+                                      rightSelectLineTabView])
     }
 
     override func setupConstraint() {
@@ -239,6 +262,11 @@ final class ApplicationFormBaseView: BaseView {
             make.centerX.centerY.equalTo(rightTabView)
         }
 
+        rightPointView.snp.makeConstraints { make in
+            make.leading.equalTo(rightTabLabel.snp.trailing).offset(4)
+            make.bottom.equalTo(rightTabLabel.snp.top)
+            make.width.height.equalTo(6)
+        }
         leftButton.snp.makeConstraints { make in
             make.leading.trailing.top.bottom.equalTo(leftTabView)
         }
@@ -337,8 +365,10 @@ extension ApplicationFormBaseView: UITableViewDelegate, UITableViewDataSource {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: "UnRegisterTableViewCell", for: indexPath) as? UnRegisterTableViewCell else { return UITableViewCell() }
 
                 return cell
+//                guard let cell = tableView.dequeueReusableCell(withIdentifier: "DetailUnRegisterTableViewCell", for: indexPath) as? DetailUnRegisterTableViewCell else { return UITableViewCell() }
+//
+//                return cell
             }
-            return UITableViewCell()
         }
     }
 
