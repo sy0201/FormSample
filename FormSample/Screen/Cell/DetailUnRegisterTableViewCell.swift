@@ -14,6 +14,10 @@ final class DetailUnRegisterTableViewCell: UITableViewCell, ReuseIdentifying {
         let mainView = UIView()
         mainView.backgroundColor = Asset.Color.white.color
         mainView.layer.cornerRadius = 10
+        mainView.layer.shadowOpacity = 0.1
+        mainView.layer.shadowColor = UIColor.black.cgColor
+        mainView.layer.shadowOffset = CGSize(width: 0, height: 0)
+        mainView.layer.shadowRadius = 4
         return mainView
     }()
 
