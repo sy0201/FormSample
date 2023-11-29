@@ -514,13 +514,11 @@ extension CreateBaseView {
 
     func changeState() {
         if isAttachment {
-            print("선택안함 체크\(isAttachment)")
             unSelectedPhoto(isAttachment)
             unSelectedPhotoButton.setImage(UIImage(named: Asset.Icon.icCheckboxOn.name), for: .normal)
             hiddenStackView.isHidden = true
 
         } else {
-            print("선택안함 해제\(isAttachment)")
             unSelectedPhoto(isAttachment)
             unSelectedPhotoButton.setImage(UIImage(named: Asset.Icon.icCheckboxOff.name), for: .normal)
             hiddenStackView.isHidden = false
