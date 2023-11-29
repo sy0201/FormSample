@@ -34,10 +34,6 @@ final class LocationBottomViewController: BaseViewController {
 
         selectLocationBaseView.floorPlanButton.addTarget(self, action: #selector(presentFloorPlan), for: .touchUpInside)
 
-//        selectLocationBaseView.locationDataAction = { [weak self] in
-//            self?.selectLocationButton()
-//        }
-
         selectLocationBaseView.selectBottomButton.addTarget(self, action: #selector(selectLocationButton), for: .touchUpInside)
     }
 
@@ -54,10 +50,10 @@ final class LocationBottomViewController: BaseViewController {
     }
 
     @objc func selectLocationButton() {
-        print("선택하기 탭")
-        selectLocationBaseView.locationCellDataAction = { [self] text in
-            self.locationHandler(text)
+        guard let selectedLocation = selectLocationBaseView.selectionLocation else {
+            return
         }
+        locationHandler(selectedLocation)
         back(animated: true)
     }
 }

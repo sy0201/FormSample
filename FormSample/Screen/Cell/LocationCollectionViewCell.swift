@@ -10,7 +10,7 @@ import SnapKit
 
 final class LocationCollectionViewCell: UICollectionViewCell, ReuseIdentifying {
     
-    var locationCellButtonAction: (() -> Void)?
+    var locationCellButtonAction: (String) -> Void = { _ in }
     var isSelectedLocation: Bool = false {
         didSet {
             self.changeState()
@@ -48,7 +48,7 @@ final class LocationCollectionViewCell: UICollectionViewCell, ReuseIdentifying {
     
     @objc func locationCellTapped() {
         isSelectedLocation = !isSelectedLocation
-        locationCellButtonAction?()
+        locationCellButtonAction(locationLabel.text ?? "")
     }
 }
 

@@ -59,8 +59,6 @@ final class CreateBaseView: BaseView {
         return saveBottomButton
     }()
 
-
-
     private let mainView = UIView()
     private let titleView = UIView()
     private let titleLabel: UILabel = {
@@ -138,7 +136,7 @@ final class CreateBaseView: BaseView {
         let defectiveTitleLabel = UILabel()
         defectiveTitleLabel.font = FontFamily.NotoSansKR.regular.font(size: 14)
         defectiveTitleLabel.textColor = Asset.Color.gray2D3338.color
-        defectiveTitleLabel.text = L10n.formMessage15
+        defectiveTitleLabel.text = L10n.formMessage10
         return defectiveTitleLabel
     }()
     let defectiveLabel: UILabel = {

@@ -10,7 +10,7 @@ import SnapKit
 
 final class SelectLocationBaseView: BaseView {
     
-    var locationCellDataAction: (String) -> Void = { _ in }
+    var locationCellDataAction: ((String) -> Void)?
     var locationDataList: [String] = []
     var selectionLocation: String?
     
@@ -208,7 +208,6 @@ extension SelectLocationBaseView: UICollectionViewDelegateFlowLayout, UICollecti
             UICollectionViewCell() }
         cell.locationLabel.text = selectionLocation
         let data = locationDataList[indexPath.row]
-
         cell.configure(with: data, isSelected: !cell.isSelectedLocation)
         cell.locationButton.addTarget(self, action: #selector(didSelectCellItem), for: .touchUpInside)
         return cell
@@ -229,13 +228,17 @@ extension SelectLocationBaseView: UICollectionViewDelegateFlowLayout, UICollecti
     }
 
     @objc func didSelectCellItem(sender: UIButton) {
-        print("cell tapped")
-        guard let cell = sender.superview as? LocationCollectionViewCell,
-              let indexPath = collectionView.indexPath(for: cell) else {
+        let point = sender.convert(CGPoint.zero, to: collectionView)
+        guard let indexPath = collectionView.indexPathForItem(at: point) else {
             return
         }
+
         let selectedData = locationDataList[indexPath.row]
         selectionLocation = selectedData
-        locationCellDataAction(selectionLocation ?? "")
+        locationCellDataAction?(selectionLocation ?? "")
+
+        if let cell = collectionView.cellForItem(at: indexPath) as? LocationCollectionViewCell {
+            cell.locationLabel.text = selectionLocation
+        }
     }
 }

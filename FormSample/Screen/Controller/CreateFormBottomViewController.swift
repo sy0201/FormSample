@@ -90,7 +90,6 @@ extension CreateFormBottomViewController {
     }
 
     @objc func dismissBottomView() {
-        print("dismiss")
         back(animated: true)
     }
 
