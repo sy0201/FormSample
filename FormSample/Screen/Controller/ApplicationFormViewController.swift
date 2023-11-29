@@ -10,6 +10,7 @@ import UIKit
 final class ApplicationFormViewController: BaseViewController {
 
     let applicationFormView = ApplicationFormBaseView()
+    private let viewModel = FormViewModel()
     var selectApartmentName: String = ""
     
     override func loadView() {
@@ -19,11 +20,19 @@ final class ApplicationFormViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         getApartmentNameData()
+        isNotReceivedHistory()
         setupButtonTapped()
     }
 
     func getApartmentNameData() {
         applicationFormView.apartmentLabel.text = selectApartmentName
+    }
+
+    func isNotReceivedHistory() {
+        if viewModel.getTotalCount() >= 1 {
+            applicationFormView.rightPointView.isHidden = false
+        }
+        applicationFormView.rightPointView.isHidden = true
     }
 
     func setupButtonTapped() {
