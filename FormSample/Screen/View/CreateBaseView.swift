@@ -220,6 +220,12 @@ final class CreateBaseView: BaseView {
         imageView.image = Asset.Icon.icAdd.image
         return imageView
     }()
+    let zoomInDeleteButton: UIButton = {
+        let deleteIcon = UIButton()
+        deleteIcon.setImage(UIImage(named: Asset.Icon.icClear.name), for: .normal)
+        deleteIcon.frame.size = CGSize(width: 26, height: 26)
+        return deleteIcon
+    }()
 
     let zoomOutView: UIView = {
         let zoomOutView = UIView()
@@ -248,7 +254,12 @@ final class CreateBaseView: BaseView {
         imageView.image = Asset.Icon.icAdd.image
         return imageView
     }()
-
+    let zoomOutDeleteButton: UIButton = {
+        let deleteIcon = UIButton()
+        deleteIcon.setImage(UIImage(named: Asset.Icon.icClear.name), for: .normal)
+        deleteIcon.frame.size = CGSize(width: 26, height: 26)
+        return deleteIcon
+    }()
 
     private let photoBottomView: UIView = UIView()
     private let photoBottomLabel: UILabel = {
@@ -356,11 +367,13 @@ final class CreateBaseView: BaseView {
         addPhotoStackView.addArrangedSubviews([zoomInView, zoomOutView])
         zoomInView.addSubviews([plusZoomInPhotoStackView,
                                 zoomInImageView,
-                                zoomInButton])
+                                zoomInButton,
+                                zoomInDeleteButton])
         plusZoomInPhotoStackView.addArrangedSubviews([plusZoomInPhotoLabel, plusZoomInPhotoImageView])
         zoomOutView.addSubviews([plusZoomOutPhotoStackView,
                                  zoomOutImageView,
-                                 zoomOutButton])
+                                 zoomOutButton,
+                                 zoomOutDeleteButton])
         plusZoomOutPhotoStackView.addArrangedSubviews([plusZoomOutPhotoLabel, plusZoomOutPhotoImageView])
 
         photoBottomView.addSubviews([photoBottomLabel, photoBottomLineView])
@@ -370,6 +383,9 @@ final class CreateBaseView: BaseView {
 
         bottomView.addSubview(bottomStackView)
         bottomStackView.addArrangedSubviews([closeBottomButton, saveBottomButton])
+
+        zoomInDeleteButton.isHidden = true
+        zoomOutDeleteButton.isHidden = true
     }
 
     override func setupConstraint() {
@@ -479,6 +495,10 @@ final class CreateBaseView: BaseView {
         zoomInButton.snp.makeConstraints { make in
             make.edges.equalTo(zoomInView)
         }
+        zoomInDeleteButton.snp.makeConstraints { make in
+            make.trailing.top.equalTo(zoomInButton)
+            make.width.height.equalTo(50)
+        }
 
         zoomOutView.snp.makeConstraints { make in
             make.width.height.equalTo(150)
@@ -491,6 +511,10 @@ final class CreateBaseView: BaseView {
         }
         zoomOutButton.snp.makeConstraints { make in
             make.edges.equalTo(zoomOutView)
+        }
+        zoomOutDeleteButton.snp.makeConstraints { make in
+            make.trailing.top.equalTo(zoomOutButton)
+            make.width.height.equalTo(50)
         }
 
         photoBottomView.snp.makeConstraints { make in

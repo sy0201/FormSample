@@ -106,8 +106,6 @@ final class SelectPhotoBaseView: BaseView {
     }()
     let albumButton = UIButton()
 
-
-
     override func setupUI() {
         addSubviews([mainView,
                      titleView,

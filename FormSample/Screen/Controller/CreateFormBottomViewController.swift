@@ -44,6 +44,10 @@ extension CreateFormBottomViewController {
 
         createFormBaseView.zoomInButton.addTarget(self, action: #selector(selectPhoto), for: .touchUpInside)
 
+        createFormBaseView.zoomInDeleteButton.addTarget(self, action: #selector(deleteZoomInImage), for: .touchUpInside)
+
+        createFormBaseView.zoomOutDeleteButton.addTarget(self, action: #selector(deleteZoomOutImage), for: .touchUpInside)
+
         createFormBaseView.zoomOutButton.addTarget(self, action: #selector(selectAlbum), for: .touchUpInside)
 
         createFormBaseView.didChangeContentHandler = { [self] text in
@@ -122,10 +126,17 @@ extension CreateFormBottomViewController {
         selectPhotoBottomVC.imageHandler = { [self] img in
             viewModel.writeFormModel.photoDataListDataType.zoomInImage = img
             createFormBaseView.zoomInImageView.image = img
+            createFormBaseView.zoomInDeleteButton.isHidden = false
             setupValidate()
         }
         bottomSheetVC.modalPresentationStyle = .overFullScreen
         present(bottomSheetVC, animated: true, completion: nil)
+    }
+
+    @objc func deleteZoomInImage() {
+        createFormBaseView.zoomInImageView.image = nil
+        viewModel.writeFormModel.photoDataListDataType.zoomInImage = nil
+        createFormBaseView.zoomInDeleteButton.isHidden = true
     }
 
     @objc func selectAlbum() {
@@ -144,10 +155,17 @@ extension CreateFormBottomViewController {
         selectPhotoBottomVC.imageHandler = { [self] img in
             viewModel.writeFormModel.photoDataListDataType.zoomOutImage = img
             createFormBaseView.zoomOutImageView.image = img
+            createFormBaseView.zoomOutDeleteButton.isHidden = false
             setupValidate()
         }
         bottomSheetVC.modalPresentationStyle = .overFullScreen
         present(bottomSheetVC, animated: true, completion: nil)
+    }
+
+    @objc func deleteZoomOutImage() {
+        createFormBaseView.zoomOutImageView.image = nil
+        viewModel.writeFormModel.photoDataListDataType.zoomOutImage = nil
+        createFormBaseView.zoomOutDeleteButton.isHidden = true
     }
 
     func setupValidate() {
@@ -162,10 +180,6 @@ extension CreateFormBottomViewController {
         let hasZoomInImage = viewModel.writeFormModel.photoDataListDataType.zoomInImage != nil
         let hasZoomOutImage = viewModel.writeFormModel.photoDataListDataType.zoomOutImage != nil
         let contentData = !viewModel.writeFormModel.contentData.isEmpty
-
-        print("isUnselectedPhoto\(isUnselectedPhoto)")
-        print("hasZoomInImage\(hasZoomInImage)")
-        print("hasZoomOutImage\(hasZoomOutImage)")
 
         return (locationData && defectiveData && (hasZoomInImage || hasZoomOutImage)) || (isUnselectedPhoto && contentData)
     }
