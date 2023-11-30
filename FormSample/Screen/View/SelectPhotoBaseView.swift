@@ -43,34 +43,6 @@ final class SelectPhotoBaseView: BaseView {
     }()
 
     let attachPhotoView: UIView = UIView()
-
-    let zoomInView: UIView = {
-        let zoomInView = UIView()
-        zoomInView.backgroundColor = Asset.Color.grayF4F5F6.color
-        return zoomInView
-    }()
-    let zoomInImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.layer.cornerRadius = 12
-        imageView.clipsToBounds = true
-        return imageView
-    }()
-
-    let zoomInButton = UIButton()
-
-    let zoomOutView: UIView = {
-        let zoomOutView = UIView()
-        zoomOutView.backgroundColor = Asset.Color.grayF4F5F6.color
-        return zoomOutView
-    }()
-    let zoomOutImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.layer.cornerRadius = 12
-        imageView.clipsToBounds = true
-        return imageView
-    }()
-    let zoomOutButton = UIButton()
-
     let attachPhotoStackView: UIStackView = {
         let attachPhotoStackView = UIStackView()
         attachPhotoStackView.axis = .horizontal
@@ -79,6 +51,62 @@ final class SelectPhotoBaseView: BaseView {
         attachPhotoStackView.spacing = 10
         return attachPhotoStackView
     }()
+
+    let cameraView: UIView = {
+        let cameraView = UIView()
+        cameraView.backgroundColor = Asset.Color.grayF4F5F6.color
+        return cameraView
+    }()
+    let cameraButton = UIButton()
+    let cameraStackView: UIStackView = {
+        let cameraStackView = UIStackView()
+        cameraStackView.axis = .vertical
+        cameraStackView.alignment = .center
+        cameraStackView.distribution = .fillEqually
+        cameraStackView.spacing = 4
+        return cameraStackView
+    }()
+    let cameraIconView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = Asset.Icon.icCamera.image
+        return imageView
+    }()
+    let cameraLabel: UILabel = {
+        let cameraLabel = UILabel()
+        cameraLabel.font = FontFamily.NotoSansKR.regular.font(size: 15)
+        cameraLabel.textColor = Asset.Color.gray2D3338.color
+        cameraLabel.text = L10n.formMessage20
+        return cameraLabel
+    }()
+
+    let albumView: UIView = {
+        let albumView = UIView()
+        albumView.backgroundColor = Asset.Color.grayF4F5F6.color
+        return albumView
+    }()
+    let albumStackView: UIStackView = {
+        let albumStackView = UIStackView()
+        albumStackView.axis = .vertical
+        albumStackView.alignment = .center
+        albumStackView.distribution = .fillEqually
+        albumStackView.spacing = 4
+        return albumStackView
+    }()
+    let albumaIconView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = Asset.Icon.icImage.image
+        return imageView
+    }()
+    let albumLabel: UILabel = {
+        let albumLabel = UILabel()
+        albumLabel.font = FontFamily.NotoSansKR.regular.font(size: 15)
+        albumLabel.textColor = Asset.Color.gray2D3338.color
+        albumLabel.text = L10n.formMessage21
+        return albumLabel
+    }()
+    let albumButton = UIButton()
+
+
 
     override func setupUI() {
         addSubviews([mainView,
@@ -91,9 +119,12 @@ final class SelectPhotoBaseView: BaseView {
         titleView.addSubview(titleLabel)
 
         attachPhotoView.addSubview(attachPhotoStackView)
-        attachPhotoStackView.addArrangedSubviews([zoomInView, zoomOutView])
-        zoomInView.addSubviews([zoomInImageView, zoomInButton])
-        zoomOutView.addSubviews([zoomOutImageView, zoomOutButton])
+        attachPhotoStackView.addArrangedSubviews([cameraView, albumView])
+        cameraView.addSubviews([cameraStackView, cameraButton])
+        cameraStackView.addArrangedSubviews([cameraIconView, cameraLabel])
+
+        albumView.addSubviews([albumStackView, albumButton])
+        albumStackView.addArrangedSubviews([albumaIconView, albumLabel])
     }
 
     override func setupConstraint() {
@@ -139,28 +170,24 @@ final class SelectPhotoBaseView: BaseView {
             make.top.bottom.equalTo(attachPhotoView).offset(16)
         }
 
-        zoomInView.snp.makeConstraints { make in
+        cameraView.snp.makeConstraints { make in
             make.height.equalTo(130)
         }
+        cameraStackView.snp.makeConstraints { make in
+            make.centerX.centerY.equalTo(cameraView)
+        }
+        cameraButton.snp.makeConstraints { make in
+            make.edges.equalTo(cameraView)
+        }
 
-        zoomOutView.snp.makeConstraints { make in
+        albumView.snp.makeConstraints { make in
             make.height.equalTo(130)
         }
-
-        zoomInImageView.snp.makeConstraints { make in
-            make.edges.equalTo(zoomInView)
+        albumStackView.snp.makeConstraints { make in
+            make.centerX.centerY.equalTo(albumView)
         }
-
-        zoomOutImageView.snp.makeConstraints { make in
-            make.edges.equalTo(zoomOutView)
-        }
-
-        zoomInButton.snp.makeConstraints { make in
-            make.edges.equalTo(zoomInImageView)
-        }
-
-        zoomOutButton.snp.makeConstraints { make in
-            make.edges.equalTo(zoomOutImageView)
+        albumButton.snp.makeConstraints { make in
+            make.edges.equalTo(albumView)
         }
     }
 }

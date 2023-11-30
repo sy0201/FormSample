@@ -36,10 +36,10 @@ internal enum L10n {
   internal static let formMessage19 = L10n.tr("Localizable", "Form_message19", fallback: "빠른 하자항목으로 신청서를 편리하게 작성하세요.")
   /// 신청서 작성
   internal static let formMessage2 = L10n.tr("Localizable", "Form_message2", fallback: "신청서 작성")
-  /// 
-  internal static let formMessage20 = L10n.tr("Localizable", "Form_message20", fallback: "")
-  /// 
-  internal static let formMessage21 = L10n.tr("Localizable", "Form_message21", fallback: "")
+  /// 사진촬영
+  internal static let formMessage20 = L10n.tr("Localizable", "Form_message20", fallback: "사진촬영")
+  /// 사진첨부
+  internal static let formMessage21 = L10n.tr("Localizable", "Form_message21", fallback: "사진첨부")
   /// 
   internal static let formMessage22 = L10n.tr("Localizable", "Form_message22", fallback: "")
   /// 

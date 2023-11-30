@@ -28,9 +28,9 @@ extension PhotoBottomViewController: UIImagePickerControllerDelegate, UINavigati
     func setupButtonTapped() {
         selectPhotoBaseView.dismissButton.addTarget(self, action: #selector(dismissBottomView), for: .touchUpInside)
 
-        selectPhotoBaseView.zoomInButton.addTarget(self, action: #selector(cameraTapped), for: .touchUpInside)
+        selectPhotoBaseView.cameraButton.addTarget(self, action: #selector(cameraTapped), for: .touchUpInside)
 
-        selectPhotoBaseView.zoomOutButton.addTarget(self, action: #selector(albumTapped), for: .touchUpInside)
+        selectPhotoBaseView.albumButton.addTarget(self, action: #selector(albumTapped), for: .touchUpInside)
     }
 
     @objc func dismissBottomView() {

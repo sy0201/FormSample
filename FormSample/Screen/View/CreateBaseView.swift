@@ -198,26 +198,57 @@ final class CreateBaseView: BaseView {
         zoomInView.backgroundColor = Asset.Color.grayF4F5F6.color
         return zoomInView
     }()
-    let zoomInImageView: UIImageView = {
+    let zoomInImageView = UIImageView()
+    let zoomInButton = UIButton()
+    let plusZoomInPhotoStackView: UIStackView = {
+        let plusPhotoStackView = UIStackView()
+        plusPhotoStackView.axis = .vertical
+        plusPhotoStackView.alignment = .center
+        plusPhotoStackView.distribution = .fillEqually
+        plusPhotoStackView.spacing = 8
+        return plusPhotoStackView
+    }()
+    let plusZoomInPhotoLabel: UILabel = {
+        let photoTitleLabel = UILabel()
+        photoTitleLabel.font = FontFamily.NotoSansKR.medium.font(size: 14)
+        photoTitleLabel.textColor = Asset.Color.gray9DA4AA.color
+        photoTitleLabel.text = L10n.formMessage13
+        return photoTitleLabel
+    }()
+    let plusZoomInPhotoImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.layer.cornerRadius = 12
-        imageView.clipsToBounds = true
+        imageView.image = Asset.Icon.icAdd.image
         return imageView
     }()
-    let zoomInButton = UIButton()
 
     let zoomOutView: UIView = {
         let zoomOutView = UIView()
         zoomOutView.backgroundColor = Asset.Color.grayF4F5F6.color
         return zoomOutView
     }()
-    let zoomOutImageView: UIImageView = {
+    let zoomOutImageView = UIImageView()
+    let zoomOutButton = UIButton()
+    let plusZoomOutPhotoStackView: UIStackView = {
+        let plusPhotoStackView = UIStackView()
+        plusPhotoStackView.axis = .vertical
+        plusPhotoStackView.alignment = .center
+        plusPhotoStackView.distribution = .fillEqually
+        plusPhotoStackView.spacing = 8
+        return plusPhotoStackView
+    }()
+    let plusZoomOutPhotoLabel: UILabel = {
+        let photoTitleLabel = UILabel()
+        photoTitleLabel.font = FontFamily.NotoSansKR.medium.font(size: 14)
+        photoTitleLabel.textColor = Asset.Color.gray9DA4AA.color
+        photoTitleLabel.text = L10n.formMessage13
+        return photoTitleLabel
+    }()
+    let plusZoomOutPhotoImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.layer.cornerRadius = 12
-        imageView.clipsToBounds = true
+        imageView.image = Asset.Icon.icAdd.image
         return imageView
     }()
-    let zoomOutButton = UIButton()
+
 
     private let photoBottomView: UIView = UIView()
     private let photoBottomLabel: UILabel = {
@@ -281,10 +312,19 @@ final class CreateBaseView: BaseView {
         super.layoutSubviews()
         shadowView.addTopShadow(shadowColor: UIColor.gray, shadowOpacity: 0.1, shadowRadius: 4, offset: CGSize(width: 0.0, height: -5.0))
 
-        zoomInView.addDashedBorder(to: zoomInView, withRadius: 12, borderWidth: 1)
-        zoomOutView.addDashedBorder(to: zoomOutView, withRadius: 12, borderWidth: 1)
-        zoomInImageView.layer.cornerRadius = 4
-        zoomOutImageView.layer.cornerRadius = 4
+        zoomInView.layer.cornerRadius = 12
+        zoomInView.layer.masksToBounds = true
+        zoomInView.addDashedBorder(withRadius: 12)
+
+        zoomOutView.layer.cornerRadius = 12
+        zoomOutView.layer.masksToBounds = true
+        zoomOutView.addDashedBorder(withRadius: 12)
+
+        zoomInImageView.layer.cornerRadius = 12
+        zoomInImageView.layer.masksToBounds = true
+
+        zoomOutImageView.layer.cornerRadius = 12
+        zoomOutImageView.layer.masksToBounds = true
     }
 
     override func setupUI() {
@@ -314,8 +354,14 @@ final class CreateBaseView: BaseView {
         hiddenStackView.addArrangedSubviews([addPhotoStackView,
                                              photoBottomView])
         addPhotoStackView.addArrangedSubviews([zoomInView, zoomOutView])
-        zoomInView.addSubviews([zoomInImageView, zoomInButton])
-        zoomOutView.addSubviews([zoomOutImageView, zoomOutButton])
+        zoomInView.addSubviews([plusZoomInPhotoStackView,
+                                zoomInImageView,
+                                zoomInButton])
+        plusZoomInPhotoStackView.addArrangedSubviews([plusZoomInPhotoLabel, plusZoomInPhotoImageView])
+        zoomOutView.addSubviews([plusZoomOutPhotoStackView,
+                                 zoomOutImageView,
+                                 zoomOutButton])
+        plusZoomOutPhotoStackView.addArrangedSubviews([plusZoomOutPhotoLabel, plusZoomOutPhotoImageView])
 
         photoBottomView.addSubviews([photoBottomLabel, photoBottomLineView])
 
@@ -420,20 +466,28 @@ final class CreateBaseView: BaseView {
         addPhotoStackView.snp.makeConstraints { make in
             make.leading.trailing.top.equalTo(hiddenStackView)
         }
+
         zoomInView.snp.makeConstraints { make in
             make.width.height.equalTo(150)
         }
-        zoomOutView.snp.makeConstraints { make in
-            make.width.height.equalTo(150)
+        plusZoomInPhotoStackView.snp.makeConstraints { make in
+            make.centerX.centerY.equalTo(zoomInView)
         }
         zoomInImageView.snp.makeConstraints { make in
             make.edges.equalTo(zoomInView)
         }
-        zoomOutImageView.snp.makeConstraints { make in
-            make.edges.equalTo(zoomOutView)
-        }
         zoomInButton.snp.makeConstraints { make in
             make.edges.equalTo(zoomInView)
+        }
+
+        zoomOutView.snp.makeConstraints { make in
+            make.width.height.equalTo(150)
+        }
+        plusZoomOutPhotoStackView.snp.makeConstraints { make in
+            make.centerX.centerY.equalTo(zoomOutView)
+        }
+        zoomOutImageView.snp.makeConstraints { make in
+            make.edges.equalTo(zoomOutView)
         }
         zoomOutButton.snp.makeConstraints { make in
             make.edges.equalTo(zoomOutView)
