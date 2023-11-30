@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1822BBFE2B186B4B0076B16B /* EmptyUnRegisterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1822BBFD2B186B4B0076B16B /* EmptyUnRegisterTableViewCell.swift */; };
 		182735642B0A1C5100D1EE83 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182735632B0A1C5100D1EE83 /* Strings.swift */; };
 		182735662B0A24E000D1EE83 /* SelectApartmentBottomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182735652B0A24E000D1EE83 /* SelectApartmentBottomViewController.swift */; };
 		1837D7D82B075F03000D953F /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1837D7D52B075F03000D953F /* Assets.swift */; };
@@ -70,6 +71,7 @@
 
 /* Begin PBXFileReference section */
 		11E5C1427B4EDA81A492B7DE /* Pods-FormSample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FormSample.release.xcconfig"; path = "Target Support Files/Pods-FormSample/Pods-FormSample.release.xcconfig"; sourceTree = "<group>"; };
+		1822BBFD2B186B4B0076B16B /* EmptyUnRegisterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyUnRegisterTableViewCell.swift; sourceTree = "<group>"; };
 		182735632B0A1C5100D1EE83 /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		182735652B0A24E000D1EE83 /* SelectApartmentBottomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectApartmentBottomViewController.swift; sourceTree = "<group>"; };
 		182735672B0A32AF00D1EE83 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
@@ -414,6 +416,7 @@
 				18CFA63E2B1329D70062C40C /* LocationCollectionViewCell.swift */,
 				18DEEAED2B14968900F17B1E /* UnRegisterTableViewCell.swift */,
 				18DEEAEF2B14980400F17B1E /* DetailUnRegisterTableViewCell.swift */,
+				1822BBFD2B186B4B0076B16B /* EmptyUnRegisterTableViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -662,6 +665,7 @@
 				18CFA63F2B1329D70062C40C /* LocationCollectionViewCell.swift in Sources */,
 				1837D7F92B076455000D953F /* BaseView.swift in Sources */,
 				1889B2C12B07557B00F5ABE6 /* AppDelegate.swift in Sources */,
+				1822BBFE2B186B4B0076B16B /* EmptyUnRegisterTableViewCell.swift in Sources */,
 				1889B2C32B07557B00F5ABE6 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

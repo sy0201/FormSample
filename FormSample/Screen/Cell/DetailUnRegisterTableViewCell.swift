@@ -13,6 +13,7 @@ final class DetailUnRegisterTableViewCell: UITableViewCell, ReuseIdentifying {
     let mainView: UIView = {
         let mainView = UIView()
         mainView.backgroundColor = Asset.Color.white.color
+        mainView.layer.shadowPath = UIBezierPath(roundedRect: mainView.bounds, cornerRadius: 4).cgPath
         mainView.layer.cornerRadius = 10
         mainView.layer.shadowOpacity = 0.1
         mainView.layer.shadowColor = UIColor.black.cgColor

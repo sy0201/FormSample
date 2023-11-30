@@ -292,6 +292,7 @@ final class ApplicationFormBaseView: BaseView {
 
         tableView.register(ApplicationFormTopTableViewCell.self, forCellReuseIdentifier: ApplicationFormTopTableViewCell.reuseIdentifier)
         tableView.register(CreateFormTableViewCell.self, forCellReuseIdentifier: CreateFormTableViewCell.reuseIdentifier)
+        tableView.register(EmptyUnRegisterTableViewCell.self, forCellReuseIdentifier: EmptyUnRegisterTableViewCell.reuseIdentifier)
         tableView.register(UnRegisterTableViewCell.self, forCellReuseIdentifier: UnRegisterTableViewCell.reuseIdentifier)
         tableView.register(DetailUnRegisterTableViewCell.self, forCellReuseIdentifier: DetailUnRegisterTableViewCell.reuseIdentifier)
     }
@@ -363,7 +364,12 @@ extension ApplicationFormBaseView: UITableViewDelegate, UITableViewDataSource {
 //                guard let cell = tableView.dequeueReusableCell(withIdentifier: "UnRegisterTableViewCell", for: indexPath) as? UnRegisterTableViewCell else { return UITableViewCell() }
 //
 //                return cell
-                guard let cell = tableView.dequeueReusableCell(withIdentifier: "DetailUnRegisterTableViewCell", for: indexPath) as? DetailUnRegisterTableViewCell else { return UITableViewCell() }
+
+//                guard let cell = tableView.dequeueReusableCell(withIdentifier: "DetailUnRegisterTableViewCell", for: indexPath) as? DetailUnRegisterTableViewCell else { return UITableViewCell() }
+//
+//                return cell
+
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: "EmptyUnRegisterTableViewCell", for: indexPath) as? EmptyUnRegisterTableViewCell else { return UITableViewCell() }
 
                 return cell
             }
