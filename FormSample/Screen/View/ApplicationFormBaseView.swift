@@ -338,9 +338,7 @@ extension ApplicationFormBaseView: UITableViewDelegate, UITableViewDataSource {
             return 2
         case .right:
             return 2
-
         }
-        return 0
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

@@ -298,14 +298,14 @@ final class CreateBaseView: BaseView {
                      bottomView])
 
         titleView.addSubviews([titleLabel, titleLineView])
-        locationView.addSubviews([locationButton,
-                                  locationStackView,
-                                  locationLineView])
+        locationView.addSubviews([locationStackView,
+                                  locationLineView,
+                                  locationButton])
         locationStackView.addArrangedSubviews([locationTitleLabel, locationLabel])
 
-        defectiveView.addSubviews([defectiveButton,
-                                  defectiveStackView,
-                                  defectiveLineView])
+        defectiveView.addSubviews([defectiveStackView,
+                                   defectiveLineView,
+                                   defectiveButton])
         defectiveStackView.addArrangedSubviews([defectiveTitleLabel, defectiveLabel])
 
         photoView.addSubview(photoStackView)
