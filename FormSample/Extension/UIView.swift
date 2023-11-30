@@ -46,30 +46,15 @@ extension UIView {
         self.layer.shadowPath = UIBezierPath(rect: self.bounds).cgPath
     }
 
-    func addDashedBorder(to view: UIView, withRadius radius: CGFloat, borderWidth: CGFloat) {
-
+    func addDashedBorder(withRadius radius: CGFloat) {
         let dashBorder = CAShapeLayer()
 
         dashBorder.strokeColor = Asset.Color.grayCDD1D4.color.cgColor
         dashBorder.lineDashPattern = [3, 3]
-        dashBorder.frame = view.frame
+        dashBorder.frame = bounds
         dashBorder.fillColor = nil
-        dashBorder.path = UIBezierPath(roundedRect: view.frame, cornerRadius: radius).cgPath
+        dashBorder.path = UIBezierPath(roundedRect: bounds, cornerRadius: radius).cgPath
 
         layer.addSublayer(dashBorder)
     }
-
-//    func addDashedBorder(to view: UIView, withRadius radius: CGFloat, borderWidth: CGFloat) {
-//        let dashedBorder = CAShapeLayer()
-//
-//        dashedBorder.strokeColor = Asset.Color.grayCDD1D4.color.cgColor
-//        dashedBorder.lineDashPattern = [3, 3]
-//        dashedBorder.lineWidth = borderWidth
-//        dashedBorder.fillColor = nil
-//
-//        let path = UIBezierPath(roundedRect: view.bounds, cornerRadius: radius)
-//        dashedBorder.path = path.cgPath
-//
-//        view.layer.addSublayer(dashedBorder)
-//    }
 }
