@@ -13,6 +13,7 @@ final class ApplicationFormBaseView: BaseView {
     var currentTab: Enum.TabMenu = .left
     var createFormButtonAction: (() -> Void)?
     var countInt: Int = 0
+    var defectiveString: String = ""
     var isTabMenuTapped: Bool = false {
         didSet {
             self.changeState()
@@ -295,6 +296,7 @@ final class ApplicationFormBaseView: BaseView {
         tableView.register(CreateFormTableViewCell.self, forCellReuseIdentifier: CreateFormTableViewCell.reuseIdentifier)
         tableView.register(EmptyUnRegisterTableViewCell.self, forCellReuseIdentifier: EmptyUnRegisterTableViewCell.reuseIdentifier)
         tableView.register(UnRegisterTableViewCell.self, forCellReuseIdentifier: UnRegisterTableViewCell.reuseIdentifier)
+        tableView.register(StackUnRegisterTableViewCell.self, forCellReuseIdentifier: StackUnRegisterTableViewCell.reuseIdentifier)
         tableView.register(DetailUnRegisterTableViewCell.self, forCellReuseIdentifier: DetailUnRegisterTableViewCell.reuseIdentifier)
     }
 
@@ -334,12 +336,15 @@ final class ApplicationFormBaseView: BaseView {
 }
 
 extension ApplicationFormBaseView: UITableViewDelegate, UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        1
+    }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch currentTab {
         case .left:
             return 2
         case .right:
-            return 2
+            return countInt + 1
         }
     }
 
@@ -350,9 +355,10 @@ extension ApplicationFormBaseView: UITableViewDelegate, UITableViewDataSource {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: "ApplicationFormTopTableViewCell", for: indexPath) as? ApplicationFormTopTableViewCell else {
                     return UITableViewCell() }
                 cell.setupConfiguration(.left)
-                cell.acceptedCountLabel.text = "\(String(describing: countInt))"
                 return cell
+
             } else {
+
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: "CreateFormTableViewCell", for: indexPath) as? CreateFormTableViewCell else {
                     return UITableViewCell() }
                 cell.createFormCellButtonAction = { [weak self] in
@@ -366,21 +372,25 @@ extension ApplicationFormBaseView: UITableViewDelegate, UITableViewDataSource {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: "ApplicationFormTopTableViewCell", for: indexPath) as? ApplicationFormTopTableViewCell else {
                     return UITableViewCell() }
                 cell.setupConfiguration(.right)
-
+                cell.acceptedCountLabel.text = "\(String(describing: countInt))"
                 return cell
             } else {
-//                guard let cell = tableView.dequeueReusableCell(withIdentifier: "UnRegisterTableViewCell", for: indexPath) as? UnRegisterTableViewCell else { return UITableViewCell() }
-//
-//                return cell
+                if countInt <= 0 {
+                    guard let cell = tableView.dequeueReusableCell(withIdentifier: "EmptyUnRegisterTableViewCell", for: indexPath) as? EmptyUnRegisterTableViewCell else { return UITableViewCell() }
 
-//                guard let cell = tableView.dequeueReusableCell(withIdentifier: "DetailUnRegisterTableViewCell", for: indexPath) as? DetailUnRegisterTableViewCell else { return UITableViewCell() }
-//
-//                return cell
+                    return cell
 
-                guard let cell = tableView.dequeueReusableCell(withIdentifier: "EmptyUnRegisterTableViewCell", for: indexPath) as? EmptyUnRegisterTableViewCell else { return UITableViewCell() }
+                } else if countInt > 0 {
+//                    guard let cell = tableView.dequeueReusableCell(withIdentifier: "StackUnRegisterTableViewCell", for: indexPath) as? StackUnRegisterTableViewCell else { return UITableViewCell() }
+//                    return cell
 
-                return cell
+                    guard let cell = tableView.dequeueReusableCell(withIdentifier: "DetailUnRegisterTableViewCell", for: indexPath) as? DetailUnRegisterTableViewCell else { return UITableViewCell() }
+
+                    cell.defectiveLabel.text = defectiveString
+                    return cell
+                }
             }
+            return UITableViewCell()
         }
     }
 

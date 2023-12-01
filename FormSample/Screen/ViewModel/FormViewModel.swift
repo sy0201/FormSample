@@ -11,6 +11,13 @@ final class FormViewModel {
 
     var writeFormDataList: [String: [WriteFormModel]] = [:]
 
+    init() {
+        writeFormDataList["거실"] = [
+            WriteFormModel(locationData: "거실", defectiveData: "선택 안함1", photoDataListDataType: PhotoModelDataType(zoomInImage: nil, zoomOutImage: nil, isOptional: false), contentData: "내용", isActive: false),
+            WriteFormModel(locationData: "거실", defectiveData: "선택 안함2", photoDataListDataType: PhotoModelDataType(zoomInImage: nil, zoomOutImage: nil, isOptional: false), contentData: "내용", isActive: false),
+            WriteFormModel(locationData: "거실", defectiveData: "선택 안함3", photoDataListDataType: PhotoModelDataType(zoomInImage: nil, zoomOutImage: nil, isOptional: false), contentData: "내용", isActive: false)]
+    }
+
     func getLocations() -> [String] {
         var locationKey: [String] = []
         for (key, _) in writeFormDataList {

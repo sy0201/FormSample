@@ -13,6 +13,7 @@ final class ApplicationFormViewController: BaseViewController {
     let viewModel = FormViewModel()
     var selectApartmentName: String = ""
     var countInt: (WriteFormModel) -> Void = { _ in }
+
     override func loadView() {
         view = applicationFormView
     }
@@ -29,11 +30,18 @@ final class ApplicationFormViewController: BaseViewController {
         applicationFormView.apartmentLabel.text = selectApartmentName
     }
 
+    func getWriteModelData() {
+
+        let data: WriteFormModel
+        //applicationFormView.defectiveString = viewModel.writeFormDataList[data.defectiveData]
+    }
+
     func isNotReceivedHistory() {
-        if viewModel.getTotalCount() >= 1 {
+        if viewModel.getTotalCount() > 0 {
             applicationFormView.rightPointView.isHidden = false
+        } else {
+            applicationFormView.rightPointView.isHidden = true
         }
-        applicationFormView.rightPointView.isHidden = true
     }
 
     func setupButtonTapped() {
@@ -99,6 +107,7 @@ extension ApplicationFormViewController: FormDelegate {
         }
         viewModel.writeFormDataList[data.locationData]?.append(data)
         applicationFormView.countInt = viewModel.getTotalCount()
+        isNotReceivedHistory()
         applicationFormView.tableView.reloadData()
     }
 }

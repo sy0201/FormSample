@@ -67,6 +67,7 @@ extension CreateFormBottomViewController {
         delegate?.writeForm(data: viewModel.writeFormModel)
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.4) {
             self.back(animated: true)
+
         }
     }
 

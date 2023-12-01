@@ -59,7 +59,7 @@ final class DetailUnRegisterTableViewCell: UITableViewCell, ReuseIdentifying {
         return imgHiddenStackView
     }()
     private let middleView = UIView()
-    private let defectiveLabel: UILabel = {
+    let defectiveLabel: UILabel = {
         let defectiveLabel = UILabel()
         defectiveLabel.font = FontFamily.NotoSansKR.bold.font(size: 16)
         defectiveLabel.textColor = Asset.Color.black.color
@@ -80,14 +80,14 @@ final class DetailUnRegisterTableViewCell: UITableViewCell, ReuseIdentifying {
         let imageView = UIImageView()
         imageView.layer.cornerRadius = 12
         imageView.clipsToBounds = true
-        imageView.backgroundColor = .white
+        imageView.backgroundColor = .yellow
         return imageView
     }()
     let zoomOutImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.layer.cornerRadius = 12
         imageView.clipsToBounds = true
-        imageView.backgroundColor = .white
+        imageView.backgroundColor = .systemPink
         return imageView
     }()
 
@@ -116,6 +116,7 @@ extension DetailUnRegisterTableViewCell {
         attachPhotoView.addSubview(attachPhotoStackView)
         attachPhotoStackView.addArrangedSubviews([zoomInImageView, zoomOutImageView])
     }
+
     func setupConstraint() {
         mainView.snp.makeConstraints { make in
             make.edges.equalToSuperview().inset(16)
@@ -169,5 +170,9 @@ extension DetailUnRegisterTableViewCell {
         zoomOutImageView.snp.makeConstraints { make in
             make.height.equalTo(176)
         }
+    }
+
+    func configure(with data: String) {
+        defectiveLabel.text = data
     }
 }
