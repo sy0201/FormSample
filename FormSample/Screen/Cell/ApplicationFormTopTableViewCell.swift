@@ -14,7 +14,6 @@ final class ApplicationFormTopTableViewCell: UITableViewCell, ReuseIdentifying {
         let titleLabel = UILabel()
         titleLabel.font = FontFamily.NotoSansKR.medium.font(size: 14)
         titleLabel.textColor = Asset.Color.black.color
-        titleLabel.text = L10n.formMessage4
         return titleLabel
     }()
 
@@ -22,7 +21,6 @@ final class ApplicationFormTopTableViewCell: UITableViewCell, ReuseIdentifying {
         let descriptionLabel = UILabel()
         descriptionLabel.font = FontFamily.NotoSansKR.regular.font(size: 14)
         descriptionLabel.textColor = Asset.Color.gray505C65.color
-        descriptionLabel.text = L10n.formMessage5
         descriptionLabel.numberOfLines = 0
         return descriptionLabel
     }()
@@ -37,11 +35,11 @@ final class ApplicationFormTopTableViewCell: UITableViewCell, ReuseIdentifying {
     }()
 
     private let notAcceptedLabel: UILabel = {
-        let descriptionLabel = UILabel()
-        descriptionLabel.font = FontFamily.NotoSansKR.medium.font(size: 14)
-        descriptionLabel.textColor = Asset.Color.black.color
-        descriptionLabel.text = L10n.formMessage6
-        return descriptionLabel
+        let notAcceptedLabel = UILabel()
+        notAcceptedLabel.font = FontFamily.NotoSansKR.medium.font(size: 14)
+        notAcceptedLabel.textColor = Asset.Color.black.color
+        notAcceptedLabel.text = L10n.formMessage6
+        return notAcceptedLabel
     }()
 
     let acceptedCountLabel: UILabel = {
@@ -97,6 +95,18 @@ extension ApplicationFormTopTableViewCell {
         notAcceptStackView.snp.makeConstraints { make in
             make.trailing.equalToSuperview().offset(-24)
             make.top.equalTo(snp.top).offset(24)
+        }
+    }
+
+    func setupConfiguration(_ tab: Enum.TabMenu) {
+        if tab == .left {
+            titleLabel.text = L10n.formMessage4
+            descriptionLabel.text = L10n.formMessage5
+            notAcceptStackView.isHidden = true
+        } else if tab == .right {
+            titleLabel.text = L10n.formMessage3
+            descriptionLabel.text = L10n.formMessage8
+            notAcceptStackView.isHidden = false
         }
     }
 }

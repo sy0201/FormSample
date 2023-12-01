@@ -11,8 +11,8 @@ final class CreateFormBottomViewController: BaseViewController {
 
     let createFormBaseView = CreateBaseView()
     private let viewModel = WriteFormViewModel()
+    var delegate: FormDelegate?
     var saveWriteFormModel: (WriteFormModel) -> Void = { _ in }
-    let isPhotoAttachmentStatus = false
 
     override func loadView() {
         view = createFormBaseView
@@ -21,8 +21,8 @@ final class CreateFormBottomViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         getDefectiveData()
-        setupValidate()
         setupButtonTapped()
+        setupValidate()
     }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -63,7 +63,8 @@ extension CreateFormBottomViewController {
 
     @objc func saveFormData() {
         setupValidate()
-        saveWriteFormModel(viewModel.writeFormModel)
+        //saveWriteFormModel(viewModel.writeFormModel)
+        delegate?.writeForm(data: viewModel.writeFormModel)
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.4) {
             self.back(animated: true)
         }

@@ -10,3 +10,7 @@ import Foundation
 protocol SelectRadioCellDelegate: AnyObject {
     func didSelectItem(_ item: String)
 }
+
+protocol FormDelegate {
+    func writeForm(data: WriteFormModel)
+}

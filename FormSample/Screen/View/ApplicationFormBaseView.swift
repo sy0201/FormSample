@@ -12,6 +12,7 @@ final class ApplicationFormBaseView: BaseView {
 
     var currentTab: Enum.TabMenu = .left
     var createFormButtonAction: (() -> Void)?
+    var countInt: Int = 0
     var isTabMenuTapped: Bool = false {
         didSet {
             self.changeState()
@@ -346,10 +347,14 @@ extension ApplicationFormBaseView: UITableViewDelegate, UITableViewDataSource {
         switch currentTab {
         case .left:
             if indexPath.row == 0 {
-                guard let cell = tableView.dequeueReusableCell(withIdentifier: "ApplicationFormTopTableViewCell", for: indexPath) as? ApplicationFormTopTableViewCell else { return UITableViewCell() }
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: "ApplicationFormTopTableViewCell", for: indexPath) as? ApplicationFormTopTableViewCell else {
+                    return UITableViewCell() }
+                cell.setupConfiguration(.left)
+                cell.acceptedCountLabel.text = "\(String(describing: countInt))"
                 return cell
             } else {
-                guard let cell = tableView.dequeueReusableCell(withIdentifier: "CreateFormTableViewCell", for: indexPath) as? CreateFormTableViewCell else { return UITableViewCell() }
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: "CreateFormTableViewCell", for: indexPath) as? CreateFormTableViewCell else {
+                    return UITableViewCell() }
                 cell.createFormCellButtonAction = { [weak self] in
                     self?.handleCreateFormButton()
                 }
@@ -358,7 +363,10 @@ extension ApplicationFormBaseView: UITableViewDelegate, UITableViewDataSource {
 
         case .right:
             if indexPath.row == 0 {
-                guard let cell = tableView.dequeueReusableCell(withIdentifier: "ApplicationFormTopTableViewCell", for: indexPath) as? ApplicationFormTopTableViewCell else { return UITableViewCell() }
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: "ApplicationFormTopTableViewCell", for: indexPath) as? ApplicationFormTopTableViewCell else {
+                    return UITableViewCell() }
+                cell.setupConfiguration(.right)
+
                 return cell
             } else {
 //                guard let cell = tableView.dequeueReusableCell(withIdentifier: "UnRegisterTableViewCell", for: indexPath) as? UnRegisterTableViewCell else { return UITableViewCell() }

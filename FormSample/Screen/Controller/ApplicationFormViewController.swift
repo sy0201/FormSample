@@ -10,9 +10,9 @@ import UIKit
 final class ApplicationFormViewController: BaseViewController {
 
     let applicationFormView = ApplicationFormBaseView()
-    private let viewModel = FormViewModel()
+    let viewModel = FormViewModel()
     var selectApartmentName: String = ""
-    
+    var countInt: (WriteFormModel) -> Void = { _ in }
     override func loadView() {
         view = applicationFormView
     }
@@ -22,6 +22,7 @@ final class ApplicationFormViewController: BaseViewController {
         getApartmentNameData()
         isNotReceivedHistory()
         setupButtonTapped()
+        applicationFormView.countInt = viewModel.getTotalCount()
     }
 
     func getApartmentNameData() {
@@ -67,7 +68,37 @@ final class ApplicationFormViewController: BaseViewController {
         let createFormBottomVC = CreateFormBottomViewController()
 
         let bottomSheetVC = CustomBottomSheetViewController(contentViewController: createFormBottomVC)
+
+        /**
+        createFormBottomVC.saveWriteFormModel = { [self] writeFormModel in
+            self.countInt(writeFormModel)
+
+            viewModel.totalCountUpdateHandler = { [weak self] count in
+                self?.countInt(writeFormModel)
+                if viewModel.writeFormDataList[data.locationData] == nil {
+                    viewModel.writeFormDataList[data.locationData] = []
+                }
+                viewModel.writeFormDataList[data.locationData]?.append(data)
+                applicationFormView.countInt = viewModel.getTotalCount()
+                applicationFormView.tableView.reloadData()
+            }
+        }*/
+
+        createFormBottomVC.delegate = self
+
         bottomSheetVC.modalPresentationStyle = .overFullScreen
         present(bottomSheetVC, animated: true)
+    }
+}
+
+extension ApplicationFormViewController: FormDelegate {
+    func writeForm(data: WriteFormModel) {
+
+        if viewModel.writeFormDataList[data.locationData] == nil {
+            viewModel.writeFormDataList[data.locationData] = []
+        }
+        viewModel.writeFormDataList[data.locationData]?.append(data)
+        applicationFormView.countInt = viewModel.getTotalCount()
+        applicationFormView.tableView.reloadData()
     }
 }
