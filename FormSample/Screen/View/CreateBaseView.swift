@@ -312,7 +312,7 @@ final class CreateBaseView: BaseView {
         setupUI()
         setupConstraint()
         setupTextView()
-        setupActions()
+        //setupActions()
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -595,21 +595,11 @@ extension CreateBaseView {
             unSelectedPhoto(isAttachment)
             unSelectedPhotoButton.setImage(UIImage(named: Asset.Icon.icCheckboxOn.name), for: .normal)
             hiddenStackView.isHidden = true
-
         } else {
             unSelectedPhoto(isAttachment)
             unSelectedPhotoButton.setImage(UIImage(named: Asset.Icon.icCheckboxOff.name), for: .normal)
             hiddenStackView.isHidden = false
         }
-    }
-
-    func setupActions() {
-        unSelectedPhotoButton.addTarget(self, action: #selector(hiddenPhotoView), for: .touchUpInside)
-    }
-
-    @objc func hiddenPhotoView() {
-        isAttachment.toggle()
-        changeState()
     }
 }
 

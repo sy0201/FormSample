@@ -62,6 +62,7 @@ final class CustomBottomSheetViewController: UIViewController {
     init(contentViewController: UIViewController) {
         self.contentViewController = contentViewController
         super.init(nibName: nil, bundle: nil)
+        self.modalPresentationStyle = .overFullScreen
     }
 
     required init?(coder: NSCoder) {

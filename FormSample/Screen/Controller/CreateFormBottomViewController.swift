@@ -80,7 +80,6 @@ extension CreateFormBottomViewController {
             setupValidate()
         }
 
-        bottomSheetVC.modalPresentationStyle = .overFullScreen
         present(bottomSheetVC, animated: true, completion: nil)
     }
 
@@ -103,11 +102,11 @@ extension CreateFormBottomViewController {
     }
 
     @objc func unSelectPhoto() {
-        createFormBaseView.unSelectedPhoto = { [self] check in
-            viewModel.writeFormModel.photoDataListDataType.isOptional = check
-
-            setupValidate()
-        }
+        createFormBaseView.isAttachment = !createFormBaseView.isAttachment
+        createFormBaseView.changeState()
+        let isUnselectedPhoto = !viewModel.writeFormModel.photoDataListDataType.isOptional
+        viewModel.writeFormModel.photoDataListDataType.isOptional = isUnselectedPhoto
+        setupValidate()
     }
 
     @objc func selectPhoto() {
@@ -177,11 +176,12 @@ extension CreateFormBottomViewController {
         let locationData = !viewModel.writeFormModel.locationData.isEmpty
         let defectiveData = !viewModel.writeFormModel.defectiveData.isEmpty
         let isUnselectedPhoto = viewModel.writeFormModel.photoDataListDataType.isOptional
-        let hasZoomInImage = viewModel.writeFormModel.photoDataListDataType.zoomInImage != nil
-        let hasZoomOutImage = viewModel.writeFormModel.photoDataListDataType.zoomOutImage != nil
+        let hasZoomInImage = isUnselectedPhoto ? true : viewModel.writeFormModel.photoDataListDataType.zoomInImage != nil
+        let hasZoomOutImage = isUnselectedPhoto ? true : viewModel.writeFormModel.photoDataListDataType.zoomOutImage != nil
         let contentData = !viewModel.writeFormModel.contentData.isEmpty
 
-        return (locationData && defectiveData && (hasZoomInImage || hasZoomOutImage)) || (isUnselectedPhoto && contentData)
+        let validationCheck = [locationData, defectiveData, isUnselectedPhoto, hasZoomInImage, hasZoomOutImage, contentData]
+        return validationCheck.allSatisfy { $0 }
     }
 }
 
