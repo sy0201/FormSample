@@ -174,7 +174,7 @@ final class SelectLocationBaseView: BaseView {
         }
         
         collectionView.snp.makeConstraints { make in
-            make.leading.trailing.bottom.equalTo(mainView)
+            make.leading.trailing.bottom.equalTo(mainView).inset(16)
             make.top.equalTo(middleView.snp.bottom).offset(8)
         }
 
