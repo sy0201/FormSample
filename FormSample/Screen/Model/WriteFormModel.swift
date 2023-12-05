@@ -8,6 +8,7 @@
 import UIKit
 
 struct WriteFormModel {
+    
     var locationData = ""
     var defectiveData = ""
     var photoDataListDataType = PhotoModelDataType()

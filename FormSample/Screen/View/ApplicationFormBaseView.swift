@@ -13,6 +13,8 @@ final class ApplicationFormBaseView: BaseView {
     var currentTab: Enum.TabMenu = .left
     var createFormButtonAction: (() -> Void)?
     var countInt: Int = 0
+    var dataList = [WriteFormModel]()
+    var sections = [Section]()
     var defectiveString: String = ""
     var isTabMenuTapped: Bool = false {
         didSet {
@@ -126,6 +128,14 @@ final class ApplicationFormBaseView: BaseView {
         setupUI()
         setupConstraint()
         setupTableView()
+
+        let locationTitle = WriteFormModel().locationData
+
+        sections = [
+            Section(title: "거실", options: [WriteFormModel(locationData: "거실", defectiveData: "벽위치(입구 맞은 벽) + 하자상태(찢김)", photoDataListDataType: PhotoModelDataType(zoomInImage: nil, zoomOutImage: nil, isOptional: false), contentData: "aaaa하자내용작성", isActive: false)]),
+            Section(title: "공용욕실", options: [WriteFormModel(locationData: "공용욕실", defectiveData: "벽위치(입구 맞은 벽)", photoDataListDataType: PhotoModelDataType(zoomInImage: nil, zoomOutImage: nil, isOptional: false), contentData: "bbb하자내용작성", isActive: false)]),
+            Section(title: "대피공간", options: [WriteFormModel(locationData: "공용욕실", defectiveData: "하자상태(찢김)", photoDataListDataType: PhotoModelDataType(zoomInImage: nil, zoomOutImage: nil, isOptional: false), contentData: "ccc하자내용작성", isActive: false)])
+        ]
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -295,8 +305,9 @@ final class ApplicationFormBaseView: BaseView {
         tableView.register(ApplicationFormTopTableViewCell.self, forCellReuseIdentifier: ApplicationFormTopTableViewCell.reuseIdentifier)
         tableView.register(CreateFormTableViewCell.self, forCellReuseIdentifier: CreateFormTableViewCell.reuseIdentifier)
         tableView.register(EmptyUnRegisterTableViewCell.self, forCellReuseIdentifier: EmptyUnRegisterTableViewCell.reuseIdentifier)
+
+        tableView.register(ApplicationFormTopHeader.self, forHeaderFooterViewReuseIdentifier: ApplicationFormTopHeader.reuseIdentifier)
         tableView.register(UnRegisterTableViewCell.self, forCellReuseIdentifier: UnRegisterTableViewCell.reuseIdentifier)
-        tableView.register(StackUnRegisterTableViewCell.self, forCellReuseIdentifier: StackUnRegisterTableViewCell.reuseIdentifier)
         tableView.register(DetailUnRegisterTableViewCell.self, forCellReuseIdentifier: DetailUnRegisterTableViewCell.reuseIdentifier)
     }
 
@@ -333,68 +344,85 @@ final class ApplicationFormBaseView: BaseView {
         leftTabLabel.textColor = textColor
         rightTabLabel.textColor = textColor
     }
+
+    func setList(_ list: [WriteFormModel]) {
+        dataList = []
+        for data in list {
+            dataList.append(data)
+        }
+
+        tableView.reloadData()
+        layoutIfNeeded()
+    }
 }
 
 extension ApplicationFormBaseView: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        1
+        switch currentTab {
+        case .left:
+            return 1
+        case .right:
+            return sections.count
+        }
     }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch currentTab {
         case .left:
-            return 2
+            return 1
         case .right:
-            return countInt + 1
+            let section = sections[section]
+
+            if section.isOpened {
+                return section.options.count + 1
+            } else {
+                return 1
+            }
         }
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch currentTab {
         case .left:
-            if indexPath.row == 0 {
-                guard let cell = tableView.dequeueReusableCell(withIdentifier: "ApplicationFormTopTableViewCell", for: indexPath) as? ApplicationFormTopTableViewCell else {
-                    return UITableViewCell() }
-                cell.setupConfiguration(.left)
-                return cell
-
-            } else {
-
-                guard let cell = tableView.dequeueReusableCell(withIdentifier: "CreateFormTableViewCell", for: indexPath) as? CreateFormTableViewCell else {
-                    return UITableViewCell() }
-                cell.createFormCellButtonAction = { [weak self] in
-                    self?.handleCreateFormButton()
-                }
-                return cell
-            }
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "CreateFormTableViewCell", for: indexPath) as? CreateFormTableViewCell else {
+                return UITableViewCell()}
+            return cell
 
         case .right:
             if indexPath.row == 0 {
-                guard let cell = tableView.dequeueReusableCell(withIdentifier: "ApplicationFormTopTableViewCell", for: indexPath) as? ApplicationFormTopTableViewCell else {
-                    return UITableViewCell() }
-                cell.setupConfiguration(.right)
-                cell.acceptedCountLabel.text = "\(String(describing: countInt))"
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: "UnRegisterTableViewCell", for: indexPath) as? UnRegisterTableViewCell else {
+                    return UITableViewCell()
+                }
+                cell.locationLabel.text = sections[indexPath.section].title
                 return cell
             } else {
-                if countInt <= 0 {
-                    guard let cell = tableView.dequeueReusableCell(withIdentifier: "EmptyUnRegisterTableViewCell", for: indexPath) as? EmptyUnRegisterTableViewCell else { return UITableViewCell() }
-
-                    return cell
-
-                } else if countInt > 0 {
-//                    guard let cell = tableView.dequeueReusableCell(withIdentifier: "StackUnRegisterTableViewCell", for: indexPath) as? StackUnRegisterTableViewCell else { return UITableViewCell() }
-//                    return cell
-
-                    guard let cell = tableView.dequeueReusableCell(withIdentifier: "DetailUnRegisterTableViewCell", for: indexPath) as? DetailUnRegisterTableViewCell else { return UITableViewCell() }
-
-                    cell.defectiveLabel.text = defectiveString
-                    return cell
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: "DetailUnRegisterTableViewCell", for: indexPath) as? DetailUnRegisterTableViewCell else {
+                    return UITableViewCell()
                 }
+                cell.defectiveLabel.text = sections[indexPath.section].options[indexPath.row - 1].defectiveData
+
+                return cell
             }
-            return UITableViewCell()
         }
     }
 
     func handleCreateFormButton() {
         createFormButtonAction?()
+    }
+
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        guard let headerView = tableView.dequeueReusableCell(withIdentifier: ApplicationFormTopHeader.reuseIdentifier) as? ApplicationFormTopHeader else {
+            return UIView() }
+
+        return headerView
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.row == 0 {
+            sections[indexPath.section].isOpened = !sections[indexPath.section].isOpened
+            tableView.reloadSections([indexPath.section], with: .none)
+        } else {
+            print("This is a selection")
+        }
     }
 }
