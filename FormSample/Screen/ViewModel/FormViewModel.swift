@@ -22,7 +22,6 @@ class Section {
 final class FormViewModel {
 
     var writeFormDataList: [String: [WriteFormModel]] = [:]
-    var dataList: [[WriteFormModel]] = []
 
     /**
     init() {

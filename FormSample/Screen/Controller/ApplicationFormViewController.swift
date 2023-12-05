@@ -30,12 +30,6 @@ final class ApplicationFormViewController: BaseViewController {
         applicationFormView.apartmentLabel.text = selectApartmentName
     }
 
-    func getWriteModelData() {
-
-        let data: WriteFormModel
-        //applicationFormView.defectiveString = viewModel.writeFormDataList[data.defectiveData]
-    }
-
     func isNotReceivedHistory() {
         if viewModel.getTotalCount() > 0 {
             applicationFormView.rightPointView.isHidden = false
