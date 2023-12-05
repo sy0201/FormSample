@@ -360,7 +360,7 @@ extension ApplicationFormBaseView: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         switch currentTab {
         case .left:
-            return 1
+            return 2
         case .right:
             return sections.count
         }
@@ -372,7 +372,6 @@ extension ApplicationFormBaseView: UITableViewDelegate, UITableViewDataSource {
             return 1
         case .right:
             let section = sections[section]
-
             if section.isOpened {
                 return section.options.count + 1
             } else {
@@ -382,13 +381,27 @@ extension ApplicationFormBaseView: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+
         switch currentTab {
         case .left:
+            if indexPath.section == 0 {
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: "ApplicationFormTopTableViewCell", for: indexPath) as? ApplicationFormTopTableViewCell else {
+                    return UITableViewCell()}
+                cell.setupConfiguration(.left)
+                return cell
+            }
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "CreateFormTableViewCell", for: indexPath) as? CreateFormTableViewCell else {
                 return UITableViewCell()}
             return cell
 
         case .right:
+            if indexPath.section == 0 {
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: "ApplicationFormTopTableViewCell", for: indexPath) as? ApplicationFormTopTableViewCell else {
+                    return UITableViewCell()}
+                cell.setupConfiguration(.right)
+                return cell
+            }
+
             if indexPath.row == 0 {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: "UnRegisterTableViewCell", for: indexPath) as? UnRegisterTableViewCell else {
                     return UITableViewCell()
@@ -410,19 +423,12 @@ extension ApplicationFormBaseView: UITableViewDelegate, UITableViewDataSource {
         createFormButtonAction?()
     }
 
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        guard let headerView = tableView.dequeueReusableCell(withIdentifier: ApplicationFormTopHeader.reuseIdentifier) as? ApplicationFormTopHeader else {
-            return UIView() }
-
-        return headerView
-    }
-
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == 0 {
             sections[indexPath.section].isOpened = !sections[indexPath.section].isOpened
             tableView.reloadSections([indexPath.section], with: .none)
         } else {
-            print("This is a selection")
+            print("\(sections[indexPath.section].options[indexPath.row - 1].defectiveData) is selected")
         }
     }
 }
