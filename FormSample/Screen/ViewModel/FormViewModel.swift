@@ -7,23 +7,31 @@
 
 import Foundation
 
-class Section {
-    var title: String
-    var options = [WriteFormModel]()
-    var isOpened = false
-
-    init(title: String, options: [WriteFormModel], isOpened: Bool = false) {
-        self.title = title
-        self.options = options
-        self.isOpened = isOpened
-    }
-}
+//class Section {
+//    var title: String
+//    var options = [WriteFormModel]()
+//    var isOpened = false
+//
+//    init(title: String, options: [WriteFormModel], isOpened: Bool = false) {
+//        self.title = title
+//        self.options = options
+//        self.isOpened = isOpened
+//    }
+//}
 
 final class FormViewModel {
 
+//    struct Section {
+//        var title: String
+//        var options: [WriteFormModel]
+//        var isOpened: Bool = false
+//    }
+
+    var title = WriteFormModel()
     var writeFormDataList: [String: [WriteFormModel]] = [:]
     var isOpened: Bool = false
 
+    /**
     init() {
         writeFormDataList["거실"] = [
             WriteFormModel(locationData: "거실",
@@ -42,7 +50,16 @@ final class FormViewModel {
                            contentData: "내용",
                            isActive: false)]
     }
-
+     */
+    
+    func getSections() -> [FormViewModel] {
+        var result: [FormViewModel] = []
+        for (key, value) in writeFormDataList {
+            let section = FormViewModel()
+            result.append(section)
+        }
+        return result
+    }
 
     func getLocations() -> [String] {
         var locationKey: [String] = []

@@ -13,11 +13,15 @@ final class ApplicationFormBaseView: BaseView {
     var currentTab: Enum.TabMenu = .left
     var createFormButtonAction: (() -> Void)?
     var countInt: Int = 0
-    var sections = [Section]()
     var defectiveString: String = ""
     var isTabMenuTapped: Bool = false {
         didSet {
             self.changeState()
+        }
+    }
+    var viewModel: FormViewModel! {
+        didSet {
+            updateSections()
         }
     }
 
@@ -128,6 +132,7 @@ final class ApplicationFormBaseView: BaseView {
         setupConstraint()
         setupTableView()
 
+        /**
         sections = [
             Section(title: "거실",
                     options: [
@@ -141,11 +146,18 @@ final class ApplicationFormBaseView: BaseView {
                         WriteFormModel(locationData: "공용욕실", defectiveData: "2.선택 없음", photoDataListDataType: PhotoModelDataType(zoomInImage: nil, zoomOutImage: nil, isOptional: false), contentData: "b-2선택 없음", isActive: false)
                     ]),
             Section(title: "대피공간", options: [WriteFormModel(locationData: "공용욕실", defectiveData: "1.하자상태(찢김)", photoDataListDataType: PhotoModelDataType(zoomInImage: nil, zoomOutImage: nil, isOptional: false), contentData: "c-1하자내용작성", isActive: false)])
-        ]
+        ]*/
     }
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+
+    private func updateSections() {
+        guard let viewModel = viewModel else {
+            print("Warning: viewModel is nil in ApplicationFormBaseView")
+            return
+        }
     }
 
     override func setupUI() {
@@ -357,8 +369,8 @@ extension ApplicationFormBaseView: UITableViewDelegate, UITableViewDataSource {
         case .left:
             return 2
         case .right:
-            print("section.count: \(sections.count)")
-            return sections.count + 1
+            print("section.count: \(viewModel.writeFormDataList.count)")
+            return viewModel.writeFormDataList.count + 1
         }
     }
 
@@ -369,9 +381,10 @@ extension ApplicationFormBaseView: UITableViewDelegate, UITableViewDataSource {
         case .right:
             if section == 0 {
                 return 1
-            } else if section <= sections.count {
-                let currentSection = sections[section - 1]
-                return currentSection.isOpened ? currentSection.options.count + 1 : 1
+            } else if section <= viewModel.getTotalCount() {
+                //let currentSection = sections[section - 1]
+                var sectionList = viewModel.getSections()
+                return sectionList[section - 1].isOpened ? sectionList.count + 1 : 1
             } else {
                 return 0
             }
@@ -395,6 +408,12 @@ extension ApplicationFormBaseView: UITableViewDelegate, UITableViewDataSource {
             return cell
 
         case .right:
+            if viewModel.getTotalCount() == 0 {
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: "EmptyUnRegisterTableViewCell", for: indexPath) as? EmptyUnRegisterTableViewCell else {
+                    return UITableViewCell() }
+
+                return cell
+            }
             if indexPath.section == 0 {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: "ApplicationFormTopTableViewCell", for: indexPath) as? ApplicationFormTopTableViewCell else {
                     return UITableViewCell() }
@@ -402,19 +421,19 @@ extension ApplicationFormBaseView: UITableViewDelegate, UITableViewDataSource {
                 return cell
             }
 
-            let currentSection = sections[indexPath.section - 1]
+            //let currentSection = sections[indexPath.section - 1]
             if indexPath.row == 0 {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: "UnRegisterTableViewCell", for: indexPath) as? UnRegisterTableViewCell else {
                     return UITableViewCell()
                 }
-                cell.locationLabel.text = currentSection.title
+                //cell.locationLabel.text = currentSection.title
                 return cell
             } else {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: "DetailUnRegisterTableViewCell", for: indexPath) as? DetailUnRegisterTableViewCell else {
                     return UITableViewCell()
                 }
-                let option = currentSection.options[indexPath.row - 1]
-                cell.defectiveLabel.text = option.defectiveData
+                //let option = currentSection.options[indexPath.row - 1]
+                //cell.defectiveLabel.text = option.defectiveData
 
                 return cell
             }
@@ -427,13 +446,16 @@ extension ApplicationFormBaseView: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 0 {
-                return
-            }
+            return
+        }
+
         if indexPath.row == 0 {
-            sections[indexPath.section - 1].isOpened = !sections[indexPath.section - 1].isOpened
+            var section = viewModel.getSections()
+            section[indexPath.section - 1].isOpened = !section[indexPath.section - 1].isOpened
             tableView.reloadSections([indexPath.section], with: .fade)
         } else {
-            let defectiveData = sections[indexPath.section - 1].options[indexPath.row - 1].defectiveData
+            var section = viewModel.getSections()
+            //let defectiveData = viewModel.getTotalCount()
         }
     }
 }

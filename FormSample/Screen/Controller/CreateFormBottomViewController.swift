@@ -10,7 +10,7 @@ import UIKit
 final class CreateFormBottomViewController: BaseViewController {
 
     let createFormBaseView = CreateBaseView()
-    private let viewModel = WriteFormViewModel()
+    var viewModel = WriteFormViewModel()
     var delegate: FormDelegate?
     var saveWriteFormModel: (WriteFormModel) -> Void = { _ in }
 
@@ -64,7 +64,7 @@ extension CreateFormBottomViewController {
     @objc func saveFormData() {
         setupValidate()
         //saveWriteFormModel(viewModel.writeFormModel)
-        delegate?.writeForm(data: viewModel.writeFormModel)
+        delegate?.writeForm(data: self.viewModel.writeFormModel)
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.4) {
             self.back(animated: true)
 

@@ -10,11 +10,12 @@ import UIKit
 final class ApplicationFormViewController: BaseViewController {
 
     let applicationFormView = ApplicationFormBaseView()
-    let viewModel = FormViewModel()
+    var viewModel = FormViewModel()
     var selectApartmentName: String = ""
     var countInt: (WriteFormModel) -> Void = { _ in }
 
     override func loadView() {
+        applicationFormView.viewModel = viewModel
         view = applicationFormView
     }
 
@@ -100,6 +101,7 @@ extension ApplicationFormViewController: FormDelegate {
             viewModel.writeFormDataList[data.locationData] = []
         }
         viewModel.writeFormDataList[data.locationData]?.append(data)
+
         applicationFormView.countInt = viewModel.getTotalCount()
         isNotReceivedHistory()
         applicationFormView.tableView.reloadData()

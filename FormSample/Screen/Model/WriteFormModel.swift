@@ -14,6 +14,7 @@ struct WriteFormModel {
     var photoDataListDataType = PhotoModelDataType()
     var contentData = ""
     var isActive = false
+    var isOpened = false
 }
 
 struct PhotoModelDataType {
