@@ -22,8 +22,8 @@ class Section {
 final class FormViewModel {
 
     var writeFormDataList: [String: [WriteFormModel]] = [:]
+    var isOpened: Bool = false
 
-    /**
     init() {
         writeFormDataList["거실"] = [
             WriteFormModel(locationData: "거실",
@@ -41,7 +41,8 @@ final class FormViewModel {
                            photoDataListDataType: PhotoModelDataType(zoomInImage: nil, zoomOutImage: nil, isOptional: false),
                            contentData: "내용",
                            isActive: false)]
-    }*/
+    }
+
 
     func getLocations() -> [String] {
         var locationKey: [String] = []
@@ -49,6 +50,10 @@ final class FormViewModel {
             locationKey.append(key)
         }
         return locationKey
+    }
+
+    func getWriteFormModels(forKey key: String) -> [WriteFormModel]? {
+        return writeFormDataList[key]
     }
 
     func getTotalCount() -> Int {

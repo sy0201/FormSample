@@ -154,7 +154,7 @@ extension DetailUnRegisterTableViewCell {
         attachPhotoView.snp.makeConstraints { make in
             make.leading.trailing.equalTo(imgHiddenStackView)
             make.top.equalTo(middleView.snp.bottom)
-            make.bottom.equalTo(imgHiddenStackView).inset(16)
+            make.bottom.equalTo(imgHiddenStackView)
         }
 
         attachPhotoStackView.snp.makeConstraints { make in

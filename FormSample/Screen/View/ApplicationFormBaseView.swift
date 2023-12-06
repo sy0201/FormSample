@@ -13,7 +13,6 @@ final class ApplicationFormBaseView: BaseView {
     var currentTab: Enum.TabMenu = .left
     var createFormButtonAction: (() -> Void)?
     var countInt: Int = 0
-    var dataList = [WriteFormModel]()
     var sections = [Section]()
     var defectiveString: String = ""
     var isTabMenuTapped: Bool = false {
@@ -128,8 +127,6 @@ final class ApplicationFormBaseView: BaseView {
         setupUI()
         setupConstraint()
         setupTableView()
-
-        let locationTitle = WriteFormModel().locationData
 
         sections = [
             Section(title: "거실",
@@ -315,7 +312,6 @@ final class ApplicationFormBaseView: BaseView {
         tableView.register(CreateFormTableViewCell.self, forCellReuseIdentifier: CreateFormTableViewCell.reuseIdentifier)
         tableView.register(EmptyUnRegisterTableViewCell.self, forCellReuseIdentifier: EmptyUnRegisterTableViewCell.reuseIdentifier)
 
-        tableView.register(ApplicationFormTopHeader.self, forHeaderFooterViewReuseIdentifier: ApplicationFormTopHeader.reuseIdentifier)
         tableView.register(UnRegisterTableViewCell.self, forCellReuseIdentifier: UnRegisterTableViewCell.reuseIdentifier)
         tableView.register(DetailUnRegisterTableViewCell.self, forCellReuseIdentifier: DetailUnRegisterTableViewCell.reuseIdentifier)
     }
@@ -353,16 +349,6 @@ final class ApplicationFormBaseView: BaseView {
         leftTabLabel.textColor = textColor
         rightTabLabel.textColor = textColor
     }
-
-    func setList(_ list: [WriteFormModel]) {
-        dataList = []
-        for data in list {
-            dataList.append(data)
-        }
-
-        tableView.reloadData()
-        layoutIfNeeded()
-    }
 }
 
 extension ApplicationFormBaseView: UITableViewDelegate, UITableViewDataSource {
@@ -375,7 +361,7 @@ extension ApplicationFormBaseView: UITableViewDelegate, UITableViewDataSource {
             return sections.count + 1
         }
     }
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch currentTab {
         case .left:
@@ -445,7 +431,7 @@ extension ApplicationFormBaseView: UITableViewDelegate, UITableViewDataSource {
             }
         if indexPath.row == 0 {
             sections[indexPath.section - 1].isOpened = !sections[indexPath.section - 1].isOpened
-            tableView.reloadSections([indexPath.section], with: .none)
+            tableView.reloadSections([indexPath.section], with: .fade)
         } else {
             let defectiveData = sections[indexPath.section - 1].options[indexPath.row - 1].defectiveData
         }
