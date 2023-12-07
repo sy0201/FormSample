@@ -12,7 +12,8 @@ final class SelectDefectiveBaseView: BaseView {
     
     weak var delegate: SelectRadioCellDelegate?
     var defectiveDataList: [String] = []
-    
+    var selectedData: String?
+
     private let mainView = UIView()
     private let titleView = UIView()
     private let titleLabel: UILabel = {
@@ -120,15 +121,16 @@ extension SelectDefectiveBaseView: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "SelectRadioTableViewCell", for: indexPath) as? SelectRadioTableViewCell else { return UITableViewCell() }
         let data = defectiveDataList[indexPath.row]
-        cell.configure(with: data)
+        cell.configure(with: data, isSelected: data == selectedData)
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let selectedCell = tableView.cellForRow(at: indexPath) as? SelectRadioTableViewCell {
-            selectedCell.setOn(isRadio: !selectedCell.isRadio)
-        }
         let cellData = defectiveDataList[indexPath.row]
+
+        selectedData = cellData
         delegate?.didSelectItem(cellData)
+
+        tableView.reloadData()
     }
 }

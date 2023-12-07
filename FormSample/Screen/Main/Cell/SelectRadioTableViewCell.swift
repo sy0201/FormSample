@@ -72,12 +72,9 @@ extension SelectRadioTableViewCell {
         }
     }
 
-    func configure(with data: String) {
+    func configure(with data: String, isSelected: Bool) {
+        selectImg.image = isSelected ? Asset.Icon.icRadioOn.image : Asset.Icon.icRadioOff.image
         selectItemLabel.text = data
-    }
-
-    func setOn(isRadio: Bool) {
-        self.isRadio = isRadio
     }
 
     func changeState() {

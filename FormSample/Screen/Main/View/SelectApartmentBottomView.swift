@@ -12,7 +12,8 @@ final class SelectApartmentBottomView: BaseView {
 
     private var radioDataList: [String] = []
     weak var delegate: SelectRadioCellDelegate?
-
+    var selectedData: String?
+    
     let tableView = UITableView()
     let shadowView: UIView = {
         let shadowView = UIView()
@@ -101,13 +102,12 @@ extension SelectApartmentBottomView: UITableViewDelegate, UITableViewDataSource 
         if radioDataList.isEmpty {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: BottomEmptyTableViewCell.reuseIdentifier, for: indexPath) as? BottomEmptyTableViewCell else {
                 return UITableViewCell() }
-
             return cell
         }
 
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "SelectRadioTableViewCell", for: indexPath) as? SelectRadioTableViewCell else { return UITableViewCell() }
         let data = radioDataList[indexPath.row]
-        cell.configure(with: data)
+        cell.configure(with: data, isSelected: data == selectedData)
         return cell
     }
 
@@ -123,10 +123,11 @@ extension SelectApartmentBottomView: UITableViewDelegate, UITableViewDataSource 
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let selectedCell = tableView.cellForRow(at: indexPath) as? SelectRadioTableViewCell {
-            selectedCell.setOn(isRadio: !selectedCell.isRadio)
-        }
         let cellData = radioDataList[indexPath.row]
+
+        selectedData = cellData
         delegate?.didSelectItem(cellData)
+
+        tableView.reloadData()
     }
 }
