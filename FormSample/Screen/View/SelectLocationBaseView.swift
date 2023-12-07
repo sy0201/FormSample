@@ -199,6 +199,7 @@ final class SelectLocationBaseView: BaseView {
     func setupCollectionView() {
         collectionView.delegate = self
         collectionView.dataSource = self
+        collectionView.allowsMultipleSelection = true
         
         collectionView.register(LocationCollectionViewCell.self, forCellWithReuseIdentifier: LocationCollectionViewCell.reuseIdentifier)
     }
@@ -215,7 +216,7 @@ extension SelectLocationBaseView: UICollectionViewDelegateFlowLayout, UICollecti
         cell.locationLabel.text = selectionLocation
         let data = locationDataList[indexPath.row]
         cell.configure(with: data, isSelected: !cell.isSelectedLocation)
-        cell.locationButton.addTarget(self, action: #selector(didSelectCellItem), for: .touchUpInside)
+        cell.selectedBottomButton.addTarget(self, action: #selector(didSelectBottom), for: .touchUpInside)
         return cell
     }
     
@@ -233,7 +234,7 @@ extension SelectLocationBaseView: UICollectionViewDelegateFlowLayout, UICollecti
         return CGSize(width: calculatedItemWidth, height: 46)
     }
 
-    @objc func didSelectCellItem(sender: UIButton) {
+    @objc func didSelectBottom(sender: UIButton) {
         let point = sender.convert(CGPoint.zero, to: collectionView)
         guard let indexPath = collectionView.indexPathForItem(at: point) else {
             return

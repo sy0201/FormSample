@@ -29,7 +29,7 @@ final class LocationCollectionViewCell: UICollectionViewCell, ReuseIdentifying {
         locationLabel.textColor = Asset.Color.gray505C65.color
         return locationLabel
     }()
-    let locationButton = UIButton()
+    let selectedBottomButton = UIButton()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -43,10 +43,10 @@ final class LocationCollectionViewCell: UICollectionViewCell, ReuseIdentifying {
     }
     
     func setupButtonTapped() {
-        locationButton.addTarget(self, action: #selector(locationCellTapped), for: .touchUpInside)
+        selectedBottomButton.addTarget(self, action: #selector(selectedButtonTapped), for: .touchUpInside)
     }
     
-    @objc func locationCellTapped() {
+    @objc func selectedButtonTapped() {
         isSelectedLocation = !isSelectedLocation
         locationCellButtonAction(locationLabel.text ?? "")
     }
@@ -55,7 +55,7 @@ final class LocationCollectionViewCell: UICollectionViewCell, ReuseIdentifying {
 extension LocationCollectionViewCell {
     func setupUI() {
         addSubview(mainView)
-        mainView.addSubviews([roundView, locationLabel, locationButton])
+        mainView.addSubviews([roundView, locationLabel, selectedBottomButton])
     }
     
     func setupConstraint() {
@@ -73,17 +73,17 @@ extension LocationCollectionViewCell {
             make.centerX.centerY.equalTo(mainView)
         }
         
-        locationButton.snp.makeConstraints { make in
+        selectedBottomButton.snp.makeConstraints { make in
             make.leading.trailing.top.bottom.equalTo(mainView)
         }
     }
-    
+
     func configure(with data: String, isSelected: Bool) {
         locationLabel.text = data
         setOn(isSelectedLocation: isSelected)
         changeState()
     }
-    
+
     func setOn(isSelectedLocation: Bool) {
         self.isSelectedLocation = !isSelectedLocation
     }
