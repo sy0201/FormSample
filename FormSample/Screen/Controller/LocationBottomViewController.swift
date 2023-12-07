@@ -45,6 +45,7 @@ final class LocationBottomViewController: BaseViewController {
     }
 
     @objc func selectLocationButton() {
+        print("하단 선택하기")
         guard let selectedLocation = selectLocationBaseView.selectionLocation else {
             return
         }

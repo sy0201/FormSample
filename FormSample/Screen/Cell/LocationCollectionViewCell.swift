@@ -29,7 +29,7 @@ final class LocationCollectionViewCell: UICollectionViewCell, ReuseIdentifying {
         locationLabel.textColor = Asset.Color.gray505C65.color
         return locationLabel
     }()
-    let selectedBottomButton = UIButton()
+    let cellButton = UIButton()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -43,7 +43,7 @@ final class LocationCollectionViewCell: UICollectionViewCell, ReuseIdentifying {
     }
     
     func setupButtonTapped() {
-        selectedBottomButton.addTarget(self, action: #selector(selectedButtonTapped), for: .touchUpInside)
+        cellButton.addTarget(self, action: #selector(selectedButtonTapped), for: .touchUpInside)
     }
     
     @objc func selectedButtonTapped() {
@@ -55,7 +55,7 @@ final class LocationCollectionViewCell: UICollectionViewCell, ReuseIdentifying {
 extension LocationCollectionViewCell {
     func setupUI() {
         addSubview(mainView)
-        mainView.addSubviews([roundView, locationLabel, selectedBottomButton])
+        mainView.addSubviews([roundView, locationLabel, cellButton])
     }
     
     func setupConstraint() {
@@ -73,19 +73,18 @@ extension LocationCollectionViewCell {
             make.centerX.centerY.equalTo(mainView)
         }
         
-        selectedBottomButton.snp.makeConstraints { make in
+        cellButton.snp.makeConstraints { make in
             make.leading.trailing.top.bottom.equalTo(mainView)
         }
     }
 
-    func configure(with data: String, isSelected: Bool) {
-        locationLabel.text = data
-        setOn(isSelectedLocation: isSelected)
-        changeState()
-    }
+    func configure(with data: String) {
+        roundView.layer.borderColor = Asset.Color.grayF4F5F6.color.cgColor
+        roundView.layer.borderWidth = 0
 
-    func setOn(isSelectedLocation: Bool) {
-        self.isSelectedLocation = !isSelectedLocation
+        locationLabel.font = FontFamily.NotoSansKR.regular.font(size: 14)
+        locationLabel.textColor = Asset.Color.gray505C65.color
+        locationLabel.text = data
     }
     
     func changeState() {

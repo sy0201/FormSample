@@ -213,10 +213,11 @@ extension SelectLocationBaseView: UICollectionViewDelegateFlowLayout, UICollecti
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LocationCollectionViewCell", for: indexPath) as? LocationCollectionViewCell else { return
             UICollectionViewCell() }
-        cell.locationLabel.text = selectionLocation
+
         let data = locationDataList[indexPath.row]
-        cell.configure(with: data, isSelected: !cell.isSelectedLocation)
-        cell.selectedBottomButton.addTarget(self, action: #selector(didSelectBottom), for: .touchUpInside)
+        cell.configure(with: data)
+        cell.isSelectedLocation = selectionLocation == cell.locationLabel.text
+        cell.cellButton.addTarget(self, action: #selector(bottomButtonTapped), for: .touchUpInside)
         return cell
     }
     
@@ -234,7 +235,7 @@ extension SelectLocationBaseView: UICollectionViewDelegateFlowLayout, UICollecti
         return CGSize(width: calculatedItemWidth, height: 46)
     }
 
-    @objc func didSelectBottom(sender: UIButton) {
+    @objc func bottomButtonTapped(sender: UIButton) {
         let point = sender.convert(CGPoint.zero, to: collectionView)
         guard let indexPath = collectionView.indexPathForItem(at: point) else {
             return
@@ -246,6 +247,8 @@ extension SelectLocationBaseView: UICollectionViewDelegateFlowLayout, UICollecti
 
         if let cell = collectionView.cellForItem(at: indexPath) as? LocationCollectionViewCell {
             cell.locationLabel.text = selectionLocation
+            cell.isSelectedLocation = true
+            collectionView.reloadData()
         }
     }
 }
