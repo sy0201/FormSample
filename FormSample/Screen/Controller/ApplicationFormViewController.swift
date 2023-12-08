@@ -64,6 +64,7 @@ final class ApplicationFormViewController: BaseViewController {
     @objc func rightTapped() {
         applicationFormView.setCurrentTab(.right)
         applicationFormView.tabSelected(tab: .right)
+        viewModel.getLocations()
         applicationFormView.tableView.reloadData()
     }
 

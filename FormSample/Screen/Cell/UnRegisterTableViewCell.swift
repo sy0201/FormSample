@@ -101,7 +101,7 @@ final class UnRegisterTableViewCell: UITableViewCell, ReuseIdentifying {
 extension UnRegisterTableViewCell {
     func setupUI() {
         selectionStyle = .none
-        addSubviews([mainView, labelStackView, countStackView, rightStackView])
+        contentView.addSubviews([mainView, labelStackView, countStackView, rightStackView])
         mainView.addSubviews([selectImg, checkButton, labelStackView, rightStackView, rightButton])
 
         labelStackView.addArrangedSubviews([locationLabel, countStackView])

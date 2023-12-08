@@ -19,11 +19,7 @@ final class ApplicationFormBaseView: BaseView {
             self.changeState()
         }
     }
-    var viewModel: FormViewModel! {
-        didSet {
-            updateSections()
-        }
-    }
+    var viewModel: FormViewModel!
 
     private let mainBackgroundView = UIView()
 
@@ -131,33 +127,10 @@ final class ApplicationFormBaseView: BaseView {
         setupUI()
         setupConstraint()
         setupTableView()
-
-        /**
-        sections = [
-            Section(title: "거실",
-                    options: [
-                        WriteFormModel(locationData: "거실", defectiveData: "1.벽위치(입구 맞은 벽) + 하자상태(찢김)", photoDataListDataType: PhotoModelDataType(zoomInImage: nil, zoomOutImage: nil, isOptional: false), contentData: "a-1하자내용작성", isActive: false),
-                        WriteFormModel(locationData: "거실", defectiveData: "2.선택 없음", photoDataListDataType: PhotoModelDataType(zoomInImage: nil, zoomOutImage: nil, isOptional: false), contentData: "a-2선택 없음", isActive: false),
-                        WriteFormModel(locationData: "거실", defectiveData: "3.거실 아트월 하단 스위치/콘센트 고정(부착) 불량", photoDataListDataType: PhotoModelDataType(zoomInImage: nil, zoomOutImage: nil, isOptional: false), contentData: "a-3하자내용작성", isActive: false)
-                    ]),
-            Section(title: "공용욕실",
-                    options: [
-                        WriteFormModel(locationData: "공용욕실", defectiveData: "1.벽위치(입구 맞은 벽) + 하자상태(찢김)", photoDataListDataType: PhotoModelDataType(zoomInImage: nil, zoomOutImage: nil, isOptional: false), contentData: "b-1하자내용작성", isActive: false),
-                        WriteFormModel(locationData: "공용욕실", defectiveData: "2.선택 없음", photoDataListDataType: PhotoModelDataType(zoomInImage: nil, zoomOutImage: nil, isOptional: false), contentData: "b-2선택 없음", isActive: false)
-                    ]),
-            Section(title: "대피공간", options: [WriteFormModel(locationData: "공용욕실", defectiveData: "1.하자상태(찢김)", photoDataListDataType: PhotoModelDataType(zoomInImage: nil, zoomOutImage: nil, isOptional: false), contentData: "c-1하자내용작성", isActive: false)])
-        ]*/
     }
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-
-    private func updateSections() {
-        guard let viewModel = viewModel else {
-            print("Warning: viewModel is nil in ApplicationFormBaseView")
-            return
-        }
     }
 
     override func setupUI() {
@@ -369,8 +342,8 @@ extension ApplicationFormBaseView: UITableViewDelegate, UITableViewDataSource {
         case .left:
             return 2
         case .right:
-            print("section.count: \(viewModel.writeFormDataList.count)")
-            return viewModel.writeFormDataList.count + 1
+            let headerCount = 1
+            return headerCount + viewModel.locationKeys.count
         }
     }
 
@@ -378,15 +351,18 @@ extension ApplicationFormBaseView: UITableViewDelegate, UITableViewDataSource {
         switch currentTab {
         case .left:
             return 1
+
         case .right:
             if section == 0 {
                 return 1
-            } else if section <= viewModel.getTotalCount() {
-                //let currentSection = sections[section - 1]
-                var sectionList = viewModel.getSections()
-                return sectionList[section - 1].isOpened ? sectionList.count + 1 : 1
             } else {
-                return 0
+                if viewModel.selectedLocationIndex == section {
+                    let key = viewModel.locationKeys[section - 1]
+                    let list = viewModel.writeFormDataList[key]
+                    return (list?.count ?? 0) + 1
+                } else {
+                    return 1
+                }
             }
         }
     }
@@ -408,12 +384,14 @@ extension ApplicationFormBaseView: UITableViewDelegate, UITableViewDataSource {
             return cell
 
         case .right:
+
             if viewModel.getTotalCount() == 0 {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: "EmptyUnRegisterTableViewCell", for: indexPath) as? EmptyUnRegisterTableViewCell else {
                     return UITableViewCell() }
 
                 return cell
             }
+
             if indexPath.section == 0 {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: "ApplicationFormTopTableViewCell", for: indexPath) as? ApplicationFormTopTableViewCell else {
                     return UITableViewCell() }
@@ -421,20 +399,29 @@ extension ApplicationFormBaseView: UITableViewDelegate, UITableViewDataSource {
                 return cell
             }
 
-            //let currentSection = sections[indexPath.section - 1]
+            let locationKey = viewModel.locationKeys[indexPath.section - 1]
+
+            guard let formModels = viewModel.getWriteFormModels(forKey: locationKey) else {
+                return UITableViewCell()
+            }
+
             if indexPath.row == 0 {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: "UnRegisterTableViewCell", for: indexPath) as? UnRegisterTableViewCell else {
                     return UITableViewCell()
                 }
-                //cell.locationLabel.text = currentSection.title
+
+                cell.configure(with: locationKey)
                 return cell
+
             } else {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: "DetailUnRegisterTableViewCell", for: indexPath) as? DetailUnRegisterTableViewCell else {
                     return UITableViewCell()
                 }
-                //let option = currentSection.options[indexPath.row - 1]
-                //cell.defectiveLabel.text = option.defectiveData
 
+                let defectiveData = formModels[indexPath.row - 1].defectiveData
+                cell.configure(with: defectiveData)
+                cell.zoomInImageView.image = formModels[indexPath.row - 1].photoDataListDataType.zoomInImage
+                cell.zoomOutImageView.image = formModels[indexPath.row - 1].photoDataListDataType.zoomOutImage
                 return cell
             }
         }
@@ -445,17 +432,15 @@ extension ApplicationFormBaseView: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.section == 0 {
-            return
+        if indexPath.section == 0 { return }
+        if viewModel.selectedLocationIndex == indexPath.section {
+            viewModel.selectedLocationIndex = -1
+        } else {
+            viewModel.selectedLocationIndex = indexPath.section
         }
 
         if indexPath.row == 0 {
-            var section = viewModel.getSections()
-            section[indexPath.section - 1].isOpened = !section[indexPath.section - 1].isOpened
-            tableView.reloadSections([indexPath.section], with: .fade)
-        } else {
-            var section = viewModel.getSections()
-            //let defectiveData = viewModel.getTotalCount()
+            tableView.reloadData()
         }
     }
 }

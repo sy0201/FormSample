@@ -182,7 +182,7 @@ extension CreateFormBottomViewController {
         let hasZoomOutImage = isUnselectedPhoto ? true : viewModel.writeFormModel.photoDataListDataType.zoomOutImage != nil
         let contentData = !viewModel.writeFormModel.contentData.isEmpty
 
-        let validationCheck = [locationData, defectiveData, isUnselectedPhoto, hasZoomInImage, hasZoomOutImage, contentData]
+        let validationCheck = [locationData, isUnselectedPhoto, defectiveData, contentData]
         return validationCheck.allSatisfy { $0 }
     }
 }

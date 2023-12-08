@@ -7,67 +7,35 @@
 
 import Foundation
 
-//class Section {
-//    var title: String
-//    var options = [WriteFormModel]()
-//    var isOpened = false
-//
-//    init(title: String, options: [WriteFormModel], isOpened: Bool = false) {
-//        self.title = title
-//        self.options = options
-//        self.isOpened = isOpened
-//    }
-//}
-
 final class FormViewModel {
-
-//    struct Section {
-//        var title: String
-//        var options: [WriteFormModel]
-//        var isOpened: Bool = false
-//    }
 
     var title = WriteFormModel()
     var writeFormDataList: [String: [WriteFormModel]] = [:]
-    var isOpened: Bool = false
+    var selectedLocationIndex: Int?
+    var locationKeys: [String] = []
 
-    /**
-    init() {
-        writeFormDataList["거실"] = [
-            WriteFormModel(locationData: "거실",
-                           defectiveData: "선택 안함1",
-                           photoDataListDataType: PhotoModelDataType(zoomInImage: nil, zoomOutImage: nil, isOptional: false),
-                           contentData: "내용",
-                           isActive: false),
-            WriteFormModel(locationData: "거실",
-                           defectiveData: "선택 안함2",
-                           photoDataListDataType: PhotoModelDataType(zoomInImage: nil, zoomOutImage: nil, isOptional: false),
-                           contentData: "내용",
-                           isActive: false),
-            WriteFormModel(locationData: "거실",
-                           defectiveData: "선택 안함3",
-                           photoDataListDataType: PhotoModelDataType(zoomInImage: nil, zoomOutImage: nil, isOptional: false),
-                           contentData: "내용",
-                           isActive: false)]
-    }
-     */
-    
-    func getSections() -> [FormViewModel] {
-        var result: [FormViewModel] = []
-        for (key, value) in writeFormDataList {
-            let section = FormViewModel()
-            result.append(section)
-        }
-        return result
-    }
-
-    func getLocations() -> [String] {
-        var locationKey: [String] = []
+    func getLocations() {
+        locationKeys = []
         for (key, _) in writeFormDataList {
-            locationKey.append(key)
+            locationKeys.append(key)
         }
-        return locationKey
     }
+
+    func getDefectiveData() -> [WriteFormModel] {
+        var dic: [String: WriteFormModel] = ["Swift": WriteFormModel(), "Xcode": WriteFormModel()]
+        var defectiveDataArray: [WriteFormModel] = []
+
+        for (_, writeFormModel) in dic {
+            let defectiveDataValue = writeFormModel.defectiveData
+            print("defectiveData: \(defectiveDataValue)")
+
+            // 가져온 defectiveData 값을 배열에 추가
+            defectiveDataArray.append(writeFormModel)
+        }
+
+        return defectiveDataArray
+    }
+
 
     func getWriteFormModels(forKey key: String) -> [WriteFormModel]? {
         return writeFormDataList[key]
